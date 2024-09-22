@@ -1,0 +1,23 @@
+# install extension
+1. ES7 React/Redux/GraphQL/React-Native snippets
+2. Thunder Client
+3. Live Share
+
+
+# install package part
+# frontend --> npm create vite@latest
+# backend --> npm init 
+          --> npm install express mongoose jsonwebtoken bcrypt cors dotenv body-parser multer stripe validator nodemon
+# admin --> npm create vite@latest .
+
+
+# Backtick
+     ` ` ` ` ` ` ` ` 
+
+
+# for frontend use --> npm run dev
+# for backend use --> npm run server
+# for admin use --> npm run dev
+# for stop run terminal --> ctrl + c
+
+// link for mongooses --> mongodb+srv://admin:DE251@cluster0.fahxg.mongodb.net/?
