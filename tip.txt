@@ -6,9 +6,17 @@
 
 # install package part
 # frontend --> npm create vite@latest
+           --> npm install axios react-router-dom react-toastify 
+           --> npm install -D tailwindcss postcss autoprefixer
+           --> npx tailwindcss init -p
+           --> npm i -D daisyui@latest
+
 # backend --> npm init 
           --> npm install express mongoose jsonwebtoken bcrypt cors dotenv body-parser multer stripe validator nodemon
-# admin --> npm create vite@latest .
+
+# admin --> npm create vite@latest
+        --> npm install axios react-router-dom react-toastify
+        --> npm i -D daisyui@latest
 
 
 # Backtick
@@ -18,6 +26,7 @@
 # for frontend use --> npm run dev
 # for backend use --> npm run server
 # for admin use --> npm run dev
+
 # for stop run terminal --> ctrl + c
 
 // link for mongooses --> mongodb+srv://admin:DE251@cluster0.fahxg.mongodb.net/?
