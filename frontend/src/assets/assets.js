@@ -6,6 +6,10 @@ import dropdown_icon from './dropdown-icon.svg'
 import menu_icon from './menu-icon.svg'
 import cross_icon from './cross-icon.svg'
 import info_icon from './info_icon.svg'
+import header_img from './header_img.png'
+import delivery_truck from './delivery-truck-icon.svg'
+import like_icon from './like-icon.svg'
+import new_product_icon from './new-product.svg'
 
 
 // export const for assets 
@@ -16,6 +20,10 @@ export const assets = {
     menu_icon,
     cross_icon,
     info_icon,
+    header_img,
+    delivery_truck,
+    like_icon,
+    new_product_icon,
 }
 
 

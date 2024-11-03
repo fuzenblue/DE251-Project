@@ -8,7 +8,14 @@ export default {
   ],
 
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "primary": "#FF9B00",
+        "dark-brown": "#693817",
+        "dark-gray": "#303D24",
+        "dark-green": "#303D24",
+      },
+    },
   },
   
   plugins: [
@@ -22,7 +29,9 @@ export default {
           // add custom color here
            
           "primary": "#FF9B00",
-          "dark-brown": "#693817"
+          "dark-brown": "#693817",
+          "dark-gray": "#303D24",
+          "dark-green": "#303D24",
         },
       },
     ],
