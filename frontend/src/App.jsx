@@ -14,9 +14,6 @@ import MyBooking from './pages/MyBooking.jsx'
 
 const App = () => {
 
-
-
-
   return (
     <div className='mx-4 sm:mx-[10%]'>
       <Navbar />

@@ -20,7 +20,7 @@ export default {
       {
         mytheme: {
           // add custom color here
-          
+           
           "primary": "#FF9B00",
           "dark-brown": "#693817"
         },
