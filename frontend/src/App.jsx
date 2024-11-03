@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
@@ -14,22 +15,20 @@ const App = () => {
 
 
   return (
-    <>
-      <div className='app'>
-        <Navbar />
-        <Routes>
-          < Route path='/' element={<Home />} />
-          < Route path='/cart' element={<Service  />} />
-          < Route path='/order' element={<Product />} />
-          < Route path='/verify' element={<About />} />
-          < Route path='/myorders' element={<Blog />} />
-          < Route path='/myorders' element={<Contact />} />
-          {/* ถ้าจะเพิ่มหน้าให้เพิ่ม path ด้าย ก้อปตามด้านบนมาได้เลย */}
-          
-        </Routes>
-      </div>
+    <div className='mx-4 sm:mx-[10%]'>
+      <Navbar />
+      <Routes>
+        < Route path='/' element={<Home />} />
+        < Route path='/all-service' element={<Service  />} />
+        < Route path='/all-product' element={<Product />} />
+        < Route path='/about' element={<About />} />
+        < Route path='/blogs' element={<Blog />} />
+        < Route path='/contact' element={<Contact />} />
+        {/* ถ้าจะเพิ่มหน้าให้เพิ่ม path ด้าย ก้อปตามด้านบนมาได้เลย */}
+        
+      </Routes>
       <Footer/>
-    </>
+    </div>
   )
 }
 
