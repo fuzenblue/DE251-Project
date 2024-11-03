@@ -8,6 +8,9 @@ import Product from './pages/Products.jsx'
 import About from './pages/AboutUs.jsx'
 import Blog from './pages/Blogs.jsx'
 import Contact from './pages/Contact.jsx'
+import MyProfile from './pages/MyProfile.jsx'
+import MyOrder from './pages/MyOrder.jsx'
+import MyBooking from './pages/MyBooking.jsx'
 
 const App = () => {
 
@@ -24,8 +27,9 @@ const App = () => {
         < Route path='/about' element={<About />} />
         < Route path='/blogs' element={<Blog />} />
         < Route path='/contact' element={<Contact />} />
-        {/* ถ้าจะเพิ่มหน้าให้เพิ่ม path ด้าย ก้อปตามด้านบนมาได้เลย */}
-        
+        < Route path='/my-profile' element={<MyProfile />} />
+        < Route path='/my-order' element={<MyOrder />} />
+        < Route path='/my-booking' element={<MyBooking />} />
       </Routes>
       <Footer/>
     </div>
