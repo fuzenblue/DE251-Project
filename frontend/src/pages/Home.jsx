@@ -7,6 +7,7 @@ const Home = () => {
     <div>
       <HomeHeader />
       <Banner />
+      test commit other github
     </div>
   )
 }
