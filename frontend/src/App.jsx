@@ -15,8 +15,12 @@ import MyBooking from './pages/MyBooking.jsx'
 const App = () => {
 
   return (
-    <div className='mx-5 sm:mx-[10%]'>
-      <Navbar />
+    <div>
+      <div className='sticky top-0 z-50 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.1)]'>
+        <div className='mx-5 sm:mx-[10%] '>
+          <Navbar />
+        </div>
+      </div>
       <Routes>
         < Route path='/' element={<Home />} />
         < Route path='/all-service' element={<Service  />} />
@@ -28,7 +32,9 @@ const App = () => {
         < Route path='/my-order' element={<MyOrder />} />
         < Route path='/my-booking' element={<MyBooking />} />
       </Routes>
-      <Footer/>
+      <div className='mx-5 sm:mx-[10%]'>
+        <Footer/>
+      </div>
     </div>
   )
 }

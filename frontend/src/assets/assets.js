@@ -10,6 +10,8 @@ import header_img from './header_img.png'
 import delivery_truck from './delivery-truck-icon.svg'
 import like_icon from './like-icon.svg'
 import new_product_icon from './new-product.svg'
+import pineapple_icon from './pineapple.png'
+import choose_us from './choose-us-img.png'
 
 
 // export const for assets 
@@ -24,6 +26,8 @@ export const assets = {
     delivery_truck,
     like_icon,
     new_product_icon,
+    pineapple_icon,
+    choose_us,
 }
 
 

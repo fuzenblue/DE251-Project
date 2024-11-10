@@ -4,10 +4,11 @@ import { assets } from '../assets/assets'
 const HomeHeader = () => {
 
   return (
-    <div className="relative min-w-[340px] rounded-lg  py-20 px-5 md:px-10 lg:px-5 overflow-hidden flex items-center justify-center" >
-        <div className="absolute inset-0 bg-no-repeat bg-cover" style={{ backgroundImage: `url(${assets.header_img})`, filter: 'blur(0px)',}} />
+    <div className="relative min-w-[340px] py-32 sm:py-44 px-5 md:px-10 lg:px-5 overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0 bg-no-repeat bg-cover" 
+            style={{ backgroundImage: `url(${assets.header_img})`, filter: 'blur(0px)', zIndex: '0' }} />
 
-        <div className="header-contents flex flex-col items-center text-center gap-4 z-40 animate-fadeIn">
+        <div className="header-contents flex flex-col items-center text-center gap-4 z-10 sm:z-0 animate-fadeIn">
             <h2 className="text-[max(4.5vw,30px)] md:text-4xl lg:text-5xl text-white font-semibold">
                 Experience the Taste of <span className="text-primary bg-primary-content">Freshness</span>
             </h2>
@@ -19,6 +20,7 @@ const HomeHeader = () => {
             </button>
         </div>
     </div>
+
   )
 }
 
