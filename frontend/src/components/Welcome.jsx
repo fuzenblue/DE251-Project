@@ -6,18 +6,18 @@ const Welcome = () => {
   return (
     <>
         <div className="flex flex-col items-center px-6 lg:flex-row lg:px-[10%] md:px-8 sm:px-4">
-            <div className="w-full lg:w-3/5 text-white text-center lg:text-start mb-6 lg:mb-0">
+            <div className="w-full lg:w-3/5 text-white text-center lg:text-start mb-6 lg:mb-0 md:mb-1">
                 <h3 className='text-base text-dark-green font-medium my-4'>Welcome to Pineapple Farm</h3>
-                <h1 className='text-3xl text-dark-brown font-extrabold mb-4 flex flex-col'>
+                <h1 className='text-3xl text-dark-brown font-extrabold mb-4 lg:flex lg:flex-col'>
                     Healthy & Quality <span className='text-primary'>Pineapples,</span> Grown with Care
                 </h1>
                 <Link to="/about">
-                    <button className='btn btn-primary text-white lg:px-10 rounded-md ml-1'>About Us</button>
+                    <button className='btn btn-primary font-normal text-white px-[20vw] lg:px-10 rounded-md ml-1'>About Us</button>
                 </Link>
             </div>
-            <div className="w-full lg:w-4/5 text-dark-brown mt-16 lg:mt-0 hidden lg:block">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p> <br />
-                <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+            <div className="w-full lg:w-4/5 text-dark-brown mt-4 lg:mt-12 mb-2 hidden lg:block md:block">
+                <p className='text-center lg:text-start'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p> <br />
+                <p className='text-center lg:text-start'>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
             </div>
         </div>
 
