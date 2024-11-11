@@ -14,7 +14,7 @@ const WhyChoose = () => {
             <div className='flex flex-row items-start'>
               <img className='w-[10%] mr-4 mt-4' src={assets.check_icon} alt="" />
               <div className='flex-grow gap-8'>
-                <h2 className=" text-3xl lg:text-4xl font-semibold text-primary">Fresh from the <Farm1></Farm1></h2>
+                <h2 className=" text-3xl lg:text-4xl font-semibold text-primary">Fresh from the</h2>
                 <p className='hidden lg:block'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
               </div>
             </div>
