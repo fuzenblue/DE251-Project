@@ -12,6 +12,7 @@ import like_icon from './like-icon.svg'
 import new_product_icon from './new-product.svg'
 import pineapple_icon from './pineapple.png'
 import choose_us from './choose-us-img.png'
+import check_icon from './check.svg'
 
 
 // export const for assets 
@@ -28,6 +29,7 @@ export const assets = {
     new_product_icon,
     pineapple_icon,
     choose_us,
+    check_icon,
 }
 
 

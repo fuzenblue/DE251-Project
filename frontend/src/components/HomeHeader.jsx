@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { Link } from 'react-router-dom'
 
 const HomeHeader = () => {
 
@@ -15,9 +16,11 @@ const HomeHeader = () => {
             <p className="text-white text-[1vw] font-light hidden md:block">
                 Discover the joy of farm life with our delicious pineapples, engaging workshops, and unique products. Join us for a taste of nature!
             </p>
-            <button className="btn btn-primary text-white px-8 py-3 rounded-full font-light md:block">
-                Discover Now
-            </button>
+            <Link to={"/all-service"}>
+                <button className="btn btn-primary text-white px-8 py-3 rounded-full font-light">
+                    Discover Now
+                </button>
+            </Link>
         </div>
     </div>
 

@@ -30,3 +30,9 @@
 # for stop run terminal --> ctrl + c
 
 // link for mongooses --> mongodb+srv://admin:DE251@cluster0.fahxg.mongodb.net/?
+
+
+--> responsive screen size
+        #sm size: 340px เล็กสุด
+        #md : 750px
+        #lg : 1200px ขึ้นไป
