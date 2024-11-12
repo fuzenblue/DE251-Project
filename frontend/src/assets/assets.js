@@ -13,6 +13,11 @@ import new_product_icon from './new-product.svg'
 import pineapple_icon from './pineapple.png'
 import choose_us from './choose-us-img.png'
 import check_icon from './check.svg'
+import promo_card from './promo-card-bg.png'
+import workshop_card from './workshop-card-img.png'
+import product_card from './product-card-service-page-img.png'
+import cafe_card from './cafe-card-img.png'
+import delivery_card from './deli-card-img.png'
 
 
 // export const for assets 
@@ -38,6 +43,13 @@ export const assets = {
 
 
 // export const for workshop
+export const card  = {
+    promo_card,
+    workshop_card,
+    product_card,
+    cafe_card,
+    delivery_card,
+}
 
 
 

@@ -3,10 +3,10 @@ import { assets } from '../assets/assets'
 
 const WhyChoose = () => {
   return (
-    <div className="w-full flex flex-col lg:flex-row items-center px-6 py-4 lg:py-96 relative overflow-hidden">
+    <div className="w-full flex flex-col lg:flex-row items-center px-6 py-4 lg:py-[340px] relative overflow-hidden">
         {/* content text */}
         <div className="flex flex-col w-full lg:w-[53%] xl:w-[45%] lg:top-8 lg:left-24 xl:left-44 xl:top-12 lg:right-0 lg:absolute gap-2 text-center lg:text-left bg-light-gray rounded-md z-10 shadow-lg px-3 lg:px-5 xl:px-8 py-3 lg:py-6">
-          <h3 className="text-sm md:text-lg font-bold text-black lg:mb-4 text-shadow-md">Why Choose Us</h3>
+          <h3 className="text-sm md:text-lg font-bold text-black lg:mb-3">Why Choose Us</h3>
           <h1 className="text-xl md:text-4xl font-bold lg:font-semibold text-dark-green mb-2">The best <span className='text-primary'>pineapple</span>  farm <br /> you will ever find!</h1>
           <p className='hidden lg:block text-dark-brown'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
 
