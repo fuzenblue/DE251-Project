@@ -3,7 +3,6 @@ import Header from '../components/HomeHeader'
 import Banner from '../components/Banner'
 import Welcome from '../components/Welcome'
 import WhyChoose from '../components/WhyChoose'
-import Product from '../components/BestSellProduct'
 import Service from '../components/DiscoverService'
 import Workshop from '../components/PopularWorkshop'
 import Blogs from '../components/OurBlog'
@@ -17,7 +16,6 @@ const Home = () => {
       <Banner />
       <Welcome />
       <WhyChoose />
-      <Product />
       <Service />
       <Workshop />
       <Blogs />
