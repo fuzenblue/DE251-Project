@@ -17,7 +17,7 @@ const HomeHeader = () => {
                 Discover the joy of farm life with our delicious pineapples, engaging workshops, and unique products. Join us for a taste of nature!
             </p>
             <Link to={"/all-service"}>
-                <button className="btn btn-primary text-white px-8 py-3 rounded-full font-light">
+                <button className="btn btn-primary text-white px-10 py-3 rounded-full font-light">
                     Discover Now
                 </button>
             </Link>

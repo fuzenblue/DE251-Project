@@ -18,6 +18,8 @@ import workshop_card from './workshop-card-img.png'
 import product_card from './product-card-service-page-img.png'
 import cafe_card from './cafe-card-img.png'
 import delivery_card from './deli-card-img.png'
+import cafe_sm from './cafe.jpg'
+import delivery_sm from './deli.jpg'
 
 
 // export const for assets 
@@ -49,6 +51,8 @@ export const card  = {
     product_card,
     cafe_card,
     delivery_card,
+    cafe_sm,
+    delivery_sm,
 }
 
 
