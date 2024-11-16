@@ -1,66 +1,217 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { AppContext } from '../context/AppContext.jsx'
+import { assets } from '../assets/assets.js'
+import RelatedWorkshops from '../components/RelatedWorkshops.jsx'
 
 const WorkshopInfo = () => {
 
+    const { workshopId } = useParams()
+
+    const { workshops,currencySymbol } = useContext(AppContext)
+    const dayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+  
+    const [ workshopInfo, setWorkshopInfo ] = useState(null)
+    const [ workshopSlots, setWorkshopSlots ] = useState([])
+    const [ slotIndex, setSlotIndex ] = useState(0)
+    const [ slotTime, setSlotTime ] = useState('')
+  
+    const fetchWorkshopInfo = async () => {
+      const workshopInfo = workshops.find(workshops => workshops._id === workshopId)
+      setWorkshopInfo(workshopInfo)
+    }
+
+    const getAvailableSlots = async () => {
+        setWorkshopSlots([]) 
+    
+        // getting current date 
+        let today = new Date()
+        
+        for (let i = 0; i < 7; i++) {
+          // getting date with index
+          let currentDate = new Date(today) 
+          currentDate.setDate(today.getDate() + i) 
+    
+          // setting end time of the data with index
+          let endTime = new Date() 
+          endTime.setDate(today.getDate() + i) 
+          endTime.setHours(20, 0, 0, 0) // ตั้งเวลาสิ้นสุด
+    
+          let timeSlots = [] // สร้างตัวแปรสำหรับเก็บเวลา
+          let slotsAdded = 0 // นับจำนวน slots ที่ถูกเพิ่ม
+    
+          
+          let currentSlotStart = new Date() // *********** กำหนดเวลาปัจจุบันสำหรับการเพิ่ม slot ตรงนี ****************** //
+          currentSlotStart.setSeconds(0) 
+    
+          // ปรับเวลาเริ่มต้นสำหรับวันนั้น ๆ 
+          if (currentDate.getDay() === 0 || currentDate.getDay() === 6) {
+              // สำหรับวันอาทิตย์และวันเสาร์ (SUN / SAT) มี 3 ช่วงเวลา
+              while (slotsAdded < 3) {
+                  let startTime, endTime 
+    
+                  if (slotsAdded === 0) {
+                      startTime = new Date(currentDate) 
+                      startTime.setHours(9, 0, 0, 0) 
+                      endTime = new Date(startTime) 
+                      endTime.setHours(startTime.getHours() + 3) 
+    
+                      if (startTime >= currentSlotStart && startTime < endTime) {
+                          timeSlots.push({
+                              datetime: new Date(startTime),
+                              time: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                              endTime: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                          });
+                      }
+                  } else if (slotsAdded === 1) {
+                      startTime = new Date(currentDate) 
+                      startTime.setHours(13, 0, 0, 0) 
+                      endTime = new Date(startTime) 
+                      endTime.setHours(startTime.getHours() + 3) 
+    
+                      if (startTime >= currentSlotStart && startTime < endTime) {
+                          timeSlots.push({
+                              datetime: new Date(startTime),
+                              time: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                              endTime: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                          });
+                      }
+                  } else if (slotsAdded === 2) {
+                      startTime = new Date(currentDate) 
+                      startTime.setHours(17, 0, 0, 0) 
+                      endTime = new Date(startTime) 
+                      endTime.setHours(startTime.getHours() + 3) 
+    
+                      if (startTime >= currentSlotStart && startTime < endTime) {
+                          timeSlots.push({
+                              datetime: new Date(startTime),
+                              time: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                              endTime: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                          })
+                      }
+                  }
+                  slotsAdded++
+              }
+          } else {
+              // สำหรับวันจันทร์ถึงวันศุกร์ (MON - FRI) มี 2 ช่วงเวลา
+              while (slotsAdded < 2) {
+                let startTime, endTime 
+    
+                if (slotsAdded === 0) {
+                    startTime = new Date(currentDate) 
+                    startTime.setHours(11, 0, 0, 0) 
+                    endTime = new Date(startTime) 
+                    endTime.setHours(startTime.getHours() + 3) 
+                    if (startTime >= currentSlotStart && startTime < endTime) {
+                        timeSlots.push({
+                            datetime: new Date(startTime),
+                            time: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                            endTime: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                        }) 
+                    }
+                } else if (slotsAdded === 1) {
+                    startTime = new Date(currentDate) 
+                    startTime.setHours(16, 0, 0, 0) 
+                    endTime = new Date(startTime) 
+                    endTime.setHours(startTime.getHours() + 3) 
+    
+                    if (startTime >= currentSlotStart && startTime < endTime) {
+                        timeSlots.push({
+                            datetime: new Date(startTime),
+                            time: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                            endTime: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                        }) 
+                    }
+                }
+                slotsAdded++ 
+              }
+              
+            }
+            
+            if (timeSlots.length === 0) {
+              timeSlots.push({
+                  datetime: currentDate,
+                  time: `No available slots on ${currentDate.toLocaleDateString()}`,
+              })
+            }
+          setWorkshopSlots(prev => [...prev, timeSlots]); // เพิ่ม timeSlots ลงใน workshopSlots
+        }
+      }
+
+    useEffect(() => {
+        fetchWorkshopInfo()
+    }, [workshops, workshopId])
+        
+    useEffect(() => {
+        getAvailableSlots()
+    }, [workshopInfo])
+
+    useEffect(() => {
+        console.log(workshopSlots)
+    }, [workshops])
 
   return (
-    <div className=' px-5 py-5'>
+    <div className='px-5 py-5'>
         {/* Image */}
-        <div className="carousel w-full">
-            <div id="item1" className="carousel-item w-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp" className="w-full" />
-            </div>
-            <div id="item2" className="carousel-item w-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp" className="w-full" />
-            </div>
-            <div id="item3" className="carousel-item w-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp" className="w-full" />
-            </div>
-            <div id="item4" className="carousel-item w-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp" className="w-full" />
-            </div>
-            <div className="flex  justify-center gap-2 py-2">
-                <a href='#item1' className="btn btn-xs">1</a>
-                <a href='#item2' className="btn btn-xs">2</a>
-                <a href='#item3' className="btn btn-xs">3</a>
-                <a href='#item4' className="btn btn-xs">4</a>
-            </div>
+        <div className="relative carousel w-full h-96 rounded-md py-5'">
+            {workshopInfo && [workshopInfo.image1, workshopInfo.image2, workshopInfo.image3, workshopInfo.image4, workshopInfo.image5].map((image, index) => (
+                <div key={index} id={`slide${index + 1}`} className="carousel-item relative w-full">
+                    <img src={image} className="w-full object-fill" />
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href={`#slide${(index === 0 ? 5 : index)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❮</a>
+                        <a href={`#slide${(index === 4 ? 1 : index + 2)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❯</a>
+                    </div>
+                </div>
+            ))}
         </div>
 
         {/* Info */}
-        <div>
-            <div>
-                <h1>Workshop Title</h1>
-                <h3>Price</h3>
+        <div className='m-3'>
+            <div className='flex justify-between px-0 md:px-8 gap-4'>
+                <h1 className='text-3xl text-primary font-semibold'>{workshopInfo?.name}</h1>
+                <h3 className='text-3xl text-primary font-semibold'>{currencySymbol}{workshopInfo?.price}</h3>
             </div>
 
-            <div>
+            <div className='flex mt-4 flex-col md:flex-row gap-5'>
                 {/* description */}
-                <div>
+                <div className='flex-1 border border-gray-400 rounded-lg p-5'>
+                    <div>
+                        <p className='flex items-center gap-1 text-lg font-medium text-gray-600 mt-3'>
+                            Description about this workshop
+                            <img src={assets.info_icon} alt="" />
+                        </p>
 
+                        <p className='text-sm text-gray-500 max-w-[700px] mt-4'>{workshopInfo?.about}</p>
+                        <p className='text-sm text-gray-500 max-w-[700px] mt-2'>{workshopInfo?.description}</p>
+                    </div>
+
+                    <p className='text-gray-500 font-medium mt-10 text-end'>Workshop Price:  
+                        <span className='text-gray-600'>  {currencySymbol}{workshopInfo?.price}</span>
+                    </p>
                 </div>
-                {/* booking slots */}
-                <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700'>
-                    <p>Booking slots</p>
-                    {/* <div className='flex gap-3 items-center w-full overflow-x-scroll-0 mt-4'>
-                    {
-                        docSlots.length ? docSlots.map((item, index) => (
-                        <div onClick={() => setSlotIndex(index)} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-primary text-white' : 'text-gray-400 border border-gray-300'}`} key={index}>
-                            <p>{item[0] && dayOfWeek[item[0].datetime.getDay()]}</p>
-                            <p>{item[0] && item[0].datetime.getDate()}</p>
-                        </div>
-                        )) : (
-                        <p className='text-gray-400'>No available slots. Please choose another day or the next available date.</p>
-                        )
-                    }
-                    </div> */}
 
-                    <div className='flex items-center gap-3 w-full overflow-x-scroll-0 mt-4'>
-                        {docSlots.length > 0 ? (
-                            docSlots[slotIndex].map((item, index) => (
+                {/* booking slots */}
+                <div className='w-full md:w-1/2 md:ml-4 mt-4 font-medium text-gray-700'>
+                    <p>Booking slots</p>
+                    <div className='flex gap-4 items-center w-full overflow-x-auto m-5'>
+                        {
+                            workshopSlots.length ? workshopSlots.map((item, index) => (
+                            <div onClick={() => setSlotIndex(index)} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-primary text-white' : 'text-gray-400 border border-gray-300'}`} key={index}>
+                                <p>{item[0] && dayOfWeek[item[0].datetime.getDay()]}</p>
+                                <p>{item[0] && item[0].datetime.getDate()}</p>
+                            </div>
+                            )) : (
+                            <p className='text-gray-400'>No available slots. Please choose another day or the next available date.</p>
+                            )
+                        }
+                    </div>
+
+                    <div className='flex items-center gap-4 w-full overflow-x-auto m-5'>
+                        {workshopSlots.length > 0 ? (
+                            workshopSlots[slotIndex].map((item, index) => (
                                 item.time.includes("No available slots") ? (
-                                    <p className=' font-medium text-red-500 ' key={index}>
-                                        {item.time} {/* แสดงข้อความว่าไม่มีช่วงเวลา */}
+                                    <p className='font-medium text-red-500 px-5 py-2' key={index}>
+                                        {item.time}
                                     </p>
                                 ) : (
                                     <p onClick={() => setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-gray-400 border border-gray-300'}`} key={index}>
@@ -69,15 +220,15 @@ const WorkshopInfo = () => {
                                 )))) : ( <p className='text font-light text-gray-400'>Loading...</p> )
                         }
                     </div>
-                    
-                    <button className='bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6'>Book an Appointment</button>
+
+                    <button className='btn btn-primary text-white text-sm font-light px-14 py-3 rounded-full shadow-md'>Book this Workshop</button>
                 </div>
             </div>
         </div>
 
         {/* relate workshop */}
         <div>
-
+            {/* <RelatedDoctors workshopId={workshopId} category={workshopInfo.category} /> */}
         </div>
     </div>
   )

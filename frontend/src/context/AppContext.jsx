@@ -1,13 +1,15 @@
 import { createContext } from 'react'
+import { workshops } from '../assets/assets'
 
 export const AppContext = createContext()
 
 const AppContextProvider = (props) => {
 
+    const currencySymbol = '$'
 
     const value = {
-        // add context value here 
-
+        workshops,
+        currencySymbol,
     }
 
     return (

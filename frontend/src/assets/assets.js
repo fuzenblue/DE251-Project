@@ -20,8 +20,6 @@ import cafe_card from './cafe-card-img.png'
 import delivery_card from './deli-card-img.png'
 import cafe_sm from './cafe.jpg'
 import delivery_sm from './deli.jpg'
-import _bg from './popular-workshop-bg.jpg'
-// import planting_icon from '.'
 
 
 // export const for assets 
@@ -57,11 +55,29 @@ export const card  = {
     delivery_sm,
 }
 
-export const workshop = {
-    _bg,
-    // card
-    
-}
+export const category_workshop = [
+    {
+        category: 'Pineapple Planting',
+        text: 'Pineapple Planting'
+    },
+]
+
+export const workshops = [
+    {
+        _id: 'workshop1',
+        name: 'Pineapple Planting',
+        image: profile_pic,
+        image1: header_img,
+        image2: profile_pic,
+        image3: header_img,
+        image4: profile_pic,
+        image5: logo,
+        category: 'Workshop for kids',
+        about: 'Learn how to grow and care for your own pineapples with expert guidance from our farm staff.',
+        description: 'Learn how to plant and take care of pineapples with hands-on activities and expert advice.',
+        price: 50,
+    },
+]
 
 
 
