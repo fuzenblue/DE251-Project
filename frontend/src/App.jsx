@@ -11,6 +11,7 @@ import Contact from './pages/Contact.jsx'
 import MyProfile from './pages/MyProfile.jsx'
 import MyOrder from './pages/MyOrder.jsx'
 import MyBooking from './pages/MyBooking.jsx'
+import WorkshopInfo from './pages/WorkshopInfo.jsx'
 
 const App = () => {
 
@@ -31,6 +32,7 @@ const App = () => {
         < Route path='/my-profile' element={<MyProfile />} />
         < Route path='/my-order' element={<MyOrder />} />
         < Route path='/my-booking' element={<MyBooking />} />
+        < Route path='/workshop_info' element={<WorkshopInfo />} />
       </Routes>
       <div className='mx-5 sm:mx-[10%]'>
         <Footer/>

@@ -4,7 +4,7 @@ import { card } from '../assets/assets'
 
 const ImageServiceCard = () => {
   return (
-    <div className="hidden md:flex justify-center items-center w-full py-5">
+    <div className="hidden md:flex justify-center items-center w-full pt-5">
       <div className="grid grid-rows-3 grid-flow-col w-3/4 gap-0">
         {/* Workshop Card */}
         <div className="row-span-3 flex items-start justify-center relative">

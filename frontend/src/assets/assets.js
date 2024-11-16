@@ -20,6 +20,8 @@ import cafe_card from './cafe-card-img.png'
 import delivery_card from './deli-card-img.png'
 import cafe_sm from './cafe.jpg'
 import delivery_sm from './deli.jpg'
+import _bg from './popular-workshop-bg.jpg'
+// import planting_icon from '.'
 
 
 // export const for assets 
@@ -53,6 +55,12 @@ export const card  = {
     delivery_card,
     cafe_sm,
     delivery_sm,
+}
+
+export const workshop = {
+    _bg,
+    // card
+    
 }
 
 
