@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext.jsx'
 import { assets } from '../assets/assets.js'
+import RatingWorkshop from '../components/RatingWorkshop.jsx'
+
 import RelatedWorkshops from '../components/RelatedWorkshops.jsx'
 
 const WorkshopInfo = () => {
@@ -224,6 +226,11 @@ const WorkshopInfo = () => {
                     <button className='btn btn-primary text-white text-sm font-light px-14 py-3 rounded-full shadow-md'>Book this Workshop</button>
                 </div>
             </div>
+        </div>
+
+        {/* Review */}
+        <div>
+            <RatingWorkshop />
         </div>
 
         {/* relate workshop */}
