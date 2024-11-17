@@ -5,9 +5,14 @@ const AboutUs = () => {
   return (
     <div>
       <header className="header">
-        <h1>Welcome to Our Pineapple Farm</h1>
-        <p>Your premier destination for authentic farm experiences and the finest pineapple products in Thailand.</p>
-      </header>
+      <h1>
+        <span class="white-text">Welcome</span><span class="white-text"> to</span>&nbsp; 
+        <span class="orange-text">Our Pineapple Farm</span>
+      </h1>
+      <p>Your premier destination for authentic farm experiences and the finest pineapple products in Thailand.</p>
+    </header>
+
+
        {/* Info Cards Section */}
        <section className="info-cards">
         <div className="info-card green">
@@ -72,6 +77,13 @@ const AboutUs = () => {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          .white-text {
+          color: white;
+          }
+          .orange-text {
+            color: orange;
+          }
+
         }
 
         .header h1 {
