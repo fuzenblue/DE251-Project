@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MyProfileSideBar from '../components/MyProfileSideBar';
+import { fame } from '../assets/fame';
 
 const MyProfile = () => {
   // โหลดข้อมูลจาก localStorage
@@ -45,7 +46,10 @@ const MyProfile = () => {
       {/* Main Content Area */}
       <div className="flex-1 p-8 bg-gray-50">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-2xl font-bold mb-6">Personal Information</h1>
+          <h1 className="text-2xl font-bold mb-6 flex items-center space-x-2">
+            <img src={fame.info_icon} alt="Info Icon" className="w-6 h-6" />
+            <span>Personal Information</span>
+          </h1>
 
           {/* Information Card */}
           <div className="bg-white rounded-lg shadow p-6">
@@ -87,6 +91,8 @@ const MyProfile = () => {
                   disabled={!isEditing}
                 />
               </div>
+              
+
               {/* Gender Section */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>

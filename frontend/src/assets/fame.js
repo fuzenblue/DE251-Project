@@ -6,12 +6,18 @@ import pic3_aboutus from './aboutus3.svg'
 import pic4_aboutus from './aboutus4.svg'
 import bk_icon from './bkfame.svg'
 import user1 from './muser.svg'
-
+import info_icon from './infofame.svg'
 export const fame ={
     bag_icon,
     bk_icon,
     user1,
     bag_icon,
     lisa_pic,
+    pic1_aboutus,
+    pic2_aboutus,
+    pic3_aboutus,
+    pic4_aboutus,
+    info_icon
+
     // Add more icons as needed
 }
