@@ -2,6 +2,7 @@ import React from 'react'
 import ServiceHeader from '../components/ServiceHeader'
 import ImageServiceCard from '../components/ImageServiceCard'
 import SmallImgServiceCard from '../components/SmallImgServiceCard'
+import WorkshopDisplay from '../components/WorkshopDisplay'
 
 const AllService = () => {
   return (
@@ -23,7 +24,7 @@ const AllService = () => {
             category
         </div>
         <div>
-            Workshop display
+            <WorkshopDisplay />
         </div>
       </div>
 

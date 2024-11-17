@@ -32,7 +32,7 @@ const App = () => {
         < Route path='/my-profile' element={<MyProfile />} />
         < Route path='/my-order' element={<MyOrder />} />
         < Route path='/my-booking' element={<MyBooking />} />
-        < Route path='/workshop_info' element={<WorkshopInfo />} />
+        < Route path='/workshop_info/:id' element={<WorkshopInfo />} />
       </Routes>
       <div className='mx-5 sm:mx-[10%]'>
         <Footer/>

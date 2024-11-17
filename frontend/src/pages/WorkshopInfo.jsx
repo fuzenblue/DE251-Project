@@ -9,6 +9,7 @@ import RelatedWorkshops from '../components/RelatedWorkshops.jsx'
 const WorkshopInfo = () => {
 
     const { workshopId } = useParams()
+    const { id } = useParams()
 
     const { workshops,currencySymbol } = useContext(AppContext)
     const dayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
@@ -151,6 +152,12 @@ const WorkshopInfo = () => {
     useEffect(() => {
         console.log(workshopSlots)
     }, [workshops])
+
+
+    useEffect(() => {
+        const workshop = workshops.find(workshop => workshop._id === id);
+        setWorkshopInfo(workshop)
+      }, [id, workshops])
 
   return (
     <div className='px-5 py-5'>
