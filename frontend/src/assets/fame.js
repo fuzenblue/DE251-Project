@@ -12,6 +12,6 @@ export const fame ={
     bk_icon,
     user1,
     bag_icon,
-    lisa_pic
+    lisa_pic,
     // Add more icons as needed
 }

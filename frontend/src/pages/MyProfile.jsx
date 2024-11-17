@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MyProfileSideBar from '../components/MyProfileSideBar';
 
 const MyProfile = () => {
-  const [profile, setProfile] = useState({
-    firstName: 'Lalisa',
-    lastName: 'Manobal',
-    gender: 'Female',
-    email: 'lisa@blackpink.com',
-    phone: '+66 123 456 789',
-    address: '123 K-Pop Street, Gangnam District, Seoul, South Korea',
-    birthdate: '1997-03-27', // ใช้รูปแบบ ISO สำหรับวันที่
-  });
+  // โหลดข้อมูลจาก localStorage หากมี
+  const loadProfile = () => {
+    const savedProfile = localStorage.getItem('profile');
+    return savedProfile ? JSON.parse(savedProfile) : {
+      firstName: 'Lalisa',
+      lastName: 'Manobal',
+      gender: 'Female',
+      email: 'lisa@blackpink.com',
+      phone: '+66 123 456 789',
+      address: '123 K-Pop Street, Gangnam District, Seoul, South Korea',
+      birthdate: '1997-03-27',
+    };
+  };
 
+  const [profile, setProfile] = useState(loadProfile);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleInputChange = (e) => {
@@ -21,8 +26,8 @@ const MyProfile = () => {
 
   const toggleEdit = () => {
     if (isEditing) {
-      // Save changes if needed
-      // Example: Make an API call to save the data
+      // เมื่อบันทึกข้อมูลให้เก็บข้อมูลใน localStorage
+      localStorage.setItem('profile', JSON.stringify(profile));
       console.log('Saved profile:', profile);
     }
     setIsEditing(!isEditing);
