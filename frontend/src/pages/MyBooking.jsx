@@ -1,9 +1,10 @@
 import React from 'react'
+import MyProfileSideBar from '../components/MyProfileSideBar'
 
 const MyBooking = () => {
   return (
     <div>
-      My Booking Page
+    <MyProfileSideBar />
     </div>
   )
 }

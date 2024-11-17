@@ -1,9 +1,10 @@
 import React from 'react'
+import MyProfileSideBar from '../components/MyProfileSideBar'
 
 const MyOrder = () => {
   return (
     <div>
-      My Order Page
+     <MyProfileSideBar />
     </div>
   )
 }
