@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MyProfileSideBar from '../components/MyProfileSideBar';
+import { fame } from '../assets/fame';
 
 const MyProfile = () => {
-  // โหลดข้อมูลจาก localStorage หากมี
+  // โหลดข้อมูลจาก localStorage
   const loadProfile = () => {
     const savedProfile = localStorage.getItem('profile');
-    return savedProfile ? JSON.parse(savedProfile) : {
-      firstName: 'Lalisa',
-      lastName: 'Manobal',
-      gender: 'Female',
-      email: 'lisa@blackpink.com',
-      phone: '+66 123 456 789',
-      address: '123 K-Pop Street, Gangnam District, Seoul, South Korea',
-      birthdate: '1997-03-27',
-    };
+    return savedProfile
+      ? JSON.parse(savedProfile)
+      : {
+          firstName: 'Lalisa',
+          lastName: 'Manobal',
+          gender: 'Female',
+          email: 'lisa@blackpink.com',
+          phone: '+66 123 456 789',
+          address: '123 K-Pop Street, Gangnam District, Seoul, South Korea',
+          birthdate: '1997-03-27',
+        };
   };
 
   const [profile, setProfile] = useState(loadProfile);
+  const [savedProfile, setSavedProfile] = useState(profile); // เก็บข้อมูลที่บันทึกแล้ว
   const [isEditing, setIsEditing] = useState(false);
 
   const handleInputChange = (e) => {
@@ -26,8 +30,9 @@ const MyProfile = () => {
 
   const toggleEdit = () => {
     if (isEditing) {
-      // เมื่อบันทึกข้อมูลให้เก็บข้อมูลใน localStorage
+      // บันทึกข้อมูลลง localStorage และอัปเดตข้อมูลที่บันทึกแล้ว
       localStorage.setItem('profile', JSON.stringify(profile));
+      setSavedProfile(profile); // อัปเดต Sidebar
       console.log('Saved profile:', profile);
     }
     setIsEditing(!isEditing);
@@ -36,12 +41,15 @@ const MyProfile = () => {
   return (
     <div className="min-h-screen flex">
       {/* Sidebar */}
-      <MyProfileSideBar profile={profile} />
+      <MyProfileSideBar profile={savedProfile} />
 
       {/* Main Content Area */}
       <div className="flex-1 p-8 bg-gray-50">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-2xl font-bold mb-6">Personal Information</h1>
+          <h1 className="text-2xl font-bold mb-6 flex items-center space-x-2">
+            <img src={fame.info_icon} alt="Info Icon" className="w-6 h-6" />
+            <span>Personal Information</span>
+          </h1>
 
           {/* Information Card */}
           <div className="bg-white rounded-lg shadow p-6">
@@ -71,6 +79,19 @@ const MyProfile = () => {
                   />
                 </div>
               </div>
+              {/* Birthdate */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Birthdate</label>
+                <input
+                  type="date"
+                  name="birthdate"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                  value={profile.birthdate}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                />
+              </div>
+              
 
               {/* Gender Section */}
               <div>
@@ -87,8 +108,6 @@ const MyProfile = () => {
                   <option value="Other">Other</option>
                 </select>
               </div>
-
-              {/* Contact Information */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                 <input
@@ -100,7 +119,6 @@ const MyProfile = () => {
                   readOnly={!isEditing}
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                 <input
@@ -112,8 +130,6 @@ const MyProfile = () => {
                   readOnly={!isEditing}
                 />
               </div>
-
-              {/* Address */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
                 <textarea
@@ -123,19 +139,6 @@ const MyProfile = () => {
                   value={profile.address}
                   onChange={handleInputChange}
                   readOnly={!isEditing}
-                />
-              </div>
-
-              {/* Birthdate */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Birthdate</label>
-                <input
-                  type="date"
-                  name="birthdate"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.birthdate}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
                 />
               </div>
 
