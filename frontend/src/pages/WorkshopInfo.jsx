@@ -3,16 +3,15 @@ import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext.jsx'
 import { assets } from '../assets/assets.js'
 import RatingWorkshop from '../components/RatingWorkshop.jsx'
-
-import RelatedWorkshops from '../components/RelatedWorkshops.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
+import WorkshopHeader from '../components/WorkshopHeader.jsx'
 
 const WorkshopInfo = () => {
 
     const { workshopId } = useParams()
     const { id } = useParams()
 
-    const { workshops,currencySymbol } = useContext(AppContext)
+    const { workshops, currencySymbol } = useContext(AppContext)
     const dayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
   
     const [ workshopInfo, setWorkshopInfo ] = useState(null)
@@ -164,67 +163,26 @@ const WorkshopInfo = () => {
     <div className='px-5 py-2'>
         <Breadcrumbs />
 
-        <div className="flex flex-col md:flex-row gap-5">
-            {/* Image */}
-            <div className="relative carousel w-full md:w-2/3 h-96">
-                {workshopInfo && [workshopInfo.image1, workshopInfo.image2, workshopInfo.image3, workshopInfo.image4, workshopInfo.image5].map((image, index) => (
-                    <div key={index} id={`slide${index + 1}`} className="carousel-item relative w-full ">
-                        <img src={image} className="w-full object-cover rounded-md" />
-                        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                            <a href={`#slide${(index === 0 ? 5 : index)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❮</a>
-                            <a href={`#slide${(index === 4 ? 1 : index + 2)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❯</a>
-                        </div>
-                    </div>
-
-                ))}
-            </div>
-            {/* Gallery */}
-            <div class="container mx-auto w-1/3">
-                <div class="flex flex-wrap py-3">
-                    <div class="flex w-1/2 flex-wrap">
-                        <div class="w-1/2 p-1 md:p-2">
-                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
-                        </div>
-                        <div class="w-1/2 p-1 md:p-2">
-                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
-                        </div>
-                        <div class="w-full p-1 md:p-2">
-                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
-                        </div>
-                    </div>
-                    <div class="flex w-1/2 flex-wrap">
-                        <div class="w-full p-1 md:p-2">
-                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
-                        </div>
-                        <div class="w-1/2 p-1 md:p-2">
-                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
-                        </div>
-                        <div class="w-1/2 p-1 md:p-2">
-                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <WorkshopHeader />
 
         {/* Info */}
-        <div className='m-3'>
-            <div className='flex justify-between px-0 md:px-8 gap-4'>
+        <div className='mx-[4%]'>
+            <div className='flex justify-between px-0 md:px-8 gap-4 mt-3'>
                 <h1 className='text-3xl text-primary font-semibold'>{workshopInfo?.name}</h1>
-                <h3 className='text-3xl text-primary font-semibold'>{currencySymbol}{workshopInfo?.price}</h3>
+                <h3 className='text-3xl text-primary font-semibold hidden md:block'>{currencySymbol}{workshopInfo?.price}</h3>
             </div>
 
             <div className='flex mt-4 flex-col md:flex-row gap-5'>
                 {/* description */}
                 <div className='flex-1 rounded-lg'>
-                    <div>
+                    <div className='max-h-48 md:h-auto overflow-y-scroll xl:overflow-clip'>
                         <p className='flex items-center gap-1 text-lg font-medium text-gray-600 mt-3'>
                             Description about this workshop
                             <img src={assets.info_icon} alt="" />
                         </p>
 
                         <p className='text-sm text-gray-500 mt-2'>{workshopInfo?.about}</p>
-                        <p className='text-sm text-gray-500 mt-2'>{workshopInfo?.description}</p>
+                        <p className='text-sm text-gray-500 mt-2 '>{workshopInfo?.description}</p>
                     </div>
 
                     <p className='text-gray-500 font-medium mt-10 text-end'>Workshop Price:  
@@ -273,7 +231,7 @@ const WorkshopInfo = () => {
             <RatingWorkshop />
         </div>
 
-        {/* relate workshop */}
+        {/* relate workshop ยังไม่เขียน */}
         <div>
             {/* <RelatedDoctors workshopId={workshopId} category={workshopInfo.category} /> */}
         </div>
