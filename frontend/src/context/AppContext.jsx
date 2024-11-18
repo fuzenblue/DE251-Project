@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { workshops } from '../assets/assets'
+import { workshops, category_workshop } from '../assets/assets'
 
 export const AppContext = createContext()
 
@@ -10,6 +10,7 @@ const AppContextProvider = (props) => {
     const value = {
         workshops,
         currencySymbol,
+        category_workshop,
     }
 
     return (

@@ -5,6 +5,7 @@ import { assets } from '../assets/assets.js'
 import RatingWorkshop from '../components/RatingWorkshop.jsx'
 
 import RelatedWorkshops from '../components/RelatedWorkshops.jsx'
+import Breadcrumbs from '../components/Breadcrumbs.jsx'
 
 const WorkshopInfo = () => {
 
@@ -139,7 +140,7 @@ const WorkshopInfo = () => {
             }
           setWorkshopSlots(prev => [...prev, timeSlots]); // เพิ่ม timeSlots ลงใน workshopSlots
         }
-      }
+    }
 
     useEffect(() => {
         fetchWorkshopInfo()
@@ -160,18 +161,50 @@ const WorkshopInfo = () => {
       }, [id, workshops])
 
   return (
-    <div className='px-5 py-5'>
-        {/* Image */}
-        <div className="relative carousel w-full h-96 rounded-md py-5'">
-            {workshopInfo && [workshopInfo.image1, workshopInfo.image2, workshopInfo.image3, workshopInfo.image4, workshopInfo.image5].map((image, index) => (
-                <div key={index} id={`slide${index + 1}`} className="carousel-item relative w-full">
-                    <img src={image} className="w-full object-fill" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href={`#slide${(index === 0 ? 5 : index)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❮</a>
-                        <a href={`#slide${(index === 4 ? 1 : index + 2)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❯</a>
+    <div className='px-5 py-2'>
+        <Breadcrumbs />
+
+        <div className="flex flex-col md:flex-row gap-5">
+            {/* Image */}
+            <div className="relative carousel w-full md:w-2/3 h-96">
+                {workshopInfo && [workshopInfo.image1, workshopInfo.image2, workshopInfo.image3, workshopInfo.image4, workshopInfo.image5].map((image, index) => (
+                    <div key={index} id={`slide${index + 1}`} className="carousel-item relative w-full ">
+                        <img src={image} className="w-full object-cover rounded-md" />
+                        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                            <a href={`#slide${(index === 0 ? 5 : index)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❮</a>
+                            <a href={`#slide${(index === 4 ? 1 : index + 2)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❯</a>
+                        </div>
+                    </div>
+
+                ))}
+            </div>
+            {/* Gallery */}
+            <div class="container mx-auto w-1/3">
+                <div class="flex flex-wrap py-3">
+                    <div class="flex w-1/2 flex-wrap">
+                        <div class="w-1/2 p-1 md:p-2">
+                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
+                        </div>
+                        <div class="w-1/2 p-1 md:p-2">
+                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
+                        </div>
+                        <div class="w-full p-1 md:p-2">
+                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
+                        </div>
+                    </div>
+                    <div class="flex w-1/2 flex-wrap">
+                        <div class="w-full p-1 md:p-2">
+                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
+                        </div>
+                        <div class="w-1/2 p-1 md:p-2">
+                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
+                        </div>
+                        <div class="w-1/2 p-1 md:p-2">
+                            <img className="rounded-lg grayscale hover:grayscale-0" src={assets.profile_pic} alt="" />
+                        </div>
                     </div>
                 </div>
-            ))}
+            </div>
         </div>
 
         {/* Info */}
@@ -183,15 +216,15 @@ const WorkshopInfo = () => {
 
             <div className='flex mt-4 flex-col md:flex-row gap-5'>
                 {/* description */}
-                <div className='flex-1 border border-gray-400 rounded-lg p-5'>
+                <div className='flex-1 rounded-lg'>
                     <div>
                         <p className='flex items-center gap-1 text-lg font-medium text-gray-600 mt-3'>
                             Description about this workshop
                             <img src={assets.info_icon} alt="" />
                         </p>
 
-                        <p className='text-sm text-gray-500 max-w-[700px] mt-4'>{workshopInfo?.about}</p>
-                        <p className='text-sm text-gray-500 max-w-[700px] mt-2'>{workshopInfo?.description}</p>
+                        <p className='text-sm text-gray-500 mt-2'>{workshopInfo?.about}</p>
+                        <p className='text-sm text-gray-500 mt-2'>{workshopInfo?.description}</p>
                     </div>
 
                     <p className='text-gray-500 font-medium mt-10 text-end'>Workshop Price:  
@@ -200,7 +233,7 @@ const WorkshopInfo = () => {
                 </div>
 
                 {/* booking slots */}
-                <div className='w-full md:w-1/2 md:ml-4 mt-4 font-medium text-gray-700'>
+                <div className='w-full md:w-1/2 md:ml-4 font-medium text-gray-700'>
                     <p>Booking slots</p>
                     <div className='flex gap-4 items-center w-full overflow-x-auto m-5'>
                         {

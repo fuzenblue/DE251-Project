@@ -20,10 +20,8 @@ const AllService = () => {
       <div>
         <h2>ALL WORKSHOP</h2>
         <p>Explore a variety of hands-on experiences at our farm, from pineapple planting to eco-friendly crafting. Filter by category, date, or skill level to find the perfect workshop that suits your interests. Join us for an unforgettable learning journey at Pineapple-Slice Farm!</p>
-        <div>
-            category
-        </div>
-        <div>
+
+        <div className="mx-[12%]">
             <WorkshopDisplay />
         </div>
       </div>
