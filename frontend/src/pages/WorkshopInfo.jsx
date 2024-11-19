@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext.jsx'
 import { assets } from '../assets/assets.js'
-import RatingWorkshop from '../components/RatingWorkshop.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
 import WorkshopHeader from '../components/WorkshopHeader.jsx'
+import RelatedWorkshops from '../components/RelatedWorkshops.jsx'
 
 const WorkshopInfo = () => {
 
@@ -226,14 +226,14 @@ const WorkshopInfo = () => {
             </div>
         </div>
 
-        {/* Review */}
+        {/* Review ยังไม่เขียน*/}
         <div>
-            <RatingWorkshop />
+            {/* <RatingWorkshop /> */}
         </div>
 
         {/* relate workshop ยังไม่เขียน */}
         <div>
-            {/* <RelatedDoctors workshopId={workshopId} category={workshopInfo.category} /> */}
+            <RelatedWorkshops workshopId={workshopId} category={workshopInfo?.category} />
         </div>
     </div>
   )
