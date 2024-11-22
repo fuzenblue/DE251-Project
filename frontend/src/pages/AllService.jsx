@@ -70,21 +70,33 @@ const AllService = () => {
         </div>
       </div>
 
-
-      <div id='cafe-section'>
-        <div>
-            <h2>Café & Restaurant</h2>
-            <p>Enjoy delicious meals and drinks featuring fresh pineapple and other farm-to-table ingredients at our cozy café.</p>
-
-            <div>
-                <img src='' alt='' />
-                <img src='' alt='' />
-            </div>
+      <div id='cafe-section' className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center p-6 bg-white mx-[10%]">
+        {/* Section Left */}
+        <div className="col-span-2 space-y-4">
+          <h2 className="md:px-4 xl:px-8 text-3xl md:text-6xl font-bold text-dark-green">Café & Restaurant</h2>
+          <p className="md:px-4 xl:px-12 text-base md:text-lg text-orange-600 capitalize">
+            Enjoy delicious meals and drinks featuring fresh pineapple <br /> and other farm-to-table ingredients at our cozy café.
+          </p>
+          {/* Left Images */}
+          <div className="hidden md:grid grid-cols-2 gap-4">
+            <img src={card.cafe_img_l} alt=""/>
+            <img src={card.cafe_img_c} alt=""/>
+          </div>
         </div>
-        <div>
-            <img src='' alt='' />
+
+        {/* Section Right */}
+        <div className='hidden md:flex'>
+          <img src={card.cafe_img_r} alt="Drinks" className="w-full" />
+        </div>
+
+        {/* Small size Device */}
+        <div className='w-[120%] grid grid-cols-3 md:hidden'>
+          <img src={card.cafe_img_l} alt="" />
+          <img src={card.cafe_img_c} alt="" />
+          <img src={card.cafe_img_r} alt="" className='w-[80%]' />
         </div>
       </div>
+
 
     </div>
   )

@@ -28,6 +28,13 @@ import eco_card from './eco-card-img.png'
 import eco_icon from './environment-protection-icon.svg'
 import deli_card from './doorstep-deli-card-img.png'
 import deli_icon from './delivery-truck-icon.svg'
+import cafe_img_l from './cafe-l-img.png'
+import cafe_img_c from './cafe-center-img.png'
+import cafe_img_r from './cafe-r-img.png'
+
+
+
+
 
 // export const for assets 
 export const assets = {
@@ -63,6 +70,9 @@ export const card  = {
     eco_icon,
     deli_card,
     deli_icon,
+    cafe_img_l,
+    cafe_img_c,
+    cafe_img_r,
 }
 
 export const category_workshop = [
