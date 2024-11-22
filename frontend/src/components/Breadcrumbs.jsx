@@ -1,32 +1,32 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React from "react"
+import { useLocation } from "react-router-dom"
 import { workshops } from '../assets/assets'
 
 const Breadcrumbs = () => {
-  const location = useLocation(); // ใช้ React Router Hook เพื่อดึง URL ปัจจุบัน
-  const pathnames = location.pathname.split("/").filter(x => x); // แยก URL เป็นส่วนๆ
+  const location = useLocation() // ใช้ React Router Hook เพื่อดึง URL ปัจจุบัน
+  const pathnames = location.pathname.split("/").filter(x => x) // แยก URL เป็นส่วนๆ
 
   const getBreadcrumbs = () => {
-    let crumbs = [];
-    let path = "/";
+    let crumbs = []
+    let path = "/"
 
     pathnames.forEach((part, index) => {
       path += part + "/"; // สร้างเส้นทางทีละส่วน
 
       // ใช้ find() เพื่อค้นหาชื่อจาก array workshops
       const workshop = workshops.find(workshop => workshop._id === part);
-      const name = workshop ? workshop.name : part.charAt(0).toUpperCase() + part.slice(1); // ถ้าไม่พบการแมป ใช้ชื่อเดิม
+      const name = workshop ? workshop.name : part.charAt(0).toUpperCase() + part.slice(1) // ถ้าไม่พบการแมป ใช้ชื่อเดิม
 
       crumbs.push({
         name: name,
         link: path.slice(0, -1), // ลบ / สุดท้ายจากแต่ละ path
-      });
-    });
+      })
+    })
 
-    return crumbs;
-  };
+    return crumbs
+  }
 
-  const breadcrumbs = getBreadcrumbs();
+  const breadcrumbs = getBreadcrumbs()
 
   return (
     <div className="breadcrumbs text-sm py-3 mb-2">
@@ -39,7 +39,7 @@ const Breadcrumbs = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
 export default Breadcrumbs

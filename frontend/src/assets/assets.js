@@ -20,7 +20,14 @@ import cafe_card from './cafe-card-img.png'
 import delivery_card from './deli-card-img.png'
 import cafe_sm from './cafe.jpg'
 import delivery_sm from './deli.jpg'
-
+import service_img from './service-banner-img.png'
+import filter_icon from './filter.png'
+import fresh_card from './fresh-card-img.png'
+import fresh_icon from './fresh-icon.svg'
+import eco_card from './eco-card-img.png'
+import eco_icon from './environment-protection-icon.svg'
+import deli_card from './doorstep-deli-card-img.png'
+import deli_icon from './delivery-truck-icon.svg'
 
 // export const for assets 
 export const assets = {
@@ -37,6 +44,8 @@ export const assets = {
     pineapple_icon,
     choose_us,
     check_icon,
+    service_img,
+    filter_icon,
 }
 
 // export const for workshop
@@ -48,24 +57,30 @@ export const card  = {
     delivery_card,
     cafe_sm,
     delivery_sm,
+    fresh_card,
+    fresh_icon,
+    eco_card,
+    eco_icon,
+    deli_card,
+    deli_icon,
 }
 
 export const category_workshop = [
     {
         category: 'Planting',
-        text: 'Planting'
+        text: 'Pineapple Planting'
     },
     {
         category: 'Cooking',
-        text: 'Cooking'
+        text: 'Pineapple Cooking'
     },
     {
         category: 'Crafting',
-        text: 'Crafting'
+        text: 'Crafting With Pineapple'
     },
     {
         category: 'For Kids',
-        text: 'For Kids'
+        text: 'Workshop For Kids'
     },
 ]
 
@@ -170,7 +185,7 @@ export const workshops = [
     },
     {
         _id: 'workshop10', // การชิมสับปะรดและการทำไวน์จากสับปะรด
-        name: 'Pineapple Tasting & Wine Making',
+        name: 'Pineapple Wine Making',
         image: profile_pic,
         image1: header_img,
         image2: profile_pic,

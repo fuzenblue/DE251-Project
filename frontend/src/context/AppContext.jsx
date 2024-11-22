@@ -7,10 +7,12 @@ const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
 
+    
     const value = {
         workshops,
         currencySymbol,
         category_workshop,
+        location,
     }
 
     return (

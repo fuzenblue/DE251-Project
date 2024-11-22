@@ -4,7 +4,7 @@ import MyProfileSideBar from '../components/MyProfileSideBar'
 const MyOrder = () => {
   return (
     <div>
-     <MyProfileSideBar />
+      <MyProfileSideBar />
     </div>
   )
 }

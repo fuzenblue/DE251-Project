@@ -178,7 +178,7 @@ const WorkshopInfo = () => {
                     <div className='max-h-48 md:h-auto overflow-y-scroll xl:overflow-clip'>
                         <p className='flex items-center gap-1 text-lg font-medium text-gray-600 mt-3'>
                             Description about this workshop
-                            <img src={assets.info_icon} alt="" />
+                            <img src={assets.info_icon} alt='' />
                         </p>
 
                         <p className='text-sm text-gray-500 mt-2'>{workshopInfo?.about}</p>
@@ -209,7 +209,7 @@ const WorkshopInfo = () => {
                     <div className='flex items-center gap-4 w-full overflow-x-auto m-5'>
                         {workshopSlots.length > 0 ? (
                             workshopSlots[slotIndex].map((item, index) => (
-                                item.time.includes("No available slots") ? (
+                                item.time.includes('No available slots') ? (
                                     <p className='font-medium text-red-500 px-5 py-2' key={index}>
                                         {item.time}
                                     </p>
