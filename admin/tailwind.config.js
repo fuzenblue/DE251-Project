@@ -1,5 +1,3 @@
-import daisyui from 'daisyui';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -8,7 +6,16 @@ export default {
   ],
 
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "primary": "#FF9B00",
+        "dark-brown": "#693817",
+        "dark-gray": "#303D24",
+        "dark-green": "#303D24",
+        "green-yellow": "#96AA3B",
+        "light-gray": "#F9F8F4",
+      },
+    },
   },
   
   plugins: [
@@ -20,8 +27,14 @@ export default {
       {
         mytheme: {
           // add custom color here
-          
-          // "primary": "#3ab7bf",
+           
+          "primary": "#FF9B00",
+          "accent": "#F5BB05",
+          "dark-brown": "#693817",
+          "dark-gray": "#303D24",
+          "dark-green": "#303D24",
+          "green-yellow": "#96AA3B",
+          "light-gray": "#F9F8F4",
         },
       },
     ],

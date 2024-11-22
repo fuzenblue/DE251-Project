@@ -266,7 +266,7 @@ export const workshops = [
         description: 'In this fun and tasty workshop, kids will learn how to make refreshing pineapple smoothies. They will get hands-on experience blending pineapples with other fruits, creating their own smoothie recipes. The instructor will guide them through the process of measuring, blending, and tasting their creations. It’s a great way to introduce kids to healthy, delicious beverages!',
         price: 12,
     }
-];
+]
 
 
 
