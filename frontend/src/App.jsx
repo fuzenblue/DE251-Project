@@ -12,6 +12,7 @@ import MyProfile from './pages/MyProfile.jsx'
 import MyOrder from './pages/MyOrder.jsx'
 import MyBooking from './pages/MyBooking.jsx'
 import WorkshopInfo from './pages/WorkshopInfo.jsx'
+import Login from './pages/Login.jsx'
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
         < Route path='/my-order' element={<MyOrder />} />
         < Route path='/my-booking' element={<MyBooking />} />
         < Route path='/all-service/:id' element={<WorkshopInfo />} />
+        < Route path='/login' element={<Login />} />
       </Routes>
       <div className='mx-5 sm:mx-[10%]'>
         <Footer/>
