@@ -4,7 +4,7 @@ import MyProfileSideBar from '../components/MyProfileSideBar'
 const MyBooking = () => {
   return (
     <div>
-    <MyProfileSideBar />
+      <MyProfileSideBar />
     </div>
   )
 }

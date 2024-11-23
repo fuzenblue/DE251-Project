@@ -1,74 +1,61 @@
-import React from "react"
+import React from 'react'
+import { assets } from '../assets/assets'
 
 const RatingWorkshop = () => {
-  const ratings = [
-    { label: "5 star", percentage: 70 },
-    { label: "4 star", percentage: 17 },
-    { label: "3 star", percentage: 8 },
-    { label: "2 star", percentage: 4 },
-    { label: "1 star", percentage: 1 },
-  ]
 
   return (
-    <div className="rating-container">
-      <div className="flex items-center mb-2">
-        {Array(4)
-          .fill()
-          .map((_, index) => (
-            <svg
-              key={index}
-              className="w-4 h-4 text-yellow-300 me-1"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 20"
-              aria-hidden="true"
-            >
-              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-          ))}
-        <svg
-          className="w-4 h-4 text-gray-300 dark:text-gray-500 me-1"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 22 20"
-          aria-hidden="true"
-        >
-          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-        </svg>
-        <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-          4.95
-        </p>
-        <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-          out of
-        </p>
-        <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-          5
-        </p>
-      </div>
-      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-        1,745 global ratings
-      </p>
-      {ratings.map((rating, index) => (
-        <div className="flex items-center mt-4" key={index}>
-          <a
-            href="#"
-            className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline"
-          >
-            {rating.label}
-          </a>
-          <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-            <div
-              className="h-5 bg-yellow-300 rounded"
-              style={{ width: `${rating.percentage}%` }}
-            ></div>
+    <div className='mt-3'>
+      {/* Review Popup */}
+      <div className=' justify-self-end  mx-[15%]'>
+        {/* The button to open modal */}
+        <label htmlFor='my_modal_1' className='btn btn-primary px-8 rounded-full text-white font-light shadow-lg'>Review Here!</label>
+
+        {/* Put this part before </body> tag */}
+        <input type='checkbox' id='my_modal_1' className='modal-toggle' />
+        <div className='modal' role='dialog'>
+          <div className='modal-box'>
+            <div className='flex flex-col gap-4 px-3 py-2 items-center'>
+              <div className='rating'>
+                <input type='radio' name='rating-2' className='mask mask-star-2 bg-orange-400' />
+                <input
+                  type='radio'
+                  name='rating-2'
+                  className='mask mask-star-2 bg-orange-400'
+                  defaultChecked />
+                <input type='radio' name='rating-2' className='mask mask-star-2 bg-orange-400' />
+                <input type='radio' name='rating-2' className='mask mask-star-2 bg-orange-400' />
+                <input type='radio' name='rating-2' className='mask mask-star-2 bg-orange-400' />
+              </div>
+
+              <textarea className='textarea textarea-bordered w-full' placeholder='Bio'></textarea>
+            </div>
+
+            <div className='modal-action'>
+              <label htmlFor='my_modal_1' className='btn'>Confirm!</label>
+            </div>
           </div>
-          <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            {rating.percentage}%
-          </span>
         </div>
-      ))}
+      </div>
+
+      {/* My Review */}
+      <div className='px-5 py-8 justify-self-end mx-[10%] gap-2'>
+        <div className='chat chat-end px-5 py-3'>
+          <div className='chat-bubble chat-bubble-primary'>You underestimate my power!</div>
+        </div>
+        <div className='avatar'>
+            <h2 className='px-3'>User Name</h2>
+          <div className='w-12 rounded-full'>
+            <img src={assets.profile_pic} />
+          </div>
+        </div>
+      </div>
+
+      {/* Review Area */}
+      <div>
+
+      </div>
     </div>
-  );
-};
+  )
+}
 
 export default RatingWorkshop

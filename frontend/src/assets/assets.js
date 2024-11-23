@@ -20,6 +20,20 @@ import cafe_card from './cafe-card-img.png'
 import delivery_card from './deli-card-img.png'
 import cafe_sm from './cafe.jpg'
 import delivery_sm from './deli.jpg'
+import service_img from './service-banner-img.png'
+import filter_icon from './filter.png'
+import fresh_card from './fresh-card-img.png'
+import fresh_icon from './fresh-icon.svg'
+import eco_card from './eco-card-img.png'
+import eco_icon from './environment-protection-icon.svg'
+import deli_card from './doorstep-deli-card-img.png'
+import deli_icon from './delivery-truck-icon.svg'
+import cafe_img_l from './cafe-l-img.png'
+import cafe_img_c from './cafe-center-img.png'
+import cafe_img_r from './cafe-r-img.png'
+
+
+
 
 
 // export const for assets 
@@ -37,6 +51,8 @@ export const assets = {
     pineapple_icon,
     choose_us,
     check_icon,
+    service_img,
+    filter_icon,
 }
 
 // export const for workshop
@@ -48,43 +64,39 @@ export const card  = {
     delivery_card,
     cafe_sm,
     delivery_sm,
+    fresh_card,
+    fresh_icon,
+    eco_card,
+    eco_icon,
+    deli_card,
+    deli_icon,
+    cafe_img_l,
+    cafe_img_c,
+    cafe_img_r,
 }
 
 export const category_workshop = [
     {
-        category: 'Gardening',
-        text: 'Gardening'
+        category: 'Planting',
+        text: 'Pineapple Planting'
     },
     {
         category: 'Cooking',
-        text: 'Cooking'
+        text: 'Pineapple Cooking'
     },
     {
         category: 'Crafting',
-        text: 'Crafting'
+        text: 'Crafting With Pineapple'
     },
     {
-        category: 'Art',
-        text: 'Art'
+        category: 'For Kids',
+        text: 'Workshop For Kids'
     },
-    {
-        category: 'Health & Wellness',
-        text: 'Health & Wellness'
-    },
-    {
-        category: 'Farming',
-        text: 'Farming'
-    },
-    {
-        category: 'Event Planning',
-        text: 'Event Planning'
-    }
 ]
-
 
 export const workshops = [
     {
-        _id: 'workshop1',
+        _id: 'workshop1', // การปลูกสับปะรด ตั้งแต่การเลือกดินจนถึงการดูแลรักษา
         name: 'Pineapple Planting',
         image: profile_pic,
         image1: header_img,
@@ -92,13 +104,27 @@ export const workshops = [
         image3: header_img,
         image4: profile_pic,
         image5: logo,
-        category: 'Gardening',
-        about: 'Discover the joy of growing pineapples. Learn sustainable gardening techniques that will help you cultivate healthy pineapples.',
-        description: 'Join our hands-on workshop to learn the art of pineapple planting. Our experts will guide you through selecting the right soil, proper planting techniques, and caring for your plants to ensure a fruitful harvest. Perfect for beginners and nature lovers!',
-        price: 25,
+        category: 'Planting',
+        about: 'Learn how to plant and care for pineapples in a fun, hands-on workshop. Perfect for beginners and garden lovers.',
+        description: 'This workshop will guide you through the basics of planting pineapples, from selecting the right soil to watering and care. You’ll learn how to grow pineapples from crowns, and how to ensure your plants thrive in your garden or balcony. Our experts will provide you with all the tools and tips you need to succeed. By the end of the workshop, you’ll be equipped with the knowledge to start your own pineapple garden and watch your plants grow.',
+        price: 18,
     },
     {
-        _id: 'workshop2',
+        _id: 'workshop2', // การจัดตั้งสวนสับปะรดที่บ้าน เรียนรู้การปลูกสับปะรดในสภาพแวดล้อมที่บ้านหรือสวน
+        name: 'Pineapple Garden Setup',
+        image: profile_pic,
+        image1: header_img,
+        image2: profile_pic,
+        image3: header_img,
+        image4: profile_pic,
+        image5: logo,
+        category: 'Planting',
+        about: 'Set up your very own pineapple garden, guided by our experts. Learn all the secrets to a successful garden.',
+        description: 'This workshop covers the essentials of setting up a pineapple garden in your home or backyard. You’ll learn about the best soil, sunlight requirements, and how to keep your pineapples healthy and pest-free. From planting the crowns to watching your pineapples grow, this workshop will take you through every step with hands-on instruction and expert advice. Perfect for anyone interested in growing their own tropical fruit.',
+        price: 22,
+    },
+    {
+        _id: 'workshop3', // การทำอาหารจากสับปะรด เช่น สลัดหรือซุปสับปะรด
         name: 'Pineapple Cooking',
         image: profile_pic,
         image1: header_img,
@@ -107,96 +133,12 @@ export const workshops = [
         image4: profile_pic,
         image5: logo,
         category: 'Cooking',
-        about: 'Cook delicious dishes with pineapples. Explore the versatility of pineapple in both savory and sweet recipes.',
-        description: 'Dive into the world of pineapple-infused cooking. Learn to create savory and sweet dishes using fresh pineapples, including desserts, salads, and gourmet main courses. A fun and interactive session for all food lovers!',
-        price: 20,
+        about: 'Explore creative ways to cook with pineapples. Ideal for foodies looking to try something new.',
+        description: 'In this interactive workshop, you will discover how to prepare a variety of dishes with pineapples. From pineapple salsas to grilled pineapple skewers, you will learn how to balance the sweetness and tartness of pineapples in both savory and sweet dishes. Our expert chefs will guide you through the cooking process, sharing tips and tricks to bring out the best in your tropical dishes. By the end of the session, you’ll have the skills to impress your guests with delicious pineapple-based meals.',
+        price: 24,
     },
     {
-        _id: 'workshop3',
-        name: 'Pineapple Sweet',
-        image: profile_pic,
-        image1: header_img,
-        image2: profile_pic,
-        image3: header_img,
-        image4: profile_pic,
-        image5: logo,
-        category: 'Cooking',
-        about: 'Create sweet treats with pineapples. Master the art of incorporating pineapples into classic and new dessert recipes.',
-        description: 'Discover how to turn pineapples into irresistible sweet delights. This workshop covers techniques for making jams, candies, and pastries, offering both traditional and modern recipes.',
-        price: 30,
-    },
-    {
-        _id: 'workshop4',
-        name: 'Pineapple Garden Setup',
-        image: profile_pic,
-        image1: header_img,
-        image2: profile_pic,
-        image3: header_img,
-        image4: profile_pic,
-        image5: logo,
-        category: 'Gardening',
-        about: 'Design your own pineapple garden. Learn how to optimize space and resources for a fruitful garden.',
-        description: 'Learn to set up and organize a beautiful pineapple garden. This workshop covers garden design, soil preparation, companion planting, and seasonal care tips to make your garden flourish.',
-        price: 18,
-    },
-    {
-        _id: 'workshop5',
-        name: 'Pineapple Farming 101',
-        image: profile_pic,
-        image1: header_img,
-        image2: profile_pic,
-        image3: header_img,
-        image4: profile_pic,
-        image5: logo,
-        category: 'Farming',
-        about: 'An introduction to pineapple farming. Understand the basics of pineapple cultivation from soil to harvest.',
-        description: 'This beginner-level workshop provides comprehensive insights into pineapple farming. Learn about the lifecycle of pineapples, irrigation techniques, pest management, and harvesting methods to maximize your yield.',
-        price: 28,
-    },
-    {
-        _id: 'workshop6',
-        name: 'Natural Soap Making',
-        image: profile_pic,
-        image1: header_img,
-        image2: profile_pic,
-        image3: header_img,
-        image4: profile_pic,
-        image5: logo,
-        category: 'Crafting',
-        about: 'Make natural soaps with unique scents. Explore the benefits of natural ingredients for your skin.',
-        description: 'Discover the art of natural soap making using pineapple extracts and other organic ingredients. This workshop teaches you step-by-step methods for creating handmade soaps with skin-loving properties and delightful aromas.',
-        price: 15,
-    },
-    {
-        _id: 'workshop7',
-        name: 'Pineapple Paper Crafting',
-        image: profile_pic,
-        image1: header_img,
-        image2: profile_pic,
-        image3: header_img,
-        image4: profile_pic,
-        image5: logo,
-        category: 'Crafting',
-        about: 'Craft decorative pineapple-themed paper art. Create personalized items that add a tropical touch to your space.',
-        description: 'Unleash your creativity with our pineapple paper crafting session. Learn techniques for making greeting cards, decorative items, and origami designs inspired by the pineapple motif.',
-        price: 10,
-    },
-    {
-        _id: 'workshop8',
-        name: 'Farm Fresh Juices',
-        image: profile_pic,
-        image1: header_img,
-        image2: profile_pic,
-        image3: header_img,
-        image4: profile_pic,
-        image5: logo,
-        category: 'Cooking',
-        about: 'Blend refreshing pineapple juices. Create healthy and delicious drinks for every occasion.',
-        description: 'Learn how to make refreshing and nutritious pineapple juices. Explore different combinations of fruits and techniques to create the perfect drink for any occasion.',
-        price: 12,
-    },
-    {
-        _id: 'workshop9',
+        _id: 'workshop4', // การทำอาหารจานพิเศษจากสับปะรด ใช้สับปะรดเป็นส่วนผสมหลักในการทำอาหาร
         name: 'Tropical Pineapple Dishes',
         image: profile_pic,
         image1: header_img,
@@ -205,13 +147,27 @@ export const workshops = [
         image4: profile_pic,
         image5: logo,
         category: 'Cooking',
-        about: 'Cook exotic pineapple dishes. Add a tropical twist to your culinary repertoire.',
-        description: 'Explore the culinary diversity of tropical cuisine. This workshop introduces you to dishes that highlight the sweet and tangy flavors of pineapples, blending them with international spices and techniques.',
+        about: 'Learn to cook tropical-inspired pineapple dishes with expert chefs.',
+        description: 'This workshop focuses on creating savory and sweet dishes using pineapples. You’ll learn how to cook with pineapple in ways that enhance its natural sweetness and texture. Our chefs will demonstrate how to pair pineapples with meats, vegetables, and other fruits to create unique, flavorful dishes. Whether it’s a fresh pineapple salsa or a grilled pineapple main course, you’ll leave with delicious recipes and new cooking techniques to use at home.',
         price: 22,
     },
     {
-        _id: 'workshop10',
-        name: 'Pineapple Tasting & Wine Making',
+        _id: 'workshop5', // การทำขนมจากสับปะรด
+        name: 'Pineapple Snack',
+        image: profile_pic,
+        image1: header_img,
+        image2: profile_pic,
+        image3: header_img,
+        image4: profile_pic,
+        image5: logo,
+        category: 'Cooking',
+        about: 'Bake a delicious pineapple snack from scratch. Perfect for baking enthusiasts and home cooks.',
+        description: 'In this hands-on workshop, you will learn how to bake your own pineapple snack from scratch. You’ll work with fresh ingredients, including ripe pineapples, and learn how to create a soft, sweet loaf that is perfect for breakfast or as a snack. Our expert baker will guide you through the process of mixing, kneading, and baking to ensure you leave with a delicious, homemade pineapple bread. Whether you’re an experienced baker or a beginner, you’ll enjoy the process and the tasty results.',
+        price: 18,
+    },
+    {
+        _id: 'workshop6', // การทำสบู่ธรรมชาติจากสารสกัดจากสับปะรด
+        name: 'Natural Soap Making',
         image: profile_pic,
         image1: header_img,
         image2: profile_pic,
@@ -219,12 +175,40 @@ export const workshops = [
         image4: profile_pic,
         image5: logo,
         category: 'Crafting',
-        about: 'Taste and ferment pineapple wine. Experience the unique flavors of pineapple in fermented beverages.',
-        description: 'Experience the art of wine tasting and making. This workshop covers the basics of fermentation, selecting ripe pineapples, and crafting your own bottle of pineapple wine to take home.',
-        price: 35,
+        about: 'Learn to make your own natural soaps using pineapple extracts. Great for eco-conscious crafters.',
+        description: 'This creative workshop teaches you how to make natural, homemade soaps with pineapple extracts. You will learn about the benefits of using natural ingredients like oils and extracts in soap making. Our instructors will guide you step-by-step through the process of mixing, pouring, and molding your soap. You’ll leave with a set of beautifully crafted soaps, perfect for personal use or as thoughtful, handmade gifts for friends and family.',
+        price: 20,
     },
     {
-        _id: 'workshop11',
+        _id: 'workshop7', // การทำงานฝีมือจากกระดาษที่มีธีมเป็นสับปะรด
+        name: 'Pineapple Paper Crafting',
+        image: profile_pic,
+        image1: header_img,
+        image2: profile_pic,
+        image3: header_img,
+        image4: profile_pic,
+        image5: logo,
+        category: 'Crafting',
+        about: 'Create colorful pineapple-themed paper crafts. A perfect workshop for kids and families.',
+        description: 'This fun and hands-on paper crafting workshop will teach you how to make vibrant pineapple-themed crafts. You’ll learn how to create paper pineapple decorations, cards, and other fun projects using simple materials. The instructor will guide you through the process, showing you how to cut, fold, and glue your way to beautiful creations. Whether you’re a beginner or an experienced crafter, you’ll have a great time expressing your creativity and taking home your very own pineapple crafts.',
+        price: 15,
+    },
+    {
+        _id: 'workshop10', // การชิมสับปะรดและการทำไวน์จากสับปะรด
+        name: 'Pineapple Wine Making',
+        image: profile_pic,
+        image1: header_img,
+        image2: profile_pic,
+        image3: header_img,
+        image4: profile_pic,
+        image5: logo,
+        category: 'Cooking',
+        about: 'Explore the world of pineapple tasting and learn how to make your own pineapple wine.',
+        description: 'This unique and interactive workshop allows you to indulge in pineapple tasting while also learning the art of pineapple wine making. You’ll taste several varieties of pineapple, learning to appreciate their unique flavors and textures. Then, you will learn the process of fermenting pineapples into wine, guided by an expert winemaker. You’ll leave with the knowledge to make your own pineapple wine at home and an appreciation for the different flavor profiles of this tropical fruit.',
+        price: 22,
+    },
+    {
+        _id: 'workshop11', // การทำงานฝีมือจากวัสดุต่าง ๆ ที่มีธีมสับปะรด เช่น พวงกุญแจหรือการ์ด
         name: 'Pineapple Crafting',
         image: profile_pic,
         image1: header_img,
@@ -233,12 +217,12 @@ export const workshops = [
         image4: profile_pic,
         image5: logo,
         category: 'Crafting',
-        about: 'Create unique pineapple crafts. Make personalized crafts using sustainable materials.',
-        description: 'Transform pineapples and related materials into stunning crafts. Perfect for creating home decor, gifts, and more with a tropical touch.',
-        price: 18,
+        about: 'Create fun and artistic pineapple-themed crafts for decoration and gifts.',
+        description: 'In this workshop, you will learn how to make beautiful pineapple-themed crafts using a variety of materials, from felt to fabric and paper. You will create fun and colorful items such as pineapple keychains, coasters, and more. It’s a great way to add a tropical touch to your home or create unique gifts for friends and family.',
+        price: 15,
     },
     {
-        _id: 'workshop12',
+        _id: 'workshop12', // การวาดภาพด้วยธีมสับปะรด
         name: 'Pineapple Painting',
         image: profile_pic,
         image1: header_img,
@@ -246,81 +230,67 @@ export const workshops = [
         image3: header_img,
         image4: profile_pic,
         image5: logo,
-        category: 'Art',
-        about: 'Paint beautiful pineapple art. Express your creativity through vibrant colors and tropical motifs.',
-        description: 'Express your artistic side in this guided painting session. Use vibrant colors and techniques to create a masterpiece inspired by the beauty of pineapples.',
+        category: 'Crafting',
+        about: 'Paint your own pineapple masterpiece, perfect for art lovers.',
+        description: 'In this fun and creative workshop, you will create your own pineapple-themed painting. Whether you are a beginner or an experienced artist, you will learn techniques for painting pineapples in vibrant colors and textures. The instructor will provide step-by-step guidance, allowing you to bring your unique vision to life on canvas. It’s a relaxing and rewarding way to spend the day while creating a beautiful piece of art.',
         price: 20,
     },
     {
-        _id: 'workshop13',
-        name: 'Pineapple Candle Making',
+        _id: 'workshop13', // งานฝีมือกระดาษสำหรับเด็กที่มีธีมสับปะรด
+        name: 'Pineapple Paper Crafting',
         image: profile_pic,
         image1: header_img,
         image2: profile_pic,
         image3: header_img,
         image4: profile_pic,
         image5: logo,
-        category: 'Crafting',
-        about: 'Make candles with tropical scents. Create your own personalized aromatic candles.',
-        description: 'Learn to craft beautiful and aromatic pineapple-scented candles. Perfect for decorating your space or as thoughtful gifts for loved ones.',
-        price: 18,
+        category: 'For Kids',
+        about: 'Kids will love creating pineapple-themed paper crafts in this fun and easy workshop.',
+        description: 'This workshop is perfect for kids who love to create! Using paper, scissors, and glue, kids will make fun pineapple-themed crafts such as cards, decorations, and small paper sculptures. The workshop is designed for children, with simple instructions and plenty of creative fun. It’s a great way to develop fine motor skills while having fun with arts and crafts.',
+        price: 12,
     },
     {
-        _id: 'workshop14',
-        name: 'Pineapple Jewelry Design',
+        _id: 'workshop14', // การวาดภาพสับปะรดสำหรับเด็ก ๆ
+        name: 'Pineapple Painting',
         image: profile_pic,
         image1: header_img,
         image2: profile_pic,
         image3: header_img,
         image4: profile_pic,
         image5: logo,
-        category: 'Crafting',
-        about: 'Design jewelry inspired by pineapples. Learn the basics of jewelry making using tropical motifs.',
-        description: 'Create stunning jewelry pieces with a pineapple theme. Learn techniques for working with beads, metals, and other materials to craft unique accessories.',
-        price: 25,
+        category: 'For Kids',
+        about: 'A fun and creative painting class for kids to explore their artistic talents with pineapples.',
+        description: 'In this workshop, kids will have the chance to create their very own pineapple-themed paintings. Using simple painting techniques and colorful paints, children will be guided step by step in creating their masterpiece. The workshop encourages creativity, self-expression, and fine motor skills development. By the end, each child will take home their own beautiful painting to display at home.',
+        price: 14,
     },
     {
-        _id: 'workshop15',
-        name: 'Pineapple Themed Party Planning',
+        _id: 'workshop15', // การทำงานฝีมือจากวัสดุที่ง่าย ๆ สำหรับเด็ก
+        name: 'Pineapple Crafting',
         image: profile_pic,
         image1: header_img,
         image2: profile_pic,
         image3: header_img,
         image4: profile_pic,
         image5: logo,
-        category: 'Event Planning',
-        about: 'Plan fun pineapple-themed parties. Organize memorable events with a tropical vibe.',
-        description: 'Get creative with party planning! Learn to design pineapple-themed decor, menus, and activities for unforgettable celebrations.',
-        price: 40,
+        category: 'For Kids',
+        about: 'Create fun pineapple-themed crafts that kids will love.',
+        description: 'In this hands-on crafting workshop, kids will make various pineapple-themed crafts such as keychains, paper crowns, and more! The workshop is designed to be easy and enjoyable for children, with simple materials and instructions. It’s a great way for kids to tap into their creativity and make something special to take home.',
+        price: 10,
     },
     {
-        _id: 'workshop16',
-        name: 'Pineapple Detox Recipes',
+        _id: 'workshop17', // การทำสมูทตี้สับปะรดที่เด็ก ๆ สามารถทำได้เอง
+        name: 'Pineapple Smoothies',
         image: profile_pic,
         image1: header_img,
         image2: profile_pic,
         image3: header_img,
         image4: profile_pic,
         image5: logo,
-        category: 'Health & Wellness',
-        about: 'Make healthy detox drinks. Rejuvenate with refreshing pineapple-based recipes.',
-        description: 'Create a variety of pineapple-based detox drinks and snacks. Perfect for those looking to rejuvenate and enjoy health-boosting recipes.',
-        price: 18,
-    },
-    {
-        _id: 'workshop17',
-        name: 'Tropical Gardening Essentials',
-        image: profile_pic,
-        image1: header_img,
-        image2: profile_pic,
-        image3: header_img,
-        image4: profile_pic,
-        image5: logo,
-        category: 'Gardening',
-        about: 'Master tropical gardening. Discover essential tips for growing plants in warm climates.',
-        description: 'Learn the essentials of gardening in tropical climates. From soil preparation to pest control, this workshop will help you create a thriving tropical garden.',
-        price: 30,
-    },
+        category: 'For Kids',
+        about: 'Make delicious pineapple smoothies that kids will love.',
+        description: 'In this fun and tasty workshop, kids will learn how to make refreshing pineapple smoothies. They will get hands-on experience blending pineapples with other fruits, creating their own smoothie recipes. The instructor will guide them through the process of measuring, blending, and tasting their creations. It’s a great way to introduce kids to healthy, delicious beverages!',
+        price: 12,
+    }
 ]
 
 

@@ -5,7 +5,7 @@ import { assets } from '../assets/assets'
 const Welcome = () => {
   return (
     <>
-        <div className="flex flex-col items-center px-6 lg:flex-row lg:px-[10%] md:px-8 sm:px-4">
+        <div id='welcome' className="flex flex-col items-center px-6 lg:flex-row lg:px-[10%] md:px-8 sm:px-4">
             <div className="w-full lg:w-3/5 text-white text-center lg:text-start mb-6 lg:mb-0 md:mb-1">
                 <h3 className='text-base text-dark-green font-medium my-4'>Welcome to Pineapple Farm</h3>
                 <h1 className='text-3xl text-dark-brown font-extrabold mb-4 lg:flex lg:flex-col'>

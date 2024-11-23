@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext.jsx'
 import { assets } from '../assets/assets.js'
-import RatingWorkshop from '../components/RatingWorkshop.jsx'
-
+import Breadcrumbs from '../components/Breadcrumbs.jsx'
+import WorkshopHeader from '../components/WorkshopHeader.jsx'
 import RelatedWorkshops from '../components/RelatedWorkshops.jsx'
 
 const WorkshopInfo = () => {
@@ -11,7 +11,7 @@ const WorkshopInfo = () => {
     const { workshopId } = useParams()
     const { id } = useParams()
 
-    const { workshops,currencySymbol } = useContext(AppContext)
+    const { workshops, currencySymbol } = useContext(AppContext)
     const dayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
   
     const [ workshopInfo, setWorkshopInfo ] = useState(null)
@@ -139,7 +139,7 @@ const WorkshopInfo = () => {
             }
           setWorkshopSlots(prev => [...prev, timeSlots]); // เพิ่ม timeSlots ลงใน workshopSlots
         }
-      }
+    }
 
     useEffect(() => {
         fetchWorkshopInfo()
@@ -160,38 +160,29 @@ const WorkshopInfo = () => {
       }, [id, workshops])
 
   return (
-    <div className='px-5 py-5'>
-        {/* Image */}
-        <div className="relative carousel w-full h-96 rounded-md py-5'">
-            {workshopInfo && [workshopInfo.image1, workshopInfo.image2, workshopInfo.image3, workshopInfo.image4, workshopInfo.image5].map((image, index) => (
-                <div key={index} id={`slide${index + 1}`} className="carousel-item relative w-full">
-                    <img src={image} className="w-full object-fill" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href={`#slide${(index === 0 ? 5 : index)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❮</a>
-                        <a href={`#slide${(index === 4 ? 1 : index + 2)}`} className="btn btn-circle btn-primary text-white bg-opacity-70">❯</a>
-                    </div>
-                </div>
-            ))}
-        </div>
+    <div className='px-5 py-2'>
+        <Breadcrumbs />
+
+        <WorkshopHeader />
 
         {/* Info */}
-        <div className='m-3'>
-            <div className='flex justify-between px-0 md:px-8 gap-4'>
+        <div className='mx-[4%]'>
+            <div className='flex justify-between px-0 md:px-8 gap-4 mt-3'>
                 <h1 className='text-3xl text-primary font-semibold'>{workshopInfo?.name}</h1>
-                <h3 className='text-3xl text-primary font-semibold'>{currencySymbol}{workshopInfo?.price}</h3>
+                <h3 className='text-3xl text-primary font-semibold hidden md:block'>{currencySymbol}{workshopInfo?.price}</h3>
             </div>
 
             <div className='flex mt-4 flex-col md:flex-row gap-5'>
                 {/* description */}
-                <div className='flex-1 border border-gray-400 rounded-lg p-5'>
-                    <div>
+                <div className='flex-1 rounded-lg'>
+                    <div className='max-h-48 md:h-auto overflow-y-scroll xl:overflow-clip'>
                         <p className='flex items-center gap-1 text-lg font-medium text-gray-600 mt-3'>
                             Description about this workshop
-                            <img src={assets.info_icon} alt="" />
+                            <img src={assets.info_icon} alt='' />
                         </p>
 
-                        <p className='text-sm text-gray-500 max-w-[700px] mt-4'>{workshopInfo?.about}</p>
-                        <p className='text-sm text-gray-500 max-w-[700px] mt-2'>{workshopInfo?.description}</p>
+                        <p className='text-sm text-gray-500 mt-2'>{workshopInfo?.about}</p>
+                        <p className='text-sm text-gray-500 mt-2 '>{workshopInfo?.description}</p>
                     </div>
 
                     <p className='text-gray-500 font-medium mt-10 text-end'>Workshop Price:  
@@ -200,7 +191,7 @@ const WorkshopInfo = () => {
                 </div>
 
                 {/* booking slots */}
-                <div className='w-full md:w-1/2 md:ml-4 mt-4 font-medium text-gray-700'>
+                <div className='w-full md:w-1/2 md:ml-4 font-medium text-gray-700'>
                     <p>Booking slots</p>
                     <div className='flex gap-4 items-center w-full overflow-x-auto m-5'>
                         {
@@ -218,7 +209,7 @@ const WorkshopInfo = () => {
                     <div className='flex items-center gap-4 w-full overflow-x-auto m-5'>
                         {workshopSlots.length > 0 ? (
                             workshopSlots[slotIndex].map((item, index) => (
-                                item.time.includes("No available slots") ? (
+                                item.time.includes('No available slots') ? (
                                     <p className='font-medium text-red-500 px-5 py-2' key={index}>
                                         {item.time}
                                     </p>
@@ -235,14 +226,14 @@ const WorkshopInfo = () => {
             </div>
         </div>
 
-        {/* Review */}
+        {/* Review ยังไม่เขียน*/}
         <div>
-            <RatingWorkshop />
+            {/* <RatingWorkshop /> */}
         </div>
 
-        {/* relate workshop */}
+        {/* relate workshop ยังไม่เขียน */}
         <div>
-            {/* <RelatedDoctors workshopId={workshopId} category={workshopInfo.category} /> */}
+            <RelatedWorkshops workshopId={workshopId} category={workshopInfo?.category} />
         </div>
     </div>
   )

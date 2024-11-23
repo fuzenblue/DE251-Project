@@ -12,7 +12,8 @@
            --> npm i -D daisyui@latest
 
 # backend --> npm init 
-          --> npm install express mongoose jsonwebtoken bcrypt cors dotenv body-parser multer stripe validator nodemon
+          --> npm install express mongoose jsonwebtoken bcrypt cors dotenv multer validator nodemon cloudinary
+
 
 # admin --> npm create vite@latest
         --> npm install axios react-router-dom react-toastify
@@ -29,10 +30,16 @@
 
 # for stop run terminal --> ctrl + c
 
-// link for mongooses --> mongodb+srv://admin:DE251@cluster0.fahxg.mongodb.net/?
-
 
 --> responsive screen size
         #sm size: 340px เล็กสุด
         #md : 750px
-        #lg : 1200px ขึ้นไป
+        #lg : 1020px 
+        #xl : 1280px ขึ้นไป
+
+
+// backend folder
+config --> store config
+controller --> logic for API
+models --> create mongoose models to store data
+routes --> set different routes for different API

@@ -1,6 +1,6 @@
 import React from 'react'
-import ImageServiceCard from './ImageServiceCard.jsx'
-import SmallImgServiceCard from './SmallImgServiceCard.jsx'
+import ImageServiceCard from './ImageServiceCard'
+import SmallImgServiceCard from './SmallImgServiceCard'
 
 const DiscoverService = () => {
   return (
