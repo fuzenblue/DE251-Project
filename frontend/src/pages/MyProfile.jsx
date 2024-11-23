@@ -1,28 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import MyProfileSideBar from '../components/MyProfileSideBar';
 import { fame } from '../assets/fame';
+import { ProfileContext } from '../context/ProfileContext';
 
 const MyProfile = () => {
-  // Load profile from localStorage
-  const loadProfile = () => {
-    const savedProfile = localStorage.getItem('profile');
-    return savedProfile
-      ? JSON.parse(savedProfile)
-      : {
-          firstName: 'Lalisa',
-          lastName: 'Manobal',
-          gender: 'Female',
-          email: 'lisa@blackpink.com',
-          phone: '+66 123 456 789',
-          address: '123 K-Pop Street, Gangnam District, Seoul, South Korea',
-          birthdate: '1997-03-27',
-          profileImage: null,  // Add default profile image property
-        };
-  };
 
-  const [profile, setProfile] = useState(loadProfile);
-  const [savedProfile, setSavedProfile] = useState(profile); // Save the profile data to sidebar
-  const [isEditing, setIsEditing] = useState(false);
+  const { profile, isEditing, toggleEdit, setProfile, savedProfile } = useContext(ProfileContext)
 
   // Handle input changes
   const handleInputChange = (e) => {
@@ -40,14 +23,6 @@ const MyProfile = () => {
     }
   };
 
-  const toggleEdit = () => {
-    if (isEditing) {
-      // Save profile to localStorage and update savedProfile
-      localStorage.setItem('profile', JSON.stringify(profile));
-      setSavedProfile(profile); // Update sidebar with the saved profile
-    }
-    setIsEditing(!isEditing);
-  };
 
   return (
     <div className="min-h-screen flex">
@@ -69,7 +44,7 @@ const MyProfile = () => {
               <div className="flex justify-center items-center mb-6">
                 <div className="w-28 h-28 rounded-full overflow-hidden">
                   <img
-                    src={profile.profileImage || 'https://via.placeholder.com/150'} // Use placeholder if no image is selected
+                    src={profile.profileImage || 'https://via.placeholder.com/150'}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
@@ -87,7 +62,7 @@ const MyProfile = () => {
                   />
                   <label
                     htmlFor="profileImage"
-                    className="cursor-pointer text-yellow-400"
+                    className="btn btn-outline-black cursor-pointer text-yellow-400"
                   >
                     Edit Image
                   </label>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {assets} from '../assets/assets' 
 import { NavLink, useNavigate } from 'react-router-dom'
+import { ProfileContext } from '../context/ProfileContext'
 
 const Navbar = () => {
 
@@ -8,6 +9,7 @@ const Navbar = () => {
 
     const [showMenu, setShowMenu] = useState(false)
     const [token, setToken] = useState(true)
+    const { savedProfile } = useContext(ProfileContext)
 
   return (
     <div className='flex items-center justify-between text-xs lg:text-sm py-4 mb-0 border-b border-b-gray-300'>
@@ -43,7 +45,7 @@ const Navbar = () => {
         {
             token 
             ? <div className='flex items-center gap-1 cursor-pointer group relative'>
-                <img className='flex w-10 rounded-full' src={assets.profile_pic} alt="" />
+                <img className='flex w-12 h-12 rounded-full object-cover' src={savedProfile.profileImage} alt="" />
                 <img className='flex w-5' src={assets.dropdown_icon} alt="" />
                 <div className='absolute top-0 right-0 pt-14 text-sm lg:text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
                     <div className='min-w-48 bg-stone-50 rounded flex flex-col gap-4 p-4'>
