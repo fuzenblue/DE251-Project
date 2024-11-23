@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { AppContext } from '../context/AppContext.jsx';
+import React, { useState, useEffect, useContext } from 'react'
+import { useParams } from 'react-router-dom'
+import { AppContext } from '../context/AppContext.jsx'
 
 const WorkshopHeader = () => {
     const { workshopId } = useParams()
@@ -8,6 +8,7 @@ const WorkshopHeader = () => {
 
     const { workshops } = useContext(AppContext)
     const [ workshopInfo, setWorkshopInfo ] = useState(null)
+    const [activeIndex, setActiveIndex] = useState(0)
 
     // ฟังก์ชันในการค้นหาข้อมูล workshop
     const fetchWorkshopInfo = async () => {
@@ -15,42 +16,59 @@ const WorkshopHeader = () => {
         setWorkshopInfo(workshopInfo)
     }
 
+
     useEffect(() => {
         fetchWorkshopInfo()
     }, [workshops, workshopId])
 
     useEffect(() => {
-        const workshop = workshops.find(workshop => workshop._id === id);
+        const workshop = workshops.find(workshop => workshop._id === id)
         setWorkshopInfo(workshop)
       }, [id, workshops])
 
+
     return (
-        <div className='flex flex-col md:flex-row gap-5'>
-            {/* Image */}
-            <div className='relative carousel w-full h-[22rem] md:h-[26rem] lg:h-[30rem]'>
-                {workshopInfo ? (
-                    [workshopInfo.image1, workshopInfo.image2, workshopInfo.image3, workshopInfo.image4, workshopInfo.image5].map((image, index) => (
-                    <div key={index} id={`slide${index + 1}`} className='carousel-item relative w-full'>
-                    <img
-                        src={image}
-                        className='w-full object-cover rounded-md'
-                        alt={`workshop-image-${index}`}
-                    />
-                    <div className='absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between'>
-                        <a href={`#slide${index === 0 ? 5 : index}`} className='btn btn-circle btn-primary text-white bg-opacity-70'>
-                        ❮
-                        </a>
-                        <a href={`#slide${index === 4 ? 1 : index + 2}`} className='btn btn-circle btn-primary text-white bg-opacity-70'>
-                        ❯
-                        </a>
+        <div className='flex flex-col md:flex-row gap-4 h-[20rem] md:h-[26rem]'>
+            {/* Image and Video */}
+            <div className="relative carousel pb-2 grid grid-cols-1 md:grid-cols-3">
+                <div className='px-4 col-span-1'>
+                    {workshopInfo?.video ? (
+                        <video className="rounded-xl w-full h-full object-cover" autoPlay muted loop controls>
+                            <source src={workshopInfo.video} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    ) : null}
+                </div>
+
+                <div className="relative col-span-2">
+                    <div className="carousel w-full h-full pt-2 items-center max-h-[400px] overflow-hidden">
+                        {/* Carousel items */}
+                        {Array.isArray(workshopInfo?.images) && workshopInfo?.images.map((image, index) => (
+                            <div key={index} className={`carousel-item w-full h-full ${activeIndex === index ? "block" : "hidden"}`}>
+                                <img src={image} alt={`image ${index + 1}`} className="w-full h-full rounded-xl object-cover" />
+                            </div>
+                        ))}
                     </div>
+
+
+                    {/* Navigation dots */}
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+                        {Array.isArray(workshopInfo?.images) && workshopInfo?.images.map((_, i) => (
+                            <button key={i} className={`w-4 h-1 rounded-2xl transition-all ${ activeIndex === i ? "bg-white w-8" : "bg-white/50" }`} onClick={() => setActiveIndex(i)} />
+                        ))}
                     </div>
-                ))
-                ) : (
-                <div>Loading...</div> 
-                )}
+
+                    {/* Previous and Next buttons */}
+                    <div className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20">
+                        <button className="btn btn-circle btn-primary" onClick={() => setActiveIndex((prev) => (prev === 0 ? workshopInfo?.images.length - 1 : prev - 1))} > ❮ </button>
+                    </div>
+                    <div className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20">
+                        <button className="btn btn-circle btn-primary" onClick={() => setActiveIndex((prev) => (prev === workshopInfo?.images.length - 1 ? 0 : prev + 1))} > ❯ </button>
+                    </div>
+                </div>
             </div>
         </div>
+
     )
 }
 
