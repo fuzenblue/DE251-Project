@@ -31,9 +31,13 @@ import deli_icon from './delivery-truck-icon.svg'
 import cafe_img_l from './cafe-l-img.png'
 import cafe_img_c from './cafe-center-img.png'
 import cafe_img_r from './cafe-r-img.png'
-
-
-
+import popular_bg from './popular-workshop-bg.jpg'
+import planting_icon from './planting.svg'
+import preserve_icon from './preserve-icon.svg'
+import craft_icon from './paper-crafts-icon.svg'
+import chef_icon from './chef.svg'
+import video_ads from './pineapple_ads.mp4'
+import play_icon from './play.svg'
 
 
 // export const for assets 
@@ -53,6 +57,9 @@ export const assets = {
     check_icon,
     service_img,
     filter_icon,
+    popular_bg,
+    video_ads,
+    play_icon,
 }
 
 // export const for workshop
@@ -73,6 +80,11 @@ export const card  = {
     cafe_img_l,
     cafe_img_c,
     cafe_img_r,
+    preserve_icon,
+    craft_icon,
+    chef_icon,
+    planting_icon,
+
 }
 
 export const category_workshop = [

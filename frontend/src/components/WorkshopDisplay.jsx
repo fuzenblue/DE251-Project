@@ -1,24 +1,27 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { assets } from '../assets/assets'
 
 const WorkshopDisplay = () => {
+
   const { workshops, category_workshop, currencySymbol } = useContext(AppContext)
-  const [filterWorkshop, setFilterWorkshop] = useState(workshops)
+
   const [showFilter, setShowFilter] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('') // เริ่มต้นเป็นค่าว่าง (แสดงทั้งหมด)
 
-  const applyFilter = (category) => {
+  const filterWorkshops = useMemo(() => {
+    if (!selectedCategory) return workshops
+    return workshops.filter(workshop => workshop.category === selectedCategory)
+  }, [selectedCategory, workshops])
+
+  const applyFilter = useCallback((category) => {
     if (category === selectedCategory) {
-      setSelectedCategory('') // รีเซ็ตเพื่อแสดงทั้งหมด
-      setFilterWorkshop(workshops) // แสดงรายการทั้งหมด
+      setSelectedCategory('') // รีเซ็ต
     } else {
-      setSelectedCategory(category) // เลือกหมวดหมู่ใหม่
-      setFilterWorkshop(workshops.filter(workshop => workshop.category === category)) // แสดงเฉพาะหมวดหมู่ที่เลือก
+      setSelectedCategory(category) // ตั้งหมวดหมู่ใหม่
     }
-  }
-  
+  }, [selectedCategory])
 
   return (
     <div>
@@ -28,11 +31,11 @@ const WorkshopDisplay = () => {
           <img className='mr-4 w-5' src={assets.filter_icon} alt='' />Filters</button>
         
         {/* Filter Categories */}
-        <div className={`w-full lg:w-auto md:flex-row flex-col gap-4 text-sm text-gray-600 ${showFilter ? 'flex' : 'hidden lg:flex'}`}>
+        <div className={`w-full lg:w-auto md:flex-row flex-col gap-4 text-sm text-gray-600 ${showFilter ? 'hidden' : 'flex'}`}>
           {category_workshop.map((category) => (
-            <p key={category.category} onClick={() => { setSelectedCategory(category.category);
+            <p key={category.category} onClick={() => { applyFilter(category.category);
               applyFilter(category.category)}}
-              className={`px-12 py-3 border border-gray-300 shadow-sm rounded-full transition-all cursor-pointer overflow-x-hidden
+              className={`px-12 py-3 border border-gray-300 shadow-sm rounded-full transition-all cursor-pointer overflow-x-hidden z-10
               ${category.category === selectedCategory ? 'bg-primary text-white border-none' : ''}`}> {category.text} </p>
           ))}
         </div>
@@ -43,10 +46,10 @@ const WorkshopDisplay = () => {
       <div className='flex-1 mt-5 mb-4'>
         <hr className='py-3'/>
         <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-          {Array.isArray(filterWorkshop) && filterWorkshop.length > 0 ? (
-            filterWorkshop.map((workshop) => (
+          {Array.isArray(filterWorkshops) && filterWorkshops.length > 0 ? (
+            filterWorkshops.map((workshop) => (
               <Link key={workshop._id} to={`/all-service/${workshop._id}`}>
-                <div className='border border-gray-200 rounded-lg p-4 h-[27rem] flex flex-col relative shadow-md hover:shadow-lg hover:translate-y-[-10px] transition-all duration-500'>
+                <div className='bg-white border border-gray-200 rounded-lg p-4 h-[27rem] flex flex-col relative shadow-md hover:shadow-lg hover:translate-y-[-10px] transition-all'>
                   <div className='relative'>
                     <div className='absolute top-[85%] right-[40%] w-16 h-16 bg-dark-green rounded-full flex items-center justify-center border-4 border-white'>
                       <span className='text-white font-semibold'>{currencySymbol} {workshop.price}</span>
