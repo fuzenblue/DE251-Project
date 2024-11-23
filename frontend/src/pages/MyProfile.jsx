@@ -3,7 +3,7 @@ import MyProfileSideBar from '../components/MyProfileSideBar';
 import { fame } from '../assets/fame';
 
 const MyProfile = () => {
-  // โหลดข้อมูลจาก localStorage
+  // Load profile from localStorage
   const loadProfile = () => {
     const savedProfile = localStorage.getItem('profile');
     return savedProfile
@@ -16,24 +16,35 @@ const MyProfile = () => {
           phone: '+66 123 456 789',
           address: '123 K-Pop Street, Gangnam District, Seoul, South Korea',
           birthdate: '1997-03-27',
+          profileImage: null,  // Add default profile image property
         };
   };
 
   const [profile, setProfile] = useState(loadProfile);
-  const [savedProfile, setSavedProfile] = useState(profile); // เก็บข้อมูลที่บันทึกแล้ว
+  const [savedProfile, setSavedProfile] = useState(profile); // Save the profile data to sidebar
   const [isEditing, setIsEditing] = useState(false);
 
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
   };
 
+  // Handle profile image change
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Create a temporary URL for the image
+      const imageUrl = URL.createObjectURL(file);
+      setProfile({ ...profile, profileImage: imageUrl });
+    }
+  };
+
   const toggleEdit = () => {
     if (isEditing) {
-      // บันทึกข้อมูลลง localStorage และอัปเดตข้อมูลที่บันทึกแล้ว
+      // Save profile to localStorage and update savedProfile
       localStorage.setItem('profile', JSON.stringify(profile));
-      setSavedProfile(profile); // อัปเดต Sidebar
-      console.log('Saved profile:', profile);
+      setSavedProfile(profile); // Update sidebar with the saved profile
     }
     setIsEditing(!isEditing);
   };
@@ -41,7 +52,7 @@ const MyProfile = () => {
   return (
     <div className="min-h-screen flex">
       {/* Sidebar */}
-      <MyProfileSideBar profile={savedProfile} />
+      <MyProfileSideBar profile={savedProfile} /> {/* Pass savedProfile to sidebar */}
 
       {/* Main Content Area */}
       <div className="flex-1 p-8 bg-gray-50">
@@ -54,6 +65,35 @@ const MyProfile = () => {
           {/* Information Card */}
           <div className="bg-white rounded-lg shadow p-6">
             <div className="space-y-6">
+              {/* Profile Image Section */}
+              <div className="flex justify-center items-center mb-6">
+                <div className="w-28 h-28 rounded-full overflow-hidden">
+                  <img
+                    src={profile.profileImage || 'https://via.placeholder.com/150'} // Use placeholder if no image is selected
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {isEditing && (
+                <div className="flex justify-center mt-2">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    id="profileImage"
+                    onChange={handleImageChange}
+                  />
+                  <label
+                    htmlFor="profileImage"
+                    className="cursor-pointer text-yellow-400"
+                  >
+                    Edit Image
+                  </label>
+                </div>
+              )}
+
               {/* Name Section */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -79,7 +119,8 @@ const MyProfile = () => {
                   />
                 </div>
               </div>
-              {/* Birthdate */}
+
+              {/* Other fields (Birthdate, Gender, etc.) */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Birthdate</label>
                 <input
@@ -91,9 +132,6 @@ const MyProfile = () => {
                   disabled={!isEditing}
                 />
               </div>
-              
-
-              {/* Gender Section */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>
                 <select
@@ -145,11 +183,7 @@ const MyProfile = () => {
               {/* Edit/Save Button */}
               <div className="flex justify-end">
                 <button
-                  className={`py-2 px-6 rounded-lg font-medium transition-colors duration-200 ${
-                    isEditing
-                      ? 'bg-green-500 hover:bg-green-600 text-white'
-                      : 'bg-yellow-400 hover:bg-yellow-500 text-gray-800'
-                  }`}
+                  className={`py-2 px-6 rounded-lg font-medium transition-colors duration-200 ${isEditing ? 'bg-green-500 hover:bg-green-600 text-white' : 'bg-yellow-400 hover:bg-yellow-500 text-gray-800'}`}
                   onClick={toggleEdit}
                 >
                   {isEditing ? 'Save Changes' : 'Edit Profile'}

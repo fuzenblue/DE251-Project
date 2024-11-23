@@ -9,12 +9,12 @@ const MyProfileSideBar = ({ profile }) => {
         {/* Profile Section */}
         <div className="flex flex-col items-center mb-8">
           <img
-            src={profile?.profilePic || fame.lisa_pic} // ถ้าไม่มีรูปใน profile ใช้รูป fallback เดิม
+            src={profile?.profileImage || fame.lisa_pic} // ใช้รูปที่อัปเดตจาก profile
             alt="Profile"
             className="w-28 h-28 rounded-full mb-4 object-cover"
           />
           <h2 className="text-xl font-semibold">
-            {profile?.firstName || 'Lisa'} {profile?.lastName || 'Blackpink'} {/* ใช้ fallback ชื่อเดิม */}
+            {profile?.firstName || 'Lisa'} {profile?.lastName || 'Blackpink'}
           </h2>
         </div>
 
