@@ -4,7 +4,6 @@ import { AppContext } from '../context/AppContext.jsx'
 
 const WorkshopHeader = () => {
     const { workshopId } = useParams()
-    const { id } = useParams()
 
     const { workshops } = useContext(AppContext)
     const [ workshopInfo, setWorkshopInfo ] = useState(null)
@@ -16,15 +15,14 @@ const WorkshopHeader = () => {
         setWorkshopInfo(workshopInfo)
     }
 
-
     useEffect(() => {
         fetchWorkshopInfo()
     }, [workshops, workshopId])
 
     useEffect(() => {
-        const workshop = workshops.find(workshop => workshop._id === id)
+        const workshop = workshops.find(workshop => workshop._id === workshopId);
         setWorkshopInfo(workshop)
-      }, [id, workshops])
+    }, [workshopId, workshops])
 
 
     return (
