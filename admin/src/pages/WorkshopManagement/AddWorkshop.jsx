@@ -46,29 +46,42 @@ const AddWorkshop = () => {
         reader.readAsDataURL(files[i]);
       }
       setWorkshopImages(files); // เก็บไฟล์ทั้งหมดไว้ใน state สำหรับการอัพโหลด
+      setWorkshopImages(Array.from(files))
     }
   };
   
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    // Form data setup for multipart/form-data
+    e.preventDefault();
+  
+    // สร้าง FormData
     const formData = new FormData();
+    
+    // เพิ่มไฟล์ลงใน FormData
     formData.append('cover_image', workshopImg);
+  
+    // ตรวจสอบว่า workshopImages เป็นอาร์เรย์ก่อนที่จะใช้ forEach
+    if (Array.isArray(workshopImages)) {
+      workshopImages.forEach(image => formData.append('images', image));
+    }
+  
+    formData.append('video', workshopVideo);
+    
+    // เพิ่มข้อมูลอื่นๆ
     formData.append('name', workshopName);
     formData.append('description', workshopDescription);
     formData.append('category', workshopCategory);
     formData.append('price', workshopPrice);
-    formData.append('video', workshopVideo);
     formData.append('date', workshopDate);
     formData.append('slot_booked', JSON.stringify(slotBooked));
-
-    // Add any additional images (if needed)
-    workshopImages.forEach(image => formData.append('images', image));
-
+  
     try {
-      const response = await axios.post('/api/workshops', { name: workshopName });
+      // ส่งคำขอ POST ไปยัง API
+      const response = await axios.post('http://localhost:4000/api/admin/workshop-add', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })      
+  
       if (response.status === 200) {
         toast.success('Workshop added successfully!');
       } else {
@@ -77,8 +90,8 @@ const AddWorkshop = () => {
     } catch (error) {
       toast.error('Error adding workshop');
     }
-  }
-
+  };
+  
   return (
     <div className="flex pt-8 w-[60%] bg-zinc-100">
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-[120vh] px-8">
@@ -90,7 +103,13 @@ const AddWorkshop = () => {
               <img src={coverImagePreview} alt="Cover Image Preview" className="w-[150px] h-[150px] object-cover rounded" />
             </div>
           )}
-          <input className='file-input file-input-bordered w-full max-w-xs' type="file" name="cover_image" onChange={handleFileChange} required />
+          <input
+            className='file-input file-input-bordered w-full max-w-xs'
+            type="file"
+            name="cover_image"
+            onChange={handleFileChange}
+            required
+          />
         </div>
 
         {/* Workshop Name */}
@@ -127,7 +146,14 @@ const AddWorkshop = () => {
         {/* Images Upload */}
         <div className="flex flex-col items-start gap-2">
           <p className="text-gray-700 font-medium">Upload Images</p>
-          <input className='file-input file-input-bordered w-full max-w-xs' type="file" name="images" onChange={handleFileChange}  multiple required />
+          <input
+            className='file-input file-input-bordered w-full max-w-xs'
+            type="file"
+            name="images"
+            onChange={handleFileChange}
+            multiple
+            required
+          />
           {imagesPreview.length > 0 && (
             <div className="flex gap-2 mt-2">
               {imagesPreview.length > 0 && (
@@ -144,7 +170,13 @@ const AddWorkshop = () => {
         {/* Video Upload */}
         <div className="flex flex-col items-start gap-2">
           <p className="text-gray-700 font-medium">Upload Video</p>
-          <input className='file-input file-input-bordered w-full max-w-xs' type="file" name="video" onChange={(e) => setWorkshopVideo(e.target.value)}  required />
+          <input
+            className='file-input file-input-bordered w-full max-w-xs'
+            type="file"
+            name="video"
+            onChange={handleFileChange}
+            required
+          />
           {workshopVideo && (
             <div className="mt-2">
               <video width="200" controls>

@@ -46,7 +46,6 @@ const addWorkshops = async (req, res) => {
         const videoUrl = videoUpload.secure_url;
 
 
-
         // Create a new workshop entry
         const WorkshopsData = {
             name,
