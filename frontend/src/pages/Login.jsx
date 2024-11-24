@@ -46,10 +46,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <form
-        onSubmit={onLogin}
-        className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md space-y-6"
-      >
+      <form onSubmit={onLogin} className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md space-y-6" >
         {/* Title */}
         <h2 className="text-2xl font-bold text-center text-gray-800">
           {currState}
@@ -58,57 +55,27 @@ const Login = () => {
         {/* Input Fields */}
         <div className="space-y-4">
           {currState === "Login" ? null : (
-            <input
-              name="name"
-              onChange={onChangeHandler}
-              value={data.name}
-              type="text"
-              placeholder="Your name"
-              required
-              className="input input-bordered w-full"
-            />
+            <input name="name" onChange={onChangeHandler} value={data.name} type="text" placeholder="Username" required className="input input-bordered w-full" />
           )}
-          <input
-            name="email"
-            onChange={onChangeHandler}
-            value={data.email}
-            type="email"
-            placeholder="Your email"
-            required
-            className="input input-bordered w-full"
-          />
-          <input
-            name="password"
-            onChange={onChangeHandler}
-            value={data.password}
-            type="password"
-            placeholder="Password"
-            required
-            className="input input-bordered w-full"
-          />
+          <input name="email" onChange={onChangeHandler} value={data.email} type="email" placeholder="Your email" required
+                 className="input input-bordered w-full"  />
+          <input name="password" onChange={onChangeHandler} value={data.password} type="password" placeholder="Password" required
+                 className="input input-bordered w-full" />
         </div>
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          className="btn btn-primary w-full mt-4"
-        >
+        <button type="submit" className="btn btn-primary w-full mt-4" >
           {currState === "Sign Up" ? "Create account" : "Login"}
         </button>
 
         {/* Terms & Conditions */}
         <div className="form-control mt-4">
           <label className="cursor-pointer flex items-start space-x-2">
-            <input type="checkbox" className="checkbox" required />
-            <span className="text-gray-600 text-sm">
-              By continuing, I agree to the{" "}
-              <a href="#" className="text-blue-500 underline">
-                terms of use
-              </a>{" "}
-              &{" "}
-              <a href="#" className="text-blue-500 underline">
-                privacy policy
-              </a>.
+            <input type="checkbox" className="checkbox"  required />
+            <span className="text-gray-600 text-sm"> 
+              By continuing, I agree to the{" "} 
+              <a href="#" className="text-blue-500 underline"> terms of use </a> {" "}
+              &{" "} <a href="#" className="text-blue-500 underline"> privacy policy </a>.
             </span>
           </label>
         </div>
@@ -118,22 +85,12 @@ const Login = () => {
           {currState === "Login" ? (
             <>
               Create a new account?{" "}
-              <span
-                onClick={() => setCurrState("Sign Up")}
-                className="text-blue-500 cursor-pointer"
-              >
-                Click here
-              </span>
+              <span onClick={() => setCurrState("Sign Up")} className="text-blue-500 cursor-pointer" >Click here</span>
             </>
           ) : (
             <>
               Already have an account?{" "}
-              <span
-                onClick={() => setCurrState("Login")}
-                className="text-blue-500 cursor-pointer"
-              >
-                Login here
-              </span>
+              <span onClick={() => setCurrState("Login")} className="text-blue-500 cursor-pointer" >Login here</span>
             </>
           )}
         </p>

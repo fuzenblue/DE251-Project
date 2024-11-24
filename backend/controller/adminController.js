@@ -6,11 +6,15 @@ import jwt from 'jsonwebtoken'
 // API to add a workshop
 const addWorkshops = async (req, res) => {
     try {
-        const { name, category, about, description, price, date, slot_booked } = req.body;
+        const { name, category, about, description, price, date, slot_booked } = req.body
 
-        const cover_image = req.files.cover_image ? req.files.cover_image[0].path : null;
-        const images = req.files.images ? req.files.images.map(file => file.path) : [];
-        const video = req.files.video ? req.files.video[0].path : null;
+        if (!req.files || !req.files.cover_image || !req.files.images || !req.files.video) {
+            return res.status(400).json({ message: 'Missing required files' })
+        }
+
+        const cover_image = req.files.cover_image[0].path 
+        const images = req.files.images.map(file => file.path) 
+        const video = req.files.video[0].path
 
         // Check for required fields
         if (!name || !category || !about || !description || !price || !date || !slot_booked) {
