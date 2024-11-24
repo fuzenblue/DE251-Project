@@ -1,40 +1,91 @@
-import workshopsModel from "../models/WorkshopsModel.js"
+import { v2 as cloudinary } from "cloudinary"
+import workshopsModel from "../models/workshopsModel.js"
+import jwt from 'jsonwebtoken'
+
 
 // API to add a workshop
 const addWorkshops = async (req, res) => {
     try {
         const { name, category, about, description, price, date, slot_booked } = req.body;
 
-        // ตรวจสอบว่า `cover_image` มีไฟล์ไหมและดึง path ของไฟล์
         const cover_image = req.files.cover_image ? req.files.cover_image[0].path : null;
-
-        // ตรวจสอบว่า `images` มีไฟล์ไหม และถ้ามีให้ใช้ `map` เพื่อดึง path ของไฟล์
         const images = req.files.images ? req.files.images.map(file => file.path) : [];
-
-        // ตรวจสอบว่า `video` มีไฟล์ไหมและดึง path ของไฟล์
         const video = req.files.video ? req.files.video[0].path : null;
 
-        // สร้าง workshop ใหม่ในฐานข้อมูล
-        const newWorkshop = new workshopsModel({
+        // Check for required fields
+        if (!name || !category || !about || !description || !price || !date || !slot_booked) {
+            return res.json({ message: 'Missing required fields' })
+        }
+
+        // Check if files are provided
+        if (!cover_image) {
+            return res.json({ message: 'Cover image is required' })
+        }
+        if (images.length === 0) {
+            return res.json({ message: 'At least one image is required' })
+        }
+        if (!video) {
+            return res.json({ message: 'Video is required' })
+        }
+
+
+        const coverImageUpload = await cloudinary.uploader.upload(cover_image, { resource_type: "image" });
+        const coverImageUrl = coverImageUpload.secure_url;
+
+        const imageUploadPromises = images.map(image =>
+            cloudinary.uploader.upload(image, { resource_type: "image" })
+        )
+
+        const imageUploads = await Promise.all(imageUploadPromises);
+        const imageUrls = imageUploads.map(upload => upload.secure_url);
+        const videoUpload = await cloudinary.uploader.upload(video, { resource_type: "video" });
+        const videoUrl = videoUpload.secure_url;
+
+
+
+        // Create a new workshop entry
+        const WorkshopsData = {
             name,
-            cover_image,
-            images,
-            video,
             category,
             about,
             description,
             price,
-            slot_booked
-        });
+            date: Date.now(),
+            cover_image: coverImageUrl,
+            images: imageUrls,
+            video: videoUrl
+        }
 
-        // บันทึกข้อมูล
-        await newWorkshop.save();
+        const newWorkshops = new workshopsModel(WorkshopsData)
+        await newWorkshops.save()
 
-        res.status(201).json({ message: 'Workshop added successfully', workshop: newWorkshop });
+        res.json({success:true, message: 'Workshop Added'})
+
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error adding workshop', error: error.message });
+        console.log(error)
+        res.json({success:false, message: error.message })
     }
 }
 
-export { addWorkshops }
+// API for Admin Login
+const loginAdmin = async (req, res) => {
+    try {
+        
+        const { email, password } = req.body
+
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+
+            const token = jwt.sign({email, password}, process.env.JWT_SECRET)
+            res.json({success:true, token})
+            
+        } else {
+            res.json({success:false, message: "Invalid credentials" })
+        }
+
+    } catch (error) {
+        console.log(error)
+        res.json({success:false, message: error.message })
+    }
+}
+
+export { addWorkshops, loginAdmin }
