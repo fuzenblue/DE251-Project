@@ -14,16 +14,23 @@ const MyProfile = () => {
   }
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      const updatedProfile = { ...profile, profileImage: imageUrl };
+      const imageUrl = URL.createObjectURL(file)
+      const updatedProfile = { ...profile, profileImage: imageUrl }
 
       // บันทึกข้อมูลลง localStorage และอัปเดต state
-      localStorage.setItem('profile', JSON.stringify(updatedProfile));
-      setProfile(updatedProfile);
+      localStorage.setItem('profile', JSON.stringify(updatedProfile))
+      setProfile(updatedProfile)
     }
   }
+
+  useEffect(() => {
+    const storedProfile = localStorage.getItem('profile')
+    if (storedProfile) {
+      setProfile(JSON.parse(storedProfile)) // อัปเดต state จากข้อมูลใน localStorage
+    }
+  }, [setProfile])
 
 
   return (
