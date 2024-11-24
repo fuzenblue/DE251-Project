@@ -30,7 +30,6 @@ const Home = () => {
       <Welcome />
       <WhyChoose />
       <Service />
-      {/* ยังไม่เสร็จ */}
       <Workshop />
       <Blogs />
       <VideoHighlight />
