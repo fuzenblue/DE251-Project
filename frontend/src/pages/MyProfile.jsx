@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import MyProfileSideBar from '../components/MyProfileSideBar';
 import { fame } from '../assets/fame';
 import { ProfileContext } from '../context/ProfileContext';
@@ -9,25 +9,27 @@ const MyProfile = () => {
 
   // Handle input changes
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProfile({ ...profile, [name]: value });
-  };
+    const { name, value } = e.target
+    setProfile({ ...profile, [name]: value })
+  }
 
-  // Handle profile image change
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Create a temporary URL for the image
       const imageUrl = URL.createObjectURL(file);
-      setProfile({ ...profile, profileImage: imageUrl });
+      const updatedProfile = { ...profile, profileImage: imageUrl };
+
+      // บันทึกข้อมูลลง localStorage และอัปเดต state
+      localStorage.setItem('profile', JSON.stringify(updatedProfile));
+      setProfile(updatedProfile);
     }
-  };
+  }
 
 
   return (
     <div className="min-h-screen flex">
       {/* Sidebar */}
-      <MyProfileSideBar profile={savedProfile} /> {/* Pass savedProfile to sidebar */}
+      <MyProfileSideBar profile={ savedProfile } /> {/* Pass profile to sidebar */}
 
       {/* Main Content Area */}
       <div className="flex-1 p-8 bg-gray-50">
@@ -44,7 +46,7 @@ const MyProfile = () => {
               <div className="flex justify-center items-center mb-6">
                 <div className="w-28 h-28 rounded-full overflow-hidden">
                   <img
-                    src={profile.profileImage || 'https://via.placeholder.com/150'}
+                    src={ profile?.profileImage || ''}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
@@ -77,7 +79,7 @@ const MyProfile = () => {
                     type="text"
                     name="firstName"
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                    value={profile.firstName}
+                    value={profile?.firstName}
                     onChange={handleInputChange}
                     readOnly={!isEditing}
                   />
@@ -88,7 +90,7 @@ const MyProfile = () => {
                     type="text"
                     name="lastName"
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                    value={profile.lastName}
+                    value={profile?.lastName}
                     onChange={handleInputChange}
                     readOnly={!isEditing}
                   />
@@ -102,7 +104,7 @@ const MyProfile = () => {
                   type="date"
                   name="birthdate"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.birthdate}
+                  value={profile?.birthdate}
                   onChange={handleInputChange}
                   disabled={!isEditing}
                 />
@@ -112,7 +114,7 @@ const MyProfile = () => {
                 <select
                   name="gender"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.gender}
+                  value={profile?.gender}
                   onChange={handleInputChange}
                   disabled={!isEditing}
                 >
@@ -127,7 +129,7 @@ const MyProfile = () => {
                   type="email"
                   name="email"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.email}
+                  value={profile?.email}
                   onChange={handleInputChange}
                   readOnly={!isEditing}
                 />
@@ -138,7 +140,7 @@ const MyProfile = () => {
                   type="tel"
                   name="phone"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.phone}
+                  value={profile?.phone}
                   onChange={handleInputChange}
                   readOnly={!isEditing}
                 />
@@ -149,7 +151,7 @@ const MyProfile = () => {
                   name="address"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
                   rows="3"
-                  value={profile.address}
+                  value={profile?.address}
                   onChange={handleInputChange}
                   readOnly={!isEditing}
                 />

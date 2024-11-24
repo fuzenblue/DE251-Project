@@ -9,7 +9,11 @@ const Navbar = () => {
 
     const [showMenu, setShowMenu] = useState(false)
     const [token, setToken] = useState(true)
-    const { savedProfile } = useContext(ProfileContext)
+    const { profile, savedProfile } = useContext(ProfileContext)
+
+    if (!savedProfile) {
+      return <div>Loading...</div>; // แสดงข้อความหรือ spinner ขณะที่โปรไฟล์ยังไม่ได้โหลด
+    }
 
   return (
     <div className='flex items-center justify-between text-xs lg:text-sm py-4 mb-0 border-b border-b-gray-300'>
@@ -45,7 +49,7 @@ const Navbar = () => {
         {
             token 
             ? <div className='flex items-center gap-1 cursor-pointer group relative'>
-                <img className='flex w-12 h-12 rounded-full object-cover' src={savedProfile.profileImage} alt="" />
+                <img className='flex w-10 h-10 rounded-full object-cover' src={ savedProfile?.profileImage } alt="" />
                 <img className='flex w-5' src={assets.dropdown_icon} alt="" />
                 <div className='absolute top-0 right-0 pt-14 text-sm lg:text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
                     <div className='min-w-48 bg-stone-50 rounded flex flex-col gap-4 p-4'>
