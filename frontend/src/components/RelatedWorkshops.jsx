@@ -38,7 +38,7 @@ const RelatedWorkshops = ({category, workshopId}) => {
                 </div>
             ))}
         </div>
-        <button onClick={() => {navigate('/all-service'); scrollTo(0,0)}} className='bg-orange-50 text-gray-600 px-12 py-3 rounded-full mt-5'>more</button>
+        <button onClick={() => {navigate('/all-service#all-workshop'); scrollTo(0,0)}} className='bg-orange-50 text-gray-600 px-12 py-3 rounded-full mt-5'>more</button>
     </div>
   )
 }

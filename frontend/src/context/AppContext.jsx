@@ -6,7 +6,7 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
-    const [token, setToken] = useState("")
+    const [token, setToken] = useState("") 
 
     
     const value = {

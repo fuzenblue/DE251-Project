@@ -1,58 +1,44 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import MyProfileSideBar from '../components/MyProfileSideBar';
 import { fame } from '../assets/fame';
+import { ProfileContext } from '../context/ProfileContext';
 
 const MyProfile = () => {
-  // Load profile from localStorage
-  const loadProfile = () => {
-    const savedProfile = localStorage.getItem('profile');
-    return savedProfile
-      ? JSON.parse(savedProfile)
-      : {
-          firstName: 'Lalisa',
-          lastName: 'Manobal',
-          gender: 'Female',
-          email: 'lisa@blackpink.com',
-          phone: '+66 123 456 789',
-          address: '123 K-Pop Street, Gangnam District, Seoul, South Korea',
-          birthdate: '1997-03-27',
-          profileImage: null,  // Add default profile image property
-        };
-  };
 
-  const [profile, setProfile] = useState(loadProfile);
-  const [savedProfile, setSavedProfile] = useState(profile); // Save the profile data to sidebar
-  const [isEditing, setIsEditing] = useState(false);
+  const { profile, isEditing, toggleEdit, setProfile, savedProfile } = useContext(ProfileContext)
+  
 
   // Handle input changes
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProfile({ ...profile, [name]: value });
-  };
+    const { name, value } = e.target
+    setProfile({ ...profile, [name]: value })
+  }
 
-  // Handle profile image change
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Create a temporary URL for the image
       const imageUrl = URL.createObjectURL(file);
-      setProfile({ ...profile, profileImage: imageUrl });
+      const updatedProfile = { ...profile, profileImage: imageUrl };
+  
+      // บันทึกข้อมูลลง localStorage และอัปเดต state
+      localStorage.setItem('profile', JSON.stringify(updatedProfile));
+      setProfile(updatedProfile);
     }
-  };
+  }
+  
+  // เมื่อโหลดหน้าเว็บใหม่, ดึงข้อมูลจาก localStorage
+  useEffect(() => {
+    const savedProfile = JSON.parse(localStorage.getItem('profile'));
+    if (savedProfile) {
+      setProfile(savedProfile);
+    }
+  }, []);  
 
-  const toggleEdit = () => {
-    if (isEditing) {
-      // Save profile to localStorage and update savedProfile
-      localStorage.setItem('profile', JSON.stringify(profile));
-      setSavedProfile(profile); // Update sidebar with the saved profile
-    }
-    setIsEditing(!isEditing);
-  };
 
   return (
     <div className="min-h-screen flex">
       {/* Sidebar */}
-      <MyProfileSideBar profile={savedProfile} /> {/* Pass savedProfile to sidebar */}
+      <MyProfileSideBar profile={ savedProfile } /> {/* Pass profile to sidebar */}
 
       {/* Main Content Area */}
       <div className="flex-1 p-8 bg-gray-50">
@@ -69,7 +55,7 @@ const MyProfile = () => {
               <div className="flex justify-center items-center mb-6">
                 <div className="w-28 h-28 rounded-full overflow-hidden">
                   <img
-                    src={profile.profileImage || 'https://via.placeholder.com/150'} // Use placeholder if no image is selected
+                    src={ profile?.profileImage || ''}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
@@ -87,7 +73,7 @@ const MyProfile = () => {
                   />
                   <label
                     htmlFor="profileImage"
-                    className="cursor-pointer text-yellow-400"
+                    className="btn btn-outline-black cursor-pointer text-yellow-400"
                   >
                     Edit Image
                   </label>
@@ -102,7 +88,7 @@ const MyProfile = () => {
                     type="text"
                     name="firstName"
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                    value={profile.firstName}
+                    value={profile?.firstName}
                     onChange={handleInputChange}
                     readOnly={!isEditing}
                   />
@@ -113,7 +99,7 @@ const MyProfile = () => {
                     type="text"
                     name="lastName"
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                    value={profile.lastName}
+                    value={profile?.lastName}
                     onChange={handleInputChange}
                     readOnly={!isEditing}
                   />
@@ -127,7 +113,7 @@ const MyProfile = () => {
                   type="date"
                   name="birthdate"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.birthdate}
+                  value={profile?.birthdate}
                   onChange={handleInputChange}
                   disabled={!isEditing}
                 />
@@ -137,7 +123,7 @@ const MyProfile = () => {
                 <select
                   name="gender"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.gender}
+                  value={profile?.gender}
                   onChange={handleInputChange}
                   disabled={!isEditing}
                 >
@@ -152,7 +138,7 @@ const MyProfile = () => {
                   type="email"
                   name="email"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.email}
+                  value={profile?.email}
                   onChange={handleInputChange}
                   readOnly={!isEditing}
                 />
@@ -163,7 +149,7 @@ const MyProfile = () => {
                   type="tel"
                   name="phone"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile.phone}
+                  value={profile?.phone}
                   onChange={handleInputChange}
                   readOnly={!isEditing}
                 />
@@ -174,7 +160,7 @@ const MyProfile = () => {
                   name="address"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
                   rows="3"
-                  value={profile.address}
+                  value={profile?.address}
                   onChange={handleInputChange}
                   readOnly={!isEditing}
                 />

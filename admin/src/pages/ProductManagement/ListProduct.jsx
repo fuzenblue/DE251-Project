@@ -1,6 +1,5 @@
 import React from 'react'
-import { admin } from '../../assets/assets.js'
-import { workshops } from '../../../../frontend/src/assets/assets.js' // change to product ***************
+import { admin, workshops } from '../../assets/assets' // change to product ***************
 
 const ListProduct = () => {
 
@@ -23,7 +22,7 @@ const ListProduct = () => {
         {workshops.map((workshop) => (
           <div key={workshop._id}
                className="grid grid-cols-[0.5fr_1.5fr_1fr_0.8fr_0.4fr] items-center gap-4 p-3 border-b border-gray-200 hover:bg-gray-50">
-            <img src={workshop.image} alt={workshop.name} className="w-12 h-12 rounded object-cover" />
+            <img src={workshop.cover_image} alt={workshop.name} className="w-12 h-12 rounded object-cover" />
             <p>{workshop.name}</p>
             <p>{workshop.category}</p>
             <p>${workshop.price}</p>

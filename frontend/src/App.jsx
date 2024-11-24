@@ -22,7 +22,7 @@ const App = () => {
         <div className='mx-5 sm:mx-[10%] '>
           <Navbar />
         </div>
-      </div>
+      </div> 
       <Routes>
         < Route path='/' element={<Home />} />
         < Route path='/all-service' element={<Service  />} />

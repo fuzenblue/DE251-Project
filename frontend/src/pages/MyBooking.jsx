@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import MyProfileSideBar from '../components/MyProfileSideBar'
+import { ProfileContext } from '../context/ProfileContext'
 
 const MyBooking = () => {
+  
+  const { savedProfile } = useContext(ProfileContext)
+
+
   return (
     <div>
-      <MyProfileSideBar />
+      <MyProfileSideBar profile={savedProfile} />
     </div>
   )
 }
