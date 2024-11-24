@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import MyProfileSideBar from '../components/MyProfileSideBar';
 import { fame } from '../assets/fame';
 import { ProfileContext } from '../context/ProfileContext';

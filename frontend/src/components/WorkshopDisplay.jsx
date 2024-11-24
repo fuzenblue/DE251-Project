@@ -55,7 +55,7 @@ const WorkshopDisplay = () => {
                       <span className='text-white font-semibold'>{currencySymbol} {workshop.price}</span>
                     </div>
 
-                    <img src={workshop.image} alt='' className='w-full h-[14rem] object-cover rounded-lg'/>
+                    <img src={workshop.cover_image} alt='' className='w-full h-[14rem] object-cover rounded-lg'/>
                   </div>
                   <h3 className='text-lg font-semibold mt-8 cursor-pointer hover:text-primary'> {workshop.name}</h3>
                   <h4 className='text-md font-semibold text-gray-500 flex justify-end'>{workshop.category}</h4>

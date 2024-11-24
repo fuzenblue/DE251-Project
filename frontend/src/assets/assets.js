@@ -110,7 +110,7 @@ export const workshops = [
     {
         _id: 'workshop1', // การปลูกสับปะรด ตั้งแต่การเลือกดินจนถึงการดูแลรักษา
         name: 'Pineapple Planting',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -126,7 +126,7 @@ export const workshops = [
     {
         _id: 'workshop2', // การจัดตั้งสวนสับปะรดที่บ้าน เรียนรู้การปลูกสับปะรดในสภาพแวดล้อมที่บ้านหรือสวน
         name: 'Pineapple Garden Setup',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -141,7 +141,7 @@ export const workshops = [
     {
         _id: 'workshop3', // การทำอาหารจากสับปะรด เช่น สลัดหรือซุปสับปะรด
         name: 'Pineapple Cooking',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -156,7 +156,7 @@ export const workshops = [
     {
         _id: 'workshop4', // การทำอาหารจานพิเศษจากสับปะรด ใช้สับปะรดเป็นส่วนผสมหลักในการทำอาหาร
         name: 'Tropical Pineapple Dishes',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -171,7 +171,7 @@ export const workshops = [
     {
         _id: 'workshop5', // การทำขนมจากสับปะรด
         name: 'Pineapple Snack',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -186,7 +186,7 @@ export const workshops = [
     {
         _id: 'workshop6', // การทำสบู่ธรรมชาติจากสารสกัดจากสับปะรด
         name: 'Natural Soap Making',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -201,7 +201,7 @@ export const workshops = [
     {
         _id: 'workshop7', // การทำงานฝีมือจากกระดาษที่มีธีมเป็นสับปะรด
         name: 'Pineapple Paper Crafting',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -216,7 +216,7 @@ export const workshops = [
     {
         _id: 'workshop10', // การชิมสับปะรดและการทำไวน์จากสับปะรด
         name: 'Pineapple Wine Making',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -231,7 +231,7 @@ export const workshops = [
     {
         _id: 'workshop11', // การทำงานฝีมือจากวัสดุต่าง ๆ ที่มีธีมสับปะรด เช่น พวงกุญแจหรือการ์ด
         name: 'Pineapple Crafting',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -246,7 +246,7 @@ export const workshops = [
     {
         _id: 'workshop12', // การวาดภาพด้วยธีมสับปะรด
         name: 'Pineapple Painting',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -261,7 +261,7 @@ export const workshops = [
     {
         _id: 'workshop13', // งานฝีมือกระดาษสำหรับเด็กที่มีธีมสับปะรด
         name: 'Pineapple Paper Crafting',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -276,7 +276,7 @@ export const workshops = [
     {
         _id: 'workshop14', // การวาดภาพสับปะรดสำหรับเด็ก ๆ
         name: 'Pineapple Painting',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -291,7 +291,7 @@ export const workshops = [
     {
         _id: 'workshop15', // การทำงานฝีมือจากวัสดุที่ง่าย ๆ สำหรับเด็ก
         name: 'Pineapple Crafting',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
@@ -306,7 +306,7 @@ export const workshops = [
     {
         _id: 'workshop17', // การทำสมูทตี้สับปะรดที่เด็ก ๆ สามารถทำได้เอง
         name: 'Pineapple Smoothies',
-        image: profile_pic,
+        cover_image: profile_pic,
         video: video_ads,
         images: [   
                     header_img, 
