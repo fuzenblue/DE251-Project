@@ -9,7 +9,7 @@ const AboutUs = () => {
         className="relative min-h-[60vh] flex flex-col justify-center items-center text-center px-8 py-16 bg-gradient-to-r from-orange-200 to-orange-100"
       >
         <img 
-          src={fame.pic1_aboutus} 
+          src={fame.about_head} 
           alt="Pineapple farm hero" 
           className="absolute inset-0 w-full h-full object-cover "
         />
