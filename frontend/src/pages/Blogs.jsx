@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { fame } from "../assets/fame"; // ตรวจสอบให้แน่ใจว่า path นี้ถูกต้อง
-
+import { fame } from "../assets/fame"; 
 const Blogs = () => {
   // Blog articles data
   const articles = [

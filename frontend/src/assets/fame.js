@@ -24,6 +24,8 @@ import blogs_pic2_3 from './blogpic2_3.jpg'
 import blogs_pic3_1 from './blogpic3_1.jpg'
 import blogs_pic3_2 from './blogpic3_2.jpg'
 import blogs_pic3_3 from './blogpic3_3.jpg'
+import blogs_para from './blogspara1.jpg'
+import blogs_soil from './blogpara1_soil.jpg'
 export const fame ={
     bag_icon,
     bk_icon,
@@ -51,7 +53,9 @@ export const fame ={
     blogs_pic2_3,
     blogs_pic3_1,
     blogs_pic3_2,
-    blogs_pic3_3
+    blogs_pic3_3,
+    blogs_para,
+    blogs_soil
 
 
 
