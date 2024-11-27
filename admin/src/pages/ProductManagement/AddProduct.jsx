@@ -3,7 +3,7 @@ import { admin } from '../../assets/assets'
 
 const AddProduct = () => {
   return (
-    <div className="flex pt-8 w-[60%] bg-zinc-100">
+    <div className="flex pt-8 w-[60%] bg-gray-50">
       <form className="flex flex-col gap-5 max-w-[120vh] px-8">
         {/* Image Upload */}
         <div className="flex flex-col items-start gap-2">

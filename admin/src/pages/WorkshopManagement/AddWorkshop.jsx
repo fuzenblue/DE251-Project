@@ -13,87 +13,13 @@ const AddWorkshop = () => {
   const [workshopPrice, setWorkshopPrice] = useState('');
   const [workshopVideo, setWorkshopVideo] = useState('');
   const [workshopImages, setWorkshopImages] = useState([]);
-  const [imagesPreview, setImagesPreview] = useState([]);
-  const [workshopDate, setWorkshopDate] = useState('');
-  const [slotBooked, setSlotBooked] = useState({});
+  const [imagesPreview, setImagesPreview] = useState([])
+  const [workshopDate, setWorkshopDate] = useState('')
+  const [slotBooked, setSlotBooked] = useState({})
 
-  // ฟังก์ชันอัพโหลดภาพและแสดงตัวอย่าง
-  const handleFileChange = (e) => {
-    const files = e.target.files;
-    // อัพเดตภาพปกติ (cover image)
-    if (files.length === 1) {
-      const file = files[0];
-      setWorkshopImg(file);
-  
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCoverImagePreview(reader.result); // เก็บ URL ของภาพเพื่อแสดงในฟอร์ม
-      };
-      if (file) {
-        reader.readAsDataURL(file); // อ่านไฟล์และสร้าง URL สำหรับการแสดงตัวอย่าง
-      }
-    } else {
-      // อัพเดตหลายภาพ
-      const previews = [];
-      for (let i = 0; i < files.length; i++) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          previews.push(reader.result);
-          if (previews.length === files.length) {
-            setImagesPreview(previews); // เมื่อทุกตัวอย่างพร้อมแล้ว ให้ตั้งค่า state
-          }
-        };
-        reader.readAsDataURL(files[i]);
-      }
-      setWorkshopImages(files); // เก็บไฟล์ทั้งหมดไว้ใน state สำหรับการอัพโหลด
-      setWorkshopImages(Array.from(files))
-    }
-  };
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    // สร้าง FormData
-    const formData = new FormData();
-    
-    // เพิ่มไฟล์ลงใน FormData
-    formData.append('cover_image', workshopImg);
-  
-    // ตรวจสอบว่า workshopImages เป็นอาร์เรย์ก่อนที่จะใช้ forEach
-    if (Array.isArray(workshopImages)) {
-      workshopImages.forEach(image => formData.append('images', image));
-    }
-  
-    formData.append('video', workshopVideo);
-    
-    // เพิ่มข้อมูลอื่นๆ
-    formData.append('name', workshopName);
-    formData.append('description', workshopDescription);
-    formData.append('category', workshopCategory);
-    formData.append('price', workshopPrice);
-    formData.append('date', workshopDate);
-    formData.append('slot_booked', JSON.stringify(slotBooked));
-  
-    try {
-      // ส่งคำขอ POST ไปยัง API
-      const response = await axios.post('http://localhost:4000/api/admin/workshop-add', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })      
-  
-      if (response.status === 200) {
-        toast.success('Workshop added successfully!');
-      } else {
-        toast.error('Error adding workshop');
-      }
-    } catch (error) {
-      toast.error('Error adding workshop');
-    }
-  };
   
   return (
-    <div className="flex pt-8 w-[60%] bg-zinc-100">
+    <div className="flex pt-8 w-[60%] bg-gray-50">
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-[120vh] px-8">
         {/* Cover Image Upload */}
         <div className="flex flex-col items-start gap-2">

@@ -29,7 +29,7 @@ function App() {
       <Navbar />
       <hr />
 
-      <div className='flex '>
+      <div className='flex'>
         <Sidebar/>
 
           <Routes>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const ListBlogs = () => {
   return (
-    <div>
+    <div className='bg-gray-50'>
       
     </div>
   )
