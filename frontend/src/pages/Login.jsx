@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext'
-import { assets } from '../assets/assets'
 
 
 const Login = () => {
@@ -64,7 +63,7 @@ const Login = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-primary text-white w-full mt-4" >
+        <button type="submit" className="btn btn-primary text-white w-full mt-4 text-base" >
           {currState === "Sign Up" ? "Create account" : "Login"}
         </button>
 
@@ -74,14 +73,13 @@ const Login = () => {
               <>
                 <label className="label cursor-pointer flex items-start justify-start space-x-2">
                   <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
-                  <span className="label-text text-gray-600 text-sm">By continuing, I agree to the terms of use & privacy policy.</span>
-                </label>
-
-                <label className="label cursor-pointer flex items-start justify-start space-x-2">
-                  <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
                   <span className="label-text text-gray-600 text-sm text-left">Remember me</span>
                 </label>
-
+                
+                <label className="label cursor-pointer flex items-start justify-start space-x-2">
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
+                  <span className="label-text text-gray-600 text-sm">By continuing, I agree to the terms of use & privacy policy.</span>
+                </label>
               </>
             ) : (
               <label className="label cursor-pointer flex items-start justify-start space-x-2">

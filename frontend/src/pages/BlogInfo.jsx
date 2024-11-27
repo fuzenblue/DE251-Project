@@ -82,7 +82,6 @@ const BlogInfo = () => {
               className="w-full h-64 object-cover rounded-md mt-4"
             />
           </div>
-          
         ))}
 
         {article.video && (
@@ -94,21 +93,14 @@ const BlogInfo = () => {
             <iframe width="560" height="315"
              src="https://www.youtube.com/embed/qoJY_GwXIwI?si=HLl6_hWMur1QG7dj" 
              title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-             referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen>
-
+             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
              </iframe>
             </div>
           </div>
-          
         )}
       </div>
-
-      <footer className="bg-gray-900 text-white py-6 text-center">
-        <p>&copy; 2024 Pineapple Farming Blog. All rights reserved.</p>
-      </footer>
     </div>
   );
 };
 
-export default BlogInfo;
+export default BlogInfo
