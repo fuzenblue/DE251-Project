@@ -2,7 +2,6 @@ import { v2 as cloudinary } from "cloudinary"
 import workshopsModel from "../models/workshopsModel.js"
 import jwt from 'jsonwebtoken'
 
-
 // API to add a workshop
 const addWorkshops = async (req, res) => {
     try {

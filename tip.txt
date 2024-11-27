@@ -1,7 +1,6 @@
 # install extension
 1. ES7 React/Redux/GraphQL/React-Native snippets
 2. Thunder Client
-3. Live Share
 
 
 # install package part
