@@ -11,6 +11,7 @@ import edit_icon from './edit_icon.png'
 
 import header_img from './cafe-card-img.png'
 import video_ads from './pineapple_ads.mp4'
+import upload_area from './upload_area.png'
 
 
 // export const for assets 
@@ -25,6 +26,7 @@ export const admin = {
     edit_icon,
     header_img,
     video_ads,
+    upload_area,
 }
 
 
