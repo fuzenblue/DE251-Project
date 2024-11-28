@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react'
-import { workshops, category_workshop } from '../assets/assets'
+import { workshops, category_workshop } from '../assets/assets.js'
 
 export const AppContext = createContext()
 

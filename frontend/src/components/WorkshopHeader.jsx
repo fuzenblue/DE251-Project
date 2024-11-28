@@ -3,28 +3,26 @@ import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext.jsx'
 
 const WorkshopHeader = () => {
-    const { workshopId } = useParams()
+    const { workshopId } = useParams();  // ดึงค่า workshopId จาก URL
+    console.log("workshopId from URL:", workshopId);  // ตรวจสอบค่า workshopId
 
-    const { workshops } = useContext(AppContext)
-    const [ workshopInfo, setWorkshopInfo ] = useState(null)
-    const [activeIndex, setActiveIndex] = useState(0)
+    const { workshops } = useContext(AppContext);
+    const [workshopInfo, setWorkshopInfo] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     // ฟังก์ชันในการค้นหาข้อมูล workshop
-    const fetchWorkshopInfo = async () => {
-        const workshopInfo = workshops.find(workshops => workshops._id === workshopId)
-        setWorkshopInfo(workshopInfo)
+    useEffect(() => {
+        if (workshopId) {
+            const workshop = workshops.find(workshop => workshop._id === workshopId);
+            console.log("Found workshop:", workshop);  // ตรวจสอบผลลัพธ์
+            setWorkshopInfo(workshop);
+        }
+    }, [workshopId, workshops]);
+
+    if (!workshopInfo) {
+        return <div>Loading workshop information...</div>;
     }
-
-    useEffect(() => {
-        fetchWorkshopInfo()
-    }, [workshops, workshopId])
-
-    useEffect(() => {
-        const workshop = workshops.find(workshop => workshop._id === workshopId);
-        setWorkshopInfo(workshop)
-    }, [workshopId, workshops])
-
-
+    
     return (
         <div className='flex flex-col md:flex-row gap-4 h-[20rem] md:h-[26rem]'>
             {/* Image and Video */}

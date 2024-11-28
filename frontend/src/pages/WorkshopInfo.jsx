@@ -225,11 +225,6 @@ const WorkshopInfo = () => {
             </div>
         </div>
 
-        {/* Review ยังไม่เขียน*/}
-        <div>
-            {/* <RatingWorkshop /> */}
-        </div>
-
         <div>
             <RelatedWorkshops workshopId={workshopId} category={workshopInfo?.category} />
         </div>

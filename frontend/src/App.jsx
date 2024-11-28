@@ -35,7 +35,7 @@ const App = () => {
         < Route path='/my-profile' element={<MyProfile />} />
         < Route path='/my-order' element={<MyOrder />} />
         < Route path='/my-booking' element={<MyBooking />} />
-        < Route path='/all-service/:id' element={<WorkshopInfo />} />
+        < Route path='/all-service/:workshopId' element={<WorkshopInfo />} />
         < Route path='/login' element={<Login />} />
       </Routes>
       <div className='mx-5 sm:mx-[10%]'>
