@@ -15,7 +15,7 @@ const MyBooking = () => {
 
     {/* Main Content Area */}
     <div className="flex-1 p-8 bg-gray-50">
-      <h2 className="text-left text-2xl font-bold text-gray-800 mb-6">My Orders</h2>
+      <h2 className="text-left text-2xl font-bold text-gray-800 mb-6">My Booking</h2>
       <div className="flex flex-col gap-4 m-4">
           <div className="flex items-center justify-between mx-8 gap-8 p-4 border border-gray-300 rounded-lg bg-white">
               <img src={assets.profile_pic} alt="" className="w-12 h-12" />
