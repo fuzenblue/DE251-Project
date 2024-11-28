@@ -5,7 +5,7 @@ const ListProduct = () => {
 
 
   return (
-    <div className="list add flex flex-col w-[60%] p-5 bg-base-100 rounded-lg shadow-md pb-24">
+    <div className="list add flex flex-col w-[60%] p-5 bg-base-100 rounded-lg shadow-md pb-24 bg-gray-50">
       <p className="text-lg font-semibold mb-4">All Product List</p>
 
       <div className="list-table w-full">

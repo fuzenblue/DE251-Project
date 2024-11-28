@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext'
-import { assets } from '../assets/assets'
 
 
 const Login = () => {
@@ -46,7 +45,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <form onSubmit={onLogin} className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md space-y-6" >
+      <form onSubmit={onLogin} className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md space-y-8" >
         {/* Title */}
         <h2 className="text-2xl font-bold text-center text-gray-800">
           {currState}
@@ -64,20 +63,39 @@ const Login = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-primary w-full mt-4" >
+        <button type="submit" className="btn btn-primary text-white w-full mt-4 text-base" >
           {currState === "Sign Up" ? "Create account" : "Login"}
         </button>
 
         {/* Terms & Conditions */}
         <div className="form-control mt-4">
-          <label className="cursor-pointer flex items-start space-x-2">
-            <input type="checkbox" className="checkbox"  required />
-            <span className="text-gray-600 text-sm"> 
-              By continuing, I agree to the{" "} 
-              <a href="#" className="text-blue-500 underline"> terms of use </a> {" "}
-              &{" "} <a href="#" className="text-blue-500 underline"> privacy policy </a>.
-            </span>
-          </label>
+          {currState === "Login" ? (
+              <>
+                <label className="label cursor-pointer flex items-start justify-start space-x-2">
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
+                  <span className="label-text text-gray-600 text-sm text-left">Remember me</span>
+                </label>
+                
+                <label className="label cursor-pointer flex items-start justify-start space-x-2">
+                  <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
+                  <span className="label-text text-gray-600 text-sm">By continuing, I agree to the terms of use & privacy policy.</span>
+                </label>
+              </>
+            ) : (
+              <label className="label cursor-pointer flex items-start justify-start space-x-2">
+                <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
+                <span className="label-text text-gray-600 text-sm">By continuing, I agree to the terms of use & privacy policy.</span>
+              </label>
+            )}
+            {/* <label className="label cursor-pointer flex items-start space-x-2">
+              <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
+              <span className="label-text text-gray-600 text-sm">By continuing, I agree to the terms of use & privacy policy.</span>
+            </label>
+
+            <label className="label cursor-pointer">
+              <span className="label-text">Remember me</span>
+              <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
+            </label> */}
         </div>
 
         {/* Switch State */}
@@ -85,12 +103,12 @@ const Login = () => {
           {currState === "Login" ? (
             <>
               Create a new account?{" "}
-              <span onClick={() => setCurrState("Sign Up")} className="text-blue-500 cursor-pointer" >Click here</span>
+              <span onClick={() => setCurrState("Sign Up")} className="text-primary cursor-pointer" >Click here</span>
             </>
           ) : (
             <>
               Already have an account?{" "}
-              <span onClick={() => setCurrState("Login")} className="text-blue-500 cursor-pointer" >Login here</span>
+              <span onClick={() => setCurrState("Login")} className="text-primary cursor-pointer" >Login here</span>
             </>
           )}
         </p>

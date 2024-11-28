@@ -4,7 +4,7 @@ import { fame } from '../assets/fame'; // ใช้ fallback สำหรับ�
 
 const MyProfileSideBar = ({ profile }) => {
   return (
-    <div className="w-64 bg-white shadow-lg hidden md:block">
+    <div className="w-64 bg-white hidden md:block">
       <div className="p-6">
         {/* Profile Section */}
         <div className="flex flex-col items-center mb-8">
