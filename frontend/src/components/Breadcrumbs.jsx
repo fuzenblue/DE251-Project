@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import { workshops } from '../assets/assets'
 
@@ -22,6 +22,10 @@ const Breadcrumbs = () => {
         link: path.slice(0, -1), // ลบ / สุดท้ายจากแต่ละ path
       })
     })
+    
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
 
     return crumbs
   }

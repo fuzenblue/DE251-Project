@@ -45,10 +45,10 @@ const WorkshopDisplay = () => {
       {/* Workshop List */}
       <div className='flex-1 mt-5 mb-4'>
         <hr className='py-3'/>
-        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4' >
           {Array.isArray(filterWorkshops) && filterWorkshops.length > 0 ? (
             filterWorkshops.map((workshop) => (
-              <Link key={workshop._id} to={`/all-service/${workshop._id}`}>
+              <Link key={workshop._id} to={`/all-service/${workshop._id}`} onClick={() => scrollTo(0, 0)}>
                 <div className='bg-white border border-gray-200 rounded-lg p-4 h-[27rem] flex flex-col relative shadow-md hover:shadow-lg hover:translate-y-[-10px] transition-all'>
                   <div className='relative'>
                     <div className='absolute top-[85%] right-[40%] w-16 h-16 bg-dark-green rounded-full flex items-center justify-center border-4 border-white'>
