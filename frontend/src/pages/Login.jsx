@@ -87,15 +87,6 @@ const Login = () => {
                 <span className="label-text text-gray-600 text-sm">By continuing, I agree to the terms of use & privacy policy.</span>
               </label>
             )}
-            {/* <label className="label cursor-pointer flex items-start space-x-2">
-              <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
-              <span className="label-text text-gray-600 text-sm">By continuing, I agree to the terms of use & privacy policy.</span>
-            </label>
-
-            <label className="label cursor-pointer">
-              <span className="label-text">Remember me</span>
-              <input type="checkbox" defaultChecked className="checkbox checkbox-primary" />
-            </label> */}
         </div>
 
         {/* Switch State */}

@@ -7,7 +7,7 @@ const addWorkshops = async (req, res) => {
         const { name, category, about, description, price, date, slot_booked } = req.body
 
         if (!req.files || !req.files.cover_image || !req.files.images || !req.files.video) {
-            return res.status(400).json({ message: 'Missing required files' })
+            return res.json({ message: 'Missing required files' })
         }
 
         const cover_image = req.files.cover_image[0].path 
@@ -31,17 +31,17 @@ const addWorkshops = async (req, res) => {
         }
 
 
-        const coverImageUpload = await cloudinary.uploader.upload(cover_image, { resource_type: "image" });
-        const coverImageUrl = coverImageUpload.secure_url;
+        const coverImageUpload = await cloudinary.uploader.upload(cover_image, { resource_type: "image" })
+        const coverImageUrl = coverImageUpload.secure_url
 
         const imageUploadPromises = images.map(image =>
             cloudinary.uploader.upload(image, { resource_type: "image" })
         )
 
-        const imageUploads = await Promise.all(imageUploadPromises);
-        const imageUrls = imageUploads.map(upload => upload.secure_url);
-        const videoUpload = await cloudinary.uploader.upload(video, { resource_type: "video" });
-        const videoUrl = videoUpload.secure_url;
+        const imageUploads = await Promise.all(imageUploadPromises)
+        const imageUrls = imageUploads.map(upload => upload.secure_url)
+        const videoUpload = await cloudinary.uploader.upload(video, { resource_type: "video" })
+        const videoUrl = videoUpload.secure_url
 
 
         // Create a new workshop entry

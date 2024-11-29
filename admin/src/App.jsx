@@ -34,7 +34,7 @@ function App() {
         <Sidebar/>
 
           <Routes>
-            < Route path='/' element={<Dashboard url={url}/>} />
+            < Route path='/admin-dashboard' element={<Dashboard url={url}/>} />
             < Route path='/product-add' element={<AddProduct  url={url}/>} />
             < Route path='/product-list' element={<ListProduct url={url}/>} />
             < Route path='/product-order' element={<Order url={url}/>} />

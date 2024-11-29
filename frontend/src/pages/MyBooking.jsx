@@ -32,6 +32,7 @@ const MyBooking = () => {
                 <span className="text-primary mr-1">&#x25cf;</span>
                 <b>on Booking</b>
               </p>
+              <button className="btn btn-outline btn-md">Cancel Workshop</button>
               <button className="btn btn-outline btn-primary btn-md">Get Ticket</button>
           </div>
       </div>

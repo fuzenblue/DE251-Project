@@ -36,15 +36,7 @@ const AddWorkshop = ({ url }) => {
   
     try {
       // เรียกใช้ API เพื่อบันทึกข้อมูล
-      const response = await axios.post(
-        `${url}/api/workshop/add`, 
-        formData, // ข้อมูลที่ต้องการส่ง
-        { // ตัวเลือกเสริม เช่น headers
-          headers: {
-            atoken: localStorage.getItem('token'), // ส่ง token ไปด้วย
-          }
-        }
-      )      
+      const response = await axios.post( `${url}/api/workshop/add`, formData)      
 
       if (response.data.success) {
         toast.success("Workshop added successfully!")
