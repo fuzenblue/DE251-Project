@@ -344,7 +344,41 @@ const Blogs = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <h2 className="text-3xl font-semibold text-center mb-8">Photo Gallery</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {/* รูปภาพตัวอย่าง - คุณสามารถแทนที่ด้วยแหล่งที่มาของรูปภาพจริง */}
+            <div className="relative w-full h-56">
+              <img
+                src={fame.blogs_pic2_2} // แทนที่ด้วย URL หรือ path ของรูปภาพ
+                alt="Pineapple Field"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div className="relative w-full h-56">
+              <img
+                src={fame.blogs_pic2_1} // แทนที่ด้วย URL หรือ path ของรูปภาพ
+                alt="Pineapple Farm"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div className="relative w-full h-56">
+              <img
+                src={fame.blogs_pic3_3} // แทนที่ด้วย URL หรือ path ของรูปภาพ
+                alt="Fresh Pineapples"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div className="relative w-full h-56">
+              <img
+                src={fame.blogs_pic3_2} // แทนที่ด้วย URL หรือ path ของรูปภาพ
+                alt="Pineapple Plantation"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            {/* เพิ่มรูปภาพอื่นๆ ที่ต้องการ */}
+          </div>
+      </div>
       {/* Blog Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {selectedArticle ? (
@@ -385,27 +419,33 @@ const Blogs = () => {
             </div>
           </div>
         ) : (
-          // Blog Cards
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredArticles.map((article) => (
-              <div
-                key={article.id}
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
-                onClick={() => setSelectedArticle(article)}
-              >
-                <div className="relative w-full h-0 pb-[60%]">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
-                  />
+        // Blog Cards
+          <div className="container mx-auto px-4 py-12">
+            <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Latest Articles</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredArticles.map((article) => (
+                <div
+                  key={article.id}
+                  className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer overflow-hidden"
+                  onClick={() => setSelectedArticle(article)}
+                >
+                  <div className="relative w-full h-56 md:h-64 lg:h-72">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-semibold text-gray-800 hover:text-orange-600 transition-colors">{article.title}</h3>
+                    <p className="mt-2 text-gray-600 text-base">{article.description}</p>
+                    <p className="mt-4 text-sm text-gray-500">{article.date}</p>
+                  </div>
                 </div>
-                <h3 className="mt-4 text-2xl font-semibold">{article.title}</h3>
-                <p className="mt-2 text-gray-600">{article.description}</p>
-                <p className="mt-2 text-sm text-gray-500">{article.date}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
         )}
       </div>
     </div>
