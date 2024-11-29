@@ -7,7 +7,7 @@ const Sidebar = () => {
     <div className="w-[20%] min-h-screen border border-gray-400 border-t-0 text-md">
       <div className="pt-12 pl-5 flex flex-col gap-3">
         <NavLink 
-            to="/" className={({ isActive }) => `flex pl-4 items-center gap-3 p-2 rounded-l-md lg:rounded-tl-3xl pb-4 cursor-pointer 
+            to="/admin-dashboard" className={({ isActive }) => `flex pl-4 items-center gap-3 p-2 rounded-l-md lg:rounded-tl-3xl pb-4 cursor-pointer 
             ${ isActive ? 'bg-orange-100 border-r-4 border-r-primary py-4' : 'border-r-0'}`}>
             <img src={admin.dashboard_icon} alt="" />
             <p className="hidden lg:block pl-3">Dashboard</p>

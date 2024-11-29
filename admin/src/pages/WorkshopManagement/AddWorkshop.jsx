@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from "axios"
 import { admin } from '../../assets/assets.js'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { AdminContext } from '../../context/AdminContext.jsx'
 
-const AddWorkshop = ({ url }) => {
+const AddWorkshop = () => {
 
   const [workshopImg, setWorkshopImg] = useState(null)
   const [workshopName, setWorkshopName] = useState('')
@@ -15,44 +16,42 @@ const AddWorkshop = ({ url }) => {
   const [workshopVideo, setWorkshopVideo] = useState('')
   const [workshopImages, setWorkshopImages] = useState([])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // ป้องกันการรีเฟรชหน้าโดยดีฟอลต์
-  
-    // ตรวจสอบค่าที่จำเป็นก่อนส่ง
-    if (!workshopName || !workshopDescription || !workshopCategory || !workshopPrice) {
-      toast.error("Please fill in all required fields.")
-      return
-    }
-  
-    // จัดเตรียมข้อมูลเพื่อส่งไปยังเซิร์ฟเวอร์
-    const formData = new FormData();
-    formData.append("workshopImg", workshopImg)
-    formData.append("name", workshopName)
-    formData.append("description", workshopDescription)
-    formData.append("category", workshopCategory)
-    formData.append("price", workshopPrice)
-    formData.append("video", workshopVideo)
-    Array.from(workshopImages).forEach((img) => formData.append("images", img))
+  const { backendUrl, aToken } = useContext(AdminContext)
+
+  const handleSubmit = async (event) => {
+    event.preventDefault() // ป้องกันการรีเฟรชหน้าโดยดีฟอลต์
   
     try {
-      // เรียกใช้ API เพื่อบันทึกข้อมูล
-      const response = await axios.post( `${url}/api/workshop/add`, formData)      
-
-      if (response.data.success) {
-        toast.success("Workshop added successfully!")
-        // รีเซ็ตฟิลด์ทั้งหมดหลังจากส่งฟอร์มสำเร็จ
-        setWorkshopImg(null)
-        setWorkshopName("")
-        setWorkshopAbout("")
-        setWorkshopDescription("")
-        setWorkshopCategory("")
-        setWorkshopPrice("")
-        setWorkshopVideo(null)
-        setWorkshopImages([])
+      if (!workshopImg ) {
+        return toast.error("Image not Selected")
       }
+
+      const formData = new FormData()
+
+      formData.append("workshopImg", workshopImg)
+      formData.append("name", workshopName)
+      formData.append("about", workshopAbout)
+      formData.append("description", workshopDescription)
+      formData.append("category", workshopCategory)
+      formData.append("price", workshopPrice)
+      formData.append("video", workshopVideo)
+      Array.from(workshopImages).forEach((img) => formData.append("images", img))
+
+      // consol log
+      formData.forEach((value, key) => {
+        console.log(` ${key} : ${value} `)
+      })
+
+      const { data } = await axios.post(backendUrl + '/api/workshop/add', formData, {headers: { aToken }})
+
+      if (data.success) {
+        toast.success(data.message)
+      } else {
+        toast.error(data.message)
+      }
+
     } catch (error) {
-      console.error(error)
-      toast.error("Failed to add workshop. Please try again.")
+
     }
   }
   
@@ -94,8 +93,10 @@ const AddWorkshop = ({ url }) => {
             <p className="text-gray-700 font-medium">Workshop Category</p>
             <select name="category" value={workshopCategory} onChange={(e) => setWorkshopCategory(e.target.value)}  className="w-full max-w-[200px] p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
               <option value="">Select Category</option>
-              <option value="Art">Art</option>
-              <option value="Technology">Technology</option>
+              <option value="Planting">Planting</option>
+              <option value="Cooking">Cooking</option>
+              <option value="Crafting">Crafting</option>
+              <option value="For Kids">For Kids</option>
             </select>
           </div>
 
@@ -151,11 +152,9 @@ const AddWorkshop = ({ url }) => {
           )}
         </div>
 
-
         {/* Submit Button */}
         <button type="submit" className="w-full max-w-[200px] py-3 text-white bg-black rounded shadow hover:bg-gray-800 focus:ring-2 focus:ring-primary focus:outline-none">ADD Workshop</button>
       </form>
-      
       <ToastContainer />
     </div>
   )

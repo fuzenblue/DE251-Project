@@ -44,3 +44,8 @@ config --> store config
 controller --> logic for API
 models --> create mongoose models to store data
 routes --> set different routes for different API
+
+
+
+ADMIN_EMAIL = 'admin@pineapple.slice.com'
+ADMIN_PASSWORD = 'pineapple_slice_admin'

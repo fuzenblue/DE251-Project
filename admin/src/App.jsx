@@ -1,6 +1,6 @@
-import React from 'react'
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useContext } from 'react'
+import { ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Route, Routes } from 'react-router-dom'
 
 import Navbar from './components/Navbar.jsx'
@@ -18,36 +18,42 @@ import Booking from './pages/WorkshopManagement/Booking.jsx'
 
 import AddBlogs from './pages/BlogManagement/AddBlogs.jsx'
 import ListBlogs from './pages/BlogManagement/ListBlogs.jsx'
-import RightSidebar from './components/RightSidebar.jsx';
+import RightSidebar from './components/RightSidebar.jsx'
+
+import { AdminContext } from './context/AdminContext.jsx'
 
 function App() {
 
-  const url = "http://localhost:4000"
+  const { aToken } = useContext(AdminContext)
 
-  return (
+  return aToken ? (
     <div>
-      <ToastContainer/>
-      <Navbar />
-      <hr />
-
-      <div className='flex'>
-        <Sidebar/>
-
-          <Routes>
-            < Route path='/admin-dashboard' element={<Dashboard url={url}/>} />
-            < Route path='/product-add' element={<AddProduct  url={url}/>} />
-            < Route path='/product-list' element={<ListProduct url={url}/>} />
-            < Route path='/product-order' element={<Order url={url}/>} />
-            < Route path='/workshop-add' element={<AddWorkshop url={url}/>} />
-            < Route path='/workshop-list' element={<ListWorkshop url={url}/>} />
-            < Route path='/workshop-booking' element={<Booking url={url}/>} />
-            < Route path='/blogs-add' element={<AddBlogs url={url}/>} />
-            < Route path='/blogs-list' element={<ListBlogs url={url}/>} />
-            < Route path='/login' element={<AdminLogin url={url}/>} />
-          </Routes>
-        < RightSidebar />
+        <ToastContainer/>
+        <div>
+            <Navbar />
+            <div className='flex'>
+              <Sidebar />
+              <Routes>
+                < Route path='/' element={<></>} />
+                < Route path='/admin-dashboard' element={<Dashboard />} />
+                < Route path='/product-add' element={<AddProduct  />} />
+                < Route path='/product-list' element={<ListProduct />} />
+                < Route path='/product-order' element={<Order />} />
+                < Route path='/workshop-add' element={<AddWorkshop />} />
+                < Route path='/workshop-list' element={<ListWorkshop />} />
+                < Route path='/workshop-booking' element={<Booking />} />
+                < Route path='/blogs-add' element={<AddBlogs />} />
+                < Route path='/blogs-list' element={<ListBlogs />} />
+              </Routes>
+              < RightSidebar />
+            </div>
       </div>
     </div>
+  ) : (
+    <>
+      <AdminLogin />
+      <ToastContainer/>
+    </>
   )
 }
 

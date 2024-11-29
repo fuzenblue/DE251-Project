@@ -73,7 +73,7 @@ const MyProfile = () => {
                   />
                   <label
                     htmlFor="profileImage"
-                    className="btn btn-outline-black cursor-pointer text-yellow-400"
+                    className="btn btn-outline-black cursor-pointer text-primary"
                   >
                     Edit Image
                   </label>
@@ -87,7 +87,7 @@ const MyProfile = () => {
                   <input
                     type="text"
                     name="firstName"
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                     value={profile?.firstName}
                     onChange={handleInputChange}
                     readOnly={!isEditing}
@@ -98,7 +98,7 @@ const MyProfile = () => {
                   <input
                     type="text"
                     name="lastName"
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                     value={profile?.lastName}
                     onChange={handleInputChange}
                     readOnly={!isEditing}
@@ -112,7 +112,7 @@ const MyProfile = () => {
                 <input
                   type="date"
                   name="birthdate"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                   value={profile?.birthdate}
                   onChange={handleInputChange}
                   disabled={!isEditing}
@@ -122,7 +122,7 @@ const MyProfile = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>
                 <select
                   name="gender"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                   value={profile?.gender}
                   onChange={handleInputChange}
                   disabled={!isEditing}
@@ -137,39 +137,38 @@ const MyProfile = () => {
                 <input
                   type="email"
                   name="email"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                   value={profile?.email}
                   onChange={handleInputChange}
                   readOnly={!isEditing}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  value={profile?.phone}
-                  onChange={handleInputChange}
-                  readOnly={!isEditing}
-                />
-              </div>
-              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
-                <textarea
-                  name="address"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                  rows="3"
-                  value={profile?.address}
-                  onChange={handleInputChange}
-                  readOnly={!isEditing}
-                />
+                <div>
+                  <div className="grid grid-cols-2 gap-4 mb-3">
+                    <textarea className='textarea textarea-bordered border-gray-200 textarea-xs w-full rounded-lg focus:ring-2 focus:ring-primary focus:border-primary' required name='address' type="textarea" placeholder='Address' />
+                    <input className='w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary' required name='street' type="text" placeholder='Street' />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 mb-3">
+                    <input className='w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary' required name='city' type="text" placeholder='City' />
+                    <input className='w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary' required name='stat ' type="text" placeholder='State' />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 mb-3">
+                      <input className='w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary' required name='country' type="text" placeholder='Country' />
+                      <input className='w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary' required name='zipcode' type="text" placeholder='Zip code' />
+                  </div>
+                    <div className='col-span-2'>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                      <input type="tel" name="phone" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" value={profile?.phone} onChange={handleInputChange} readOnly={!isEditing} />
+                    </div>
+                </div>
               </div>
 
               {/* Edit/Save Button */}
               <div className="flex justify-end">
                 <button
-                  className={`py-2 px-6 rounded-lg font-medium transition-colors duration-200 ${isEditing ? 'bg-green-500 hover:bg-green-600 text-white' : 'bg-yellow-400 hover:bg-yellow-500 text-gray-800'}`}
+                  className={`py-2 px-6 rounded-lg font-medium transition-colors duration-200 ${isEditing ? 'bg-green-500 hover:bg-green-600 text-white' : 'bg-primary hover:bg-yellow-500 text-gray-800'}`}
                   onClick={toggleEdit}
                 >
                   {isEditing ? 'Save Changes' : 'Edit Profile'}
