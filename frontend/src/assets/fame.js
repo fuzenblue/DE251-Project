@@ -26,6 +26,11 @@ import blogs_pic3_2 from './blogpic3_2.jpg'
 import blogs_pic3_3 from './blogpic3_3.jpg'
 import blogs_para from './blogspara1.jpg'
 import blogs_soil from './blogpara1_soil.jpg'
+import blogs_pinapplejuice from './blogspineapplejuice.png'
+import blogs_jam from './blogs_jam.jpg'
+import blogs_jam1 from './blogs_jam1.jpg'
+import blogs_smootie from './blogs_smootie.jpg'
+import blogs_cocktail from './blogs_cocktail.jpg'
 export const fame ={
     bag_icon,
     bk_icon,
@@ -55,7 +60,12 @@ export const fame ={
     blogs_pic3_2,
     blogs_pic3_3,
     blogs_para,
-    blogs_soil
+    blogs_soil,
+    blogs_pinapplejuice,
+    blogs_jam,
+    blogs_jam1,
+    blogs_smootie,
+    blogs_cocktail
 
 
 
