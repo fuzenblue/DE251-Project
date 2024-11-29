@@ -2,9 +2,10 @@ import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './config/mongodb.js'
-import connectCloudinary from './config/cloundinary.js'
-import adminRouter from './routes/adminroute.js'
+import connectCloudinary from './config/cloudinary.js'
+import adminRouter from './routes/adminRoute.js'
 import workshopsRouter from './routes/workshopsRoute.js'
+import userRouter from './routes/userRoute.js'
 
 // server.js
 
@@ -21,7 +22,8 @@ app.use(cors())
 
 // API endpoint
 app.use('/api/admin', adminRouter)
-app.use('/api/workshop', workshopsRouter) 
+app.use('/api/workshop', workshopsRouter)
+app.use('/api/user', userRouter)
 
 
 

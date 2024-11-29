@@ -33,7 +33,7 @@ workshopsRouter.post('/add', authAdmin, upload.fields([
 ]), addWorkshops)
 
 // ตัวอย่างการตั้งค่า route
-workshopsRouter.get('/', (req, res) => {
+workshopsRouter.get('/workshop', (req, res) => {
     res.send('Workshops route is working!');
 })
 
