@@ -109,14 +109,7 @@ const AddWorkshop = ({ url }) => {
         {/* Images Upload */}
         <div className="flex flex-col items-start gap-2">
           <p className="text-gray-700 font-medium">Upload Images</p>
-          <input
-            className='file-input file-input-bordered w-full max-w-xs'
-            type="file"
-            name="images"
-            onChange={(e) => setWorkshopImages(e.target.files)}
-            multiple
-            required
-          />
+          <input className='file-input file-input-bordered w-full max-w-xs' type="file" name="images" onChange={(e) => setWorkshopImages(e.target.files)} multiple required />
           {workshopImages && Array.from(workshopImages).length > 0 && (
             <div className="flex gap-2 mt-2">
               {Array.from(workshopImages).map((image, index) => (
