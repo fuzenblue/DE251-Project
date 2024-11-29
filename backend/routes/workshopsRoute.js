@@ -32,10 +32,5 @@ workshopsRouter.post('/add', authAdmin, upload.fields([
     { name: 'video', maxCount: 1 }
 ]), addWorkshops)
 
-// ตัวอย่างการตั้งค่า route
-workshopsRouter.get('/workshop', (req, res) => {
-    res.send('Workshops route is working!');
-})
-
 
 export default workshopsRouter

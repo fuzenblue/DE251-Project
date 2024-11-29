@@ -19,7 +19,7 @@ const addWorkshops = async (req, res) => {
             return res.json({ message: 'Missing required fields' })
         }
 
-        // // Check if files are provided
+        // Check if files are provided
         if (!cover_image) {
             return res.json({ message: 'Cover image is required' })
         }
