@@ -6,6 +6,8 @@ const storage = multer.diskStorage({
     }
 })
 
+
+// ชั่วโมงที่ 5.24
 const upload = multer({ storage: storage })
 
 export default upload
