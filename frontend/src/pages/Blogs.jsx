@@ -254,13 +254,11 @@ const Blogs = () => {
           title: "Pineapple Salsa",
           description:
             "Pineapple salsa is a great topping for grilled meats or fish. The sweetness of the pineapple balances out the heat from jalapeños, and the cilantro adds freshness.",
-          image: fame.blogs_pic2_3,
         },
         {
           title: "Pineapple in Salad",
           description:
             "Adding pineapple to salads gives them a refreshing twist. Combine with greens, nuts, and a light vinaigrette dressing for a vibrant, tropical salad.",
-          image: fame.blogs_pic2_3,
         },
       ],
     },
@@ -275,25 +273,21 @@ const Blogs = () => {
           title: "Rich in Vitamins and Minerals",
           description:
             "Pineapple is an excellent source of vitamin C, which helps boost the immune system. It also contains manganese, vitamin A, and several B vitamins.",
-          image: fame.blogs_pic2_4,
         },
         {
           title: "Aids Digestion",
           description:
             "Pineapple contains bromelain, an enzyme that helps break down proteins and improve digestion. This makes it a great natural remedy for bloating and indigestion.",
-          image: fame.blogs_pic2_4,
         },
         {
           title: "Anti-Inflammatory Benefits",
           description:
             "The bromelain in pineapple also has anti-inflammatory properties, which can help reduce swelling and pain in the body, making it beneficial for conditions like arthritis.",
-          image: fame.blogs_pic2_4,
         },
         {
           title: "Boosts Skin Health",
           description:
             "The vitamin C in pineapple also promotes healthy, glowing skin by stimulating collagen production, which keeps your skin firm and youthful.",
-          image: fame.blogs_pic2_4,
         },
       ],
     }
