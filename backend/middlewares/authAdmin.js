@@ -12,9 +12,10 @@ const authAdmin = async (req, res, next) => {
 
         // ถอดรหัสโทเค็น
         const token_decode = jwt.verify(atoken, process.env.JWT_SECRET)
-        
-        if (token_decode !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD ) {
-            return res.json({ success:false, message: "Not Authorized, Login Again"})
+
+        // ตรวจสอบว่า email ใน payload ตรงกับ admin email หรือไม่
+        if (token_decode.email !== process.env.ADMIN_EMAIL) {
+            return res.json({ success: false, message: "Not Authorized, Login Again" })
         }
 
         next()
