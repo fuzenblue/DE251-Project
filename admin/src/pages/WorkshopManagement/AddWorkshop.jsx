@@ -18,12 +18,9 @@ const AddWorkshop = () => {
   const { backendUrl, aToken } = useContext(AdminContext)
 
   const handleSubmit = async (event) => {
-    event.preventDefault() // ป้องกันการรีเฟรชหน้าโดยดีฟอลต์
+    event.preventDefault() // ป้องกันการรีเฟรชหน้า
 
     try {
-      if (!workshopImg) {
-        return toast.error("Image not Selected")
-      }
 
       const formData = new FormData()
 
@@ -156,7 +153,7 @@ const AddWorkshop = () => {
         <div className="flex flex-col items-start gap-2">
           <p className="text-gray-700 font-medium">Upload Video</p>
           <input className="file-input file-input-bordered w-full max-w-xs" type="file" name="video" accept="video/mp4"
-            onChange={(e) => setVideo(e.target.files[0])} required />
+            onChange={(e) => setWorkshopVideo(e.target.files[0])} required />
           {workshopVideo && (
             <div className="mt-2">
               <video width="200" controls>

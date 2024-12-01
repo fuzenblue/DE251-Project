@@ -7,9 +7,9 @@ const workshopsRouter = express.Router()
 
 workshopsRouter.post('/add',
     upload.fields([
-        { name: 'workshopImg', maxCount: 1 }, // รองรับปก
-        { name: 'images', maxCount: 10 },     // รองรับหลายรูปภาพ
-        { name: 'video', maxCount: 1 },      // รองรับวิดีโอ
+        { name: 'workshopImg', maxCount: 1 }, 
+        { name: 'images', maxCount: 10 }, 
+        { name: 'video', maxCount: 1 }, 
     ]),  addWorkshops )
 
 export default workshopsRouter
