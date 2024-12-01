@@ -36,9 +36,9 @@ const addWorkshops = async (req, res) => {
         if (!video) {
             return res.json({ message: 'Video is required' })
         }
-        // if (video.size > 100 * 1024 * 1024) { // 100 MB
-        //     throw new Error("Video file exceeds the size limit (100MB)")
-        // }
+        if (video.size > 100 * 1024 * 1024) { // 100 MB
+            throw new Error("Video file exceeds the size limit (100MB)")
+        }
 
 
         // upload Image to coludinary
@@ -69,8 +69,14 @@ const addWorkshops = async (req, res) => {
             video: videoUrl,
         }
 
+        // const newWorkshops = new workshopsModel(WorkshopsData)
+        // await newWorkshops.save()
+
+        console.log("Start saving data to MongoDB")
         const newWorkshops = new workshopsModel(WorkshopsData)
         await newWorkshops.save()
+        console.log("Data saved to MongoDB")
+
 
         res.json({ success: true, message: "Workshop Added" })
     } catch (error) {
