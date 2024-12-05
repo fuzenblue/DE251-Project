@@ -54,7 +54,7 @@ const AddWorkshop = () => {
   }
 
   return (
-    <div className="flex pt-8 w-[60%] bg-gray-50">
+    <div className="flex pt-8 w-full lg:w-[60%] bg-gray-50">
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-[120vh] px-8" >
         {/* Cover Image Upload */}
         <div className="add-img-upload flex-col">

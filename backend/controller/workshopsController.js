@@ -1,11 +1,10 @@
 import { v2 as cloudinary } from "cloudinary"
 import workshopsModel from "../models/workshopsModel.js"
 
-
 // API to add a workshop
 const addWorkshops = async (req, res) => {
     try {
-        const { name, category, about, description, price, date, slot_booked } = req.body
+        const { name, category, about, description, price } = req.body
 
         if (!req.files) {
             return res.json({ message: 'No files were uploaded.' })
@@ -14,12 +13,6 @@ const addWorkshops = async (req, res) => {
         const workshopImg = req.files.workshopImg?.[0]
         const images = req.files.images || []
         const video = req.files.video ? req.files.video[0] : null
-
-        // console.log("Workshop Image:", workshopImg)
-        // console.log('Images:', images)
-        // console.log("req.files.video:", req.files.video)
-        // console.log('Video:', video)
-        // console.log("Request Files:", req.files)
 
         // Check for required fields
         if ( !name || !category || !about || !description || !price ) {
@@ -40,8 +33,7 @@ const addWorkshops = async (req, res) => {
             throw new Error("Video file exceeds the size limit (100MB)")
         }
 
-
-        // upload Image to coludinary
+        // upload Image to cloudinary
         const coverImageUpload = await cloudinary.uploader.upload(workshopImg.path, {resource_type: "image"})
         const coverImageUrl = coverImageUpload.secure_url
 
@@ -69,14 +61,8 @@ const addWorkshops = async (req, res) => {
             video: videoUrl,
         }
 
-        // const newWorkshops = new workshopsModel(WorkshopsData)
-        // await newWorkshops.save()
-
-        console.log("Start saving data to MongoDB")
         const newWorkshops = new workshopsModel(WorkshopsData)
         await newWorkshops.save()
-        console.log("Data saved to MongoDB")
-
 
         res.json({ success: true, message: "Workshop Added" })
     } catch (error) {
@@ -85,4 +71,34 @@ const addWorkshops = async (req, res) => {
     }
 }
 
-export { addWorkshops }
+// API to get all workshop
+const allWorkshop = async (req, res) => {
+    try {
+
+        const workshops = await workshopsModel.find({})
+        res.json({success: true, workshops })
+        // console.log(workshops)
+        
+    } catch (error) {
+        console.log(error)
+        res.json({success: false, message: error.message})
+    }
+}
+
+const changeAvailability = async(req, res) => {
+    try {
+        const { workshopsId } = req.body
+        // console.log('Received Workshop ID in Backend:', workshopsId);  // ตรวจสอบว่า workshopsId ส่งมาได้ถูกต้อง
+        const workshopData = await workshopsModel.findById(workshopsId)
+        if (!workshopData) {
+            return res.json({ success: false, message: "Workshop not found" });
+        }
+        await workshopsModel.findByIdAndUpdate(workshopsId, { available: !workshopData.available })
+        res.json({ success: true, message: 'Availability updated successfully' })
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+export { addWorkshops, allWorkshop, changeAvailability }

@@ -1,35 +1,42 @@
 import React from 'react'
-import { admin, workshops } from '../../assets/assets'
+import { useContext } from 'react'
+import { WorkshopContext } from '../../context/WorkshopContext'
+import { AdminContext } from '../../context/AdminContext'
+import { useEffect } from 'react'
 
 const ListWorkshop = () => {
+
+  const { aToken } = useContext(AdminContext)
+  const { workshops, getAllWorkshop, changeAvailability } = useContext(WorkshopContext)
+
+  useEffect(() => {
+    if (aToken) {
+      getAllWorkshop()
+    }
+  }, [aToken, getAllWorkshop])
+
   return (
-    <div className="list add flex flex-col w-[60%] p-5 bg-base-100 rounded-lg shadow-md pb-24 bg-gray-50">
-      <p className="text-lg font-semibold mb-4">All Workshop List</p>
+    <div className="block pt-8 px-8 w-full lg:w-[60%] bg-gray-50 overflow-y-scroll">
+      <h1 className="text-lg font-medium">All Workshop List</h1>
 
-      <div className="list-table w-full">
-        {/* Table Header */}
-        <div className="list-table-format title grid grid-cols-[0.5fr_2fr_1fr_1fr_0.5fr] items-center gap-4 p-3 bg-gray-100 rounded font-bold text-gray-600">
-          <span>Image</span>
-          <span>Name</span>
-          <span>Category</span>
-          <span>Price</span>
-          <span>Action</span>
-        </div>
-
-        {/* Workshops */}
-        {workshops.map((workshop) => (
-          <div key={workshop._id}
-               className="grid grid-cols-[0.5fr_1.5fr_1fr_0.8fr_0.4fr] items-center gap-4 p-3 border-b border-gray-200 hover:bg-gray-50">
-            <img src={workshop.cover_image} alt={workshop.name} className="w-12 h-12 rounded object-cover" />
-            <p>{workshop.name}</p>
-            <p>{workshop.category}</p>
-            <p>${workshop.price}</p>
-            <a href="/"><img className='w-8' src={admin.edit_icon}/></a>
+      <div className='w-full flex flex-wrap gap-2 pt-5 gpa-y-6'>
+        {workshops.map((item, index) => (
+          <div key={index} className='border border-orange-200 rounded-xl max-w-56 overflow-hidden cursor-pointer group bg-white hover:translate-y-[-10px] transition-all duration-200'>
+            <img src={item.workshopImg} alt="" className='w-56 h-56 object-cover '/>
+            <div className='p-4'>
+              <p className='text-lg font-semibold'>{item.name}</p>
+              <p className='text-md font-semibold text-gray-500 flex'>{item.category}</p>
+              <div className='mt-2 flex item-center gap-1 text-sm'>
+              <input className="checkbox border-orange-400 [--chkbg:theme(colors.dark-brown)] [--chkfg:orange] checked:border-dark-brown"  onChange={() => changeAvailability(item._id)} type="checkbox" checked={item.available} />
+                <p>Available</p>
+              </div>
+            </div>
+            
           </div>
         ))}
+
       </div>
     </div>
-
   )
 }
 

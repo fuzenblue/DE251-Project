@@ -4,7 +4,7 @@ import { admin } from '../assets/assets'
 
 const Sidebar = () => {
   return (
-    <div className="w-[20%] min-h-screen border border-gray-400 border-t-0 text-md">
+    <div className="w-[20%] min-h-screen border border-gray-400 border-t-0 text-md hidden lg:flex">
       <div className="pt-12 pl-5 flex flex-col gap-3">
         <NavLink 
             to="/admin-dashboard" className={({ isActive }) => `flex pl-4 items-center gap-3 p-2 rounded-l-md lg:rounded-tl-3xl pb-4 cursor-pointer 

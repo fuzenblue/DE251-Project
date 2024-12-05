@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext'
+import axios from 'axios'
 
 
 const Login = () => {
@@ -7,6 +8,7 @@ const Login = () => {
   const {url, setToken} = useContext(AppContext)
 
   const [currState, setCurrState] = useState("Login")
+
   const [data,setData] = useState({
     name:"",
     email:"",

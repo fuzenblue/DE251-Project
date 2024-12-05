@@ -41,7 +41,7 @@ const registerUser = async ( req,res ) => {
         const exists = await userModel.findOne({ email })
         
         // ตรวจสอบว่า email มีค่าหรือไม่
-        if (!email || typeof email !== "string") {
+        if (!email) {
             return res.json({ success: false, message: "Please provide a valid email" });
         }
         
