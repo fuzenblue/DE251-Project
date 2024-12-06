@@ -24,12 +24,12 @@ const RelatedWorkshops = ({category, workshopId}) => {
         <h1 className='text-3xl font-medium'>Top Workshop to Booking</h1>
         <p className='sm:w-1/3 text-center text-sm'>Simply browse through our extensive list of trusted Workshop.</p>
         <div className='w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-            {/* ให้แสดงที่แนะนำ 5 คน */}
+            {/* ให้แสดงที่แนะนำ 5 workshop ในหมวดเดียวกัน */}
             {relWorkshop.slice(0,5).map((workshops, index) => (
                 // {navigate(`/all-service/${workshops._id}`); scrollTo(0,0)} ตั้งให้กดแล้วเลื่อนขึ้นด้านบน
                 <div onClick={() => {navigate(`/all-service/${workshops._id}`); scrollTo(3,0)}} 
                      className='border shadow-sm border-gray-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
-                    <img className='bg-orange-50' src={workshops.cover_image} alt="" />
+                    <img className='bg-orange-50' src={workshops.workshopImg} alt="" />
                     <div className='p-4'>
                         <p className='text-gray-900 text-lg font-medium'>{workshops.name}</p>
                         <span className="text-primary font-semibold">{currencySymbol} {workshops.price}</span>

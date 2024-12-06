@@ -101,4 +101,16 @@ const changeAvailability = async(req, res) => {
     }
 }
 
-export { addWorkshops, allWorkshop, changeAvailability }
+const workshopList = async(req, res) => {
+    try {
+        
+        const workshops = await workshopsModel.find({})
+
+        res.json({success:true, workshops})
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+export { addWorkshops, allWorkshop, changeAvailability, workshopList }

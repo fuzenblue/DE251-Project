@@ -167,7 +167,6 @@ const AddWorkshop = () => {
         {/* Submit Button */}
         <button type="submit" className="w-full max-w-[200px] py-3 text-white bg-black rounded shadow hover:bg-gray-800 focus:ring-2 focus:ring-primary focus:outline-none">ADD Workshop</button>
       </form>
-      <ToastContainer />
     </div>
   )
 }

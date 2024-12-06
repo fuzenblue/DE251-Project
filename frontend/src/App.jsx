@@ -13,12 +13,15 @@ import MyOrder from './pages/MyOrder.jsx'
 import MyBooking from './pages/MyBooking.jsx'
 import WorkshopInfo from './pages/WorkshopInfo.jsx'
 import Login from './pages/Login.jsx'
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 const App = () => {
 
   return (
     <div>
       <div className='sticky top-0 z-50 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.1)]'>
+        <ToastContainer />
         <div className='mx-5 sm:mx-[10%] '>
           <Navbar />
         </div>

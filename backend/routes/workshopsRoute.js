@@ -1,7 +1,7 @@
 import express from 'express'
 import upload from '../middlewares/multer.js'
 import authAdmin from '../middlewares/authAdmin.js'
-import { addWorkshops, allWorkshop, changeAvailability } from '../controller/workshopsController.js'
+import { addWorkshops, allWorkshop, changeAvailability, workshopList } from '../controller/workshopsController.js'
 
 
 const workshopsRouter = express.Router()
@@ -13,7 +13,8 @@ workshopsRouter.post('/add',
         { name: 'video', maxCount: 1 }, 
     ]),  addWorkshops)
 
-workshopsRouter.post('/all-workshops', allWorkshop)
+workshopsRouter.post('/all-workshops', allWorkshop) 
 workshopsRouter.post('/change-availability', changeAvailability)
+workshopsRouter.get('/list-workshops', workshopList)
 
 export default workshopsRouter

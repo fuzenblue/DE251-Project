@@ -5,8 +5,6 @@ import axios from 'axios'
 
 const Login = () => {
 
-  const {url, setToken} = useContext(AppContext)
-
   const [currState, setCurrState] = useState("Login")
 
   const [data,setData] = useState({
@@ -19,30 +17,6 @@ const Login = () => {
     const name = event.target.name;
     const value = event.target.value;
     setData(data => ({...data,[name]:value}))
-  }
-
-  const onLogin = async (event) => {
-    event.preventDefault()
-    let newUrl = url;
-
-    if (currState=="Login") {
-      newUrl += "/api/user/login"
-    } else {
-      newUrl += "/api/user/register"
-    }
-
-    const response = await axios.post(newUrl, data);
-
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false);
-
-      
-    } else {
-      alert(response.data.message)
-    }
-
   }
 
   return (

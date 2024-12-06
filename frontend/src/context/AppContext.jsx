@@ -1,21 +1,44 @@
-import { createContext, useState } from 'react'
-import { workshops, category_workshop } from '../assets/assets.js'
+import { createContext, useEffect, useState } from 'react'
+import { category_workshop } from '../assets/assets.js'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export const AppContext = createContext()
 
 const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
-    const [token, setToken] = useState("") 
+    // const [token, setToken] = useState("") 
+    const [workshops, setWorkshops] = useState([])
 
-    
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
+
     const value = {
         workshops,
         currencySymbol,
         category_workshop,
         location,
-        token, setToken,
+        // token, setToken,
     }
+
+    const getWorkshopsData = async () => {
+        try {
+            
+            const { data } = await axios.get(backendUrl + '/api/workshop/list-workshops')
+            if (data.success) {
+                setWorkshops(data.workshops)
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
+    useEffect(() => {
+        getWorkshopsData()
+    }, [])
 
     return (
         <AppContext.Provider value={value}>
