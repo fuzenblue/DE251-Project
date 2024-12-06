@@ -8,19 +8,11 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
-    // const [token, setToken] = useState("") 
-    const [workshops, setWorkshops] = useState([])
-
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-    const value = {
-        workshops,
-        currencySymbol,
-        category_workshop,
-        location,
-        // token, setToken,
-    }
-
+    const [workshops, setWorkshops] = useState([])
+    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') :  false)
+    
     const getWorkshopsData = async () => {
         try {
             
@@ -39,6 +31,14 @@ const AppContextProvider = (props) => {
     useEffect(() => {
         getWorkshopsData()
     }, [])
+
+    const value = {
+        workshops,
+        currencySymbol,
+        category_workshop,
+        token, setToken,
+        backendUrl,
+    }
 
     return (
         <AppContext.Provider value={value}>
