@@ -124,6 +124,10 @@ const bookedWorkshop = async(req, res) => {
 
         const { userId, workshopId, slotDate, slotTime } = req.body
 
+        if (!slotDate || !slotTime || slotTime==="") {
+            return res.json({ success: false, message: "Please Select Date or Time" })
+        }
+
         const workshopData = await workshopsModel.findById(workshopId)
         if (!workshopData.available) {
             return res.json({success:false, message:'Workshop not available'})

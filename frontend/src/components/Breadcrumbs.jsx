@@ -1,8 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import { workshops } from '../assets/assets'
+import { AppContext } from "../context/AppContext"
+
 
 const Breadcrumbs = () => {
+
+  const { workshops } = useContext(AppContext)
   const location = useLocation() // ใช้ React Router Hook เพื่อดึง URL ปัจจุบัน
   const pathnames = location.pathname.split("/").filter(x => x) // แยก URL เป็นส่วนๆ
 
@@ -11,7 +14,7 @@ const Breadcrumbs = () => {
     let path = "/"
 
     pathnames.forEach((part, index) => {
-      path += part + "/"; // สร้างเส้นทางทีละส่วน
+      path += part + "/"
 
       // ใช้ find() เพื่อค้นหาชื่อจาก array workshops
       const workshop = workshops.find(workshop => workshop._id === part);

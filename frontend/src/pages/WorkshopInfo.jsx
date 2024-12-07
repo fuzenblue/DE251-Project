@@ -8,6 +8,8 @@ import RelatedWorkshops from '../components/RelatedWorkshops.jsx'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 
+// 10.50
+
 const WorkshopInfo = () => {
 
     const { workshopId } = useParams()
@@ -21,17 +23,10 @@ const WorkshopInfo = () => {
     const [workshopSlots, setWorkshopSlots] = useState([])
     const [slotIndex, setSlotIndex] = useState(0)
     const [slotTime, setSlotTime] = useState('')
-    const [loading, setLoading] = useState(true)
 
     // Combined effect for fetching workshop data and available slots
     useEffect(() => {
         const fetchData = async () => {
-            if (workshops.length === 0) {
-                setLoading(true)
-                await getWorkshopsData() // fetch workshops data
-            }
-            setLoading(false)
-
             const workshopInfo = workshops.find(workshop => workshop._id === workshopId)
             setWorkshopInfo(workshopInfo)
 
@@ -42,6 +37,7 @@ const WorkshopInfo = () => {
 
         fetchData()
     }, [workshops, workshopId])
+    
 
     const getAvailableSlots = () => {
         const today = new Date() // current date
@@ -97,29 +93,28 @@ const WorkshopInfo = () => {
         return slots
     }
 
-
+    
     const bookWorkshop = async () => {
         if (!token) {
             toast.warn('Login to book Workshop');
             return navigate('/login');
         }
-
+    
         try {
-            // ตรวจสอบ slotIndex และ workshopSlots ก่อนใช้งาน
             if (!workshopSlots[slotIndex] || workshopSlots[slotIndex].length === 0 || !workshopSlots[slotIndex][0]) {
                 toast.error('Invalid slot selected or no slots available');
                 return;
             }
-
+    
             const date = workshopSlots[slotIndex][0].datetime;
-
+    
             let day = date.getDate();
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
-
+    
             const slotDate = `${day}_${month}_${year}`;
-            console.log(slotDate);
-
+            // console.log(slotDate);
+    
             const { data } = await axios.post(backendUrl + '/api/user/book-workshop', { workshopId, slotDate, slotTime }, { headers: { token } });
             if (data.success) {
                 toast.success(data.message);
@@ -133,9 +128,9 @@ const WorkshopInfo = () => {
             toast.error(error.message || 'An error occurred');
         }
     };
+    
 
-
-
+    
     return (
         <div className='px-5 py-2'>
             <Breadcrumbs />
@@ -184,30 +179,22 @@ const WorkshopInfo = () => {
                         </div>
 
                         <div className='flex gap-4 items-center w-full overflow-x-auto m-5'>
-                            {workshopSlots.length > 0 && workshopSlots[slotIndex] && workshopSlots[slotIndex].length > 0 ? (
+                            {workshopSlots.length > 0 && workshopSlots[slotIndex] ? (
                                 workshopSlots[slotIndex].map((item, index) => (
-                                    item.time?.includes('No available slots') ? (
+                                    item.time.includes('No available slots') ? (
                                         <p className='font-medium text-red-500 px-5 py-2' key={index}>
                                             {item.time}
                                         </p>
                                     ) : (
-                                        <p
-                                            onClick={() => setSlotTime(item.time)}
-                                            className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-gray-400 border border-gray-300'
-                                                }`}
-                                            key={index}
-                                        >
+                                        <p onClick={() => setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-gray-400 border border-gray-300'}`} key={index}>
                                             {item.time} - {item.endTime}
                                         </p>
                                     )
                                 ))
                             ) : (
-                                <p className='text font-light text-gray-400'>
-                                    {workshopSlots.length === 0 ? 'No available slots' : 'Loading...'}
-                                </p>
+                                <p className='text font-light text-gray-400'>Loading...</p>
                             )}
                         </div>
-
 
 
                         <button onClick={bookWorkshop} disabled={workshopSlots.length === 0 || !workshopSlots[slotIndex]} className='btn btn-primary text-white text-sm font-light px-14 py-3 rounded-full shadow-md'>Book this Workshop</button>
