@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fame } from '../assets/fame';
 import { AppContext } from '../context/AppContext';
 
 const MyProfileSideBar = () => {
 
-  const { userData} = useContext(AppContext)
+  const { userData } = useContext(AppContext)
+
   return (
     <div className="w-64 bg-white hidden md:block">
       <div className="p-6">

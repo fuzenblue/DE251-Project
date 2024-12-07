@@ -58,7 +58,7 @@ const AppContextProvider = (props) => {
     }, [token])
 
     const value = {
-        workshops,
+        workshops, getWorkshopsData,
         currencySymbol,
         category_workshop,
         token, setToken,

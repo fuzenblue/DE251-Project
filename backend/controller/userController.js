@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import validator from "validator"
 import {v2 as cloudinary} from 'cloudinary'
+import workshopsModel from '../models/workshopsModel.js'
+import bookedModel from '../models/BookedModdel.js'
 
 // register user
 const registerUser = async (req, res) => {
@@ -116,5 +118,57 @@ const updateProfile = async (req, res) => {
     }
 }
 
+// API to book Workshop
+const bookedWorkshop = async(req, res) => {
+    try {
 
-export { registerUser, loginUser, getProfile, updateProfile }
+        const { userId, workshopId, slotDate, slotTime } = req.body
+
+        const workshopData = await workshopsModel.findById(workshopId)
+        if (!workshopData.available) {
+            return res.json({success:false, message:'Workshop not available'})
+        }
+
+        let slots_booked = workshopData.slots_booked
+
+        // Check for slot availability
+        if (slots_booked[slotDate]) {
+            if (slots_booked[slotDate].includes(slotTime)) {
+                return res.json({success:false, message:'Workshop not available'})
+            } else {
+                slots_booked[slotDate].push(slotTime)
+            }
+        } else {
+            slots_booked[slotDate] = []
+            slots_booked[slotDate].push(slotTime)
+        }
+
+        const userData = await userModel.findById(userId).select('-password')
+
+        delete workshopData.slots_booked
+
+        const bookedData = {
+            userId,
+            workshopId,
+            userData,
+            workshopData,
+            amount:workshopData.price,
+            slotTime, slotDate,
+            date: Date.now()
+        }
+
+        const newBooked = new bookedModel(bookedData)
+        await newBooked.save()
+
+        // save new slot data in workshopData
+        await workshopsModel.findByIdAndUpdate(workshopId, {slots_booked})
+        res.json({success: true, message:"Booked True"})
+        
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+
+export { registerUser, loginUser, getProfile, updateProfile, bookedWorkshop }

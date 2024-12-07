@@ -49,7 +49,7 @@ const Navbar = () => {
       <div className='flex items-center gap-3'>
         {/* Login / Sign up Button */}
         {
-            token 
+            token && userData
             ? <div className='flex items-center gap-1 cursor-pointer group relative'>
 
                 <img className='flex w-10 h-10 rounded-full object-cover' src={userData.image} alt="" />

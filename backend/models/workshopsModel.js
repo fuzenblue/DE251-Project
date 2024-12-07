@@ -12,11 +12,10 @@ const workshopsSchema = new mongoose.Schema(
         price: { type: Number, required: true },
         date: { type: Number, required: true },
         available:{ type: Boolean, default: true},
-        slot_booked: { type: Object, default: {} },
+        slots_booked: { type: Object, default: {} },
     }, { minimize: false }
 )
 
-// ถ้ามี workshopsModel อยู่แล้วใน Mongoose ใช้ตัวนั้นเลย, ถ้าไม่มีก็สร้างใหม่
 const workshopsModel = mongoose.models.workshops || mongoose.model("workshops", workshopsSchema)
 
 export default workshopsModel

@@ -44,7 +44,7 @@ const MyProfile = () => {
       }
 
     } catch (error) {
-      
+      console.log(error)
     }
 
   }
@@ -86,8 +86,8 @@ const MyProfile = () => {
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Username</label>
                   {
                     isEditing
-                      ? <input className="w-full px-4 py-2 border rounded-lg" value={userData.name} type="text" onChange={(e) => setUserData((prev) => ({ ...prev, name: e.target.value }))} />
-                      : <p className="w-full px-4 py-2 border rounded-lg">{userData.name}</p>
+                      ? <input className="w-full px-4 py-2 border rounded-lg" disabled value={userData.name} type="text" onChange={(e) => setUserData((prev) => ({ ...prev, name: e.target.value }))} />
+                      : <p className="w-full px-4 py-2 border rounded-lg bg-gray-50">{userData.name}</p>
                   }
                 </div>
 

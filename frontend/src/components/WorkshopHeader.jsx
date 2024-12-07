@@ -3,28 +3,28 @@ import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext.jsx'
 
 const WorkshopHeader = () => {
-    const { workshopId } = useParams();  // ดึงค่า workshopId จาก URL
-    console.log("workshopId from URL:", workshopId);  // ตรวจสอบค่า workshopId
+    const { workshopId } = useParams()  // ดึงค่า workshopId จาก URL
+    console.log("workshopId from URL:", workshopId)  // ตรวจสอบค่า workshopId
 
-    const { workshops } = useContext(AppContext);
-    const [workshopInfo, setWorkshopInfo] = useState(null);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const { workshops } = useContext(AppContext)
+    const [workshopInfo, setWorkshopInfo] = useState(null)
+    const [activeIndex, setActiveIndex] = useState(0)
 
     // ฟังก์ชันในการค้นหาข้อมูล workshop
     useEffect(() => {
         if (workshopId) {
-            const workshop = workshops.find(workshop => workshop._id === workshopId);
-            console.log("Found workshop:", workshop);  // ตรวจสอบผลลัพธ์
-            setWorkshopInfo(workshop);
+            const workshop = workshops.find(workshop => workshop._id === workshopId)
+            console.log("Found workshop:", workshop)  // ตรวจสอบผลลัพธ์
+            setWorkshopInfo(workshop)
         }
-    }, [workshopId, workshops]);
+    }, [workshopId, workshops])
 
     if (!workshopInfo) {
-        return <div>Loading workshop information...</div>;
+        return <div>Loading workshop information...</div>
     }
     
     return (
-        <div className='flex flex-col md:flex-row gap-4 h-[20rem] md:h-[26rem]'>
+        <div className='flex flex-col md:flex-row gap-4 md:h-[26rem]'>
             {/* Image and Video */}
             <div className="relative carousel pb-2 grid grid-cols-1 md:grid-cols-3">
                 <div className='px-4 col-span-1'>
