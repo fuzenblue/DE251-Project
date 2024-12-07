@@ -71,14 +71,14 @@ const MyProfile = () => {
                     {
                       isEditing
                       ? <>
-                          <div className="w-28 h-28 rounded-full overflow-hidden">
-                            <img src={image ? URL.createObjectURL(image) : userData.image} alt="" />
-                            <img src={userData.image} alt="Profile" className="w-28 h-28 rounded-full object-cover" />
+                          <div className="flex w-36 h-36 rounded-full overflow-x-hidden">
+                            <img src={image ? URL.createObjectURL(image) : userData.image} className="w-36 h-36 rounded-full object-cover" alt="" />
+                            {/* <img src={userData.image} alt="Profile" className="w-36 h-36 rounded-full object-cover" /> */}
                           </div>
                           <input type="file" accept="image/*" hidden id="image" onChange={e => setImage(e.target.files[0])}/>
                           <label htmlFor="image" className="mt-3 btn btn-outline-black cursor-pointer text-primary">Edit Image</label>
                         </>
-                      : <img src={userData.image} alt="Profile" className="w-28 h-28 rounded-full object-cover" />
+                      : <img src={userData.image} alt="Profile" className="w-36 h-36 rounded-full object-cover" />
                     }
                 </div>
 
@@ -156,16 +156,16 @@ const MyProfile = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
                   <div>
                     <div className="grid grid-cols-2 gap-4 mb-3">
-                      <input className='w-full px-4 py-2 border rounded-lg' required name='address' type="text" placeholder='Address' value={userData.address.address} onChange={(e) => setUserData((prev) => ({ ...prev, address: e.target.value }))} readOnly={!isEditing}/>
-                      <input className='w-full px-4 py-2 border rounded-lg' required name='street' type="text" placeholder='Street' value={userData.address.street} onChange={(e) => setUserData((prev) => ({ ...prev, address: e.target.value }))} readOnly={!isEditing}/>
+                      <input className='w-full px-4 py-2 border rounded-lg' required name='address' type="text" placeholder='Address' value={userData.address.address} onChange={(e) => setUserData((prev) => ({...prev, address: {...prev.address, address: e.target.value}}))} readOnly={!isEditing}/>
+                      <input className='w-full px-4 py-2 border rounded-lg' required name='street' type="text" placeholder='Street' value={userData.address.street} onChange={(e) => setUserData((prev) => ({...prev, address: {...prev.address, street: e.target.value}}))} readOnly={!isEditing}/>
                     </div>
                     <div className="grid grid-cols-2 gap-4 mb-3">
-                      <input className='w-full px-4 py-2 border rounded-lg' required name='city' type="text" placeholder='City' value={userData.address.city} onChange={(e) => setUserData((prev) => ({ ...prev, address: e.target.value }))} readOnly={!isEditing}/>
-                      <input className='w-full px-4 py-2 border rounded-lg' required name='stat ' type="text" placeholder='State' value={userData.address.state} onChange={(e) => setUserData((prev) => ({ ...prev, address: e.target.value }))} readOnly={!isEditing}/>
+                      <input className='w-full px-4 py-2 border rounded-lg' required name='city' type="text" placeholder='City' value={userData.address.city} onChange={(e) => setUserData((prev) => ({...prev, address: {...prev.address, city: e.target.value}}))} readOnly={!isEditing}/>
+                      <input className='w-full px-4 py-2 border rounded-lg' required name='stat ' type="text" placeholder='State' value={userData.address.state} onChange={(e) => setUserData((prev) => ({...prev, address: {...prev.address, state: e.target.value}}))} readOnly={!isEditing}/>
                     </div>
                     <div className="grid grid-cols-2 gap-4 mb-3">
-                        <input className='w-full px-4 py-2 border rounded-lg' required name='country' type="text" placeholder='Country' value={userData.address.country} onChange={(e) => setUserData((prev) => ({ ...prev, address: e.target.value }))} readOnly={!isEditing}/>
-                        <input className='w-full px-4 py-2 border rounded-lg' required name='zipcode' type="text" placeholder='Zip code' value={userData.address.zipcode} onChange={(e) => setUserData((prev) => ({ ...prev, address: e.target.value }))} readOnly={!isEditing}/>
+                        <input className='w-full px-4 py-2 border rounded-lg' required name='country' type="text" placeholder='Country' value={userData.address.country} onChange={(e) => setUserData((prev) => ({...prev, address: {...prev.address, country: e.target.value}}))} readOnly={!isEditing}/>
+                        <input className='w-full px-4 py-2 border rounded-lg' required name='zipcode' type="text" placeholder='Zip code' value={userData.address.zipcode} onChange={(e) => setUserData((prev) => ({...prev, address: {...prev.address, zipcode: e.target.value}}))} readOnly={!isEditing}/>
                     </div>
                     <div className='col-span-2'>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
