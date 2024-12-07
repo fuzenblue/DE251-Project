@@ -12,6 +12,7 @@ const AppContextProvider = (props) => {
 
     const [workshops, setWorkshops] = useState([])
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') :  false)
+    const [userData, setUserData] = useState(false)
     
     const getWorkshopsData = async () => {
         try {
@@ -28,9 +29,33 @@ const AppContextProvider = (props) => {
         }
     }
 
+    const loadUserProfileData = async () => {
+        try {
+            
+            const { data } = await axios.get(backendUrl + '/api/user/get-profile', {headers: {token}})
+            if (data.success) {
+                setUserData(data.userData)
+            } else {
+                toast.error(error.message)
+            }
+
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
     useEffect(() => {
         getWorkshopsData()
     }, [])
+
+    useEffect(() => {
+        if (token) {
+            loadUserProfileData()
+        } else {
+            setUserData(false)
+        }
+    }, [token])
 
     const value = {
         workshops,
@@ -38,6 +63,8 @@ const AppContextProvider = (props) => {
         category_workshop,
         token, setToken,
         backendUrl,
+        userData, setUserData,
+        loadUserProfileData,
     }
 
     return (

@@ -1,17 +1,13 @@
 import React, { useContext, useState } from 'react'
 import MyProfileSideBar from '../components/MyProfileSideBar'
 import { assets } from '../assets/assets'
-import { ProfileContext } from '../context/ProfileContext'
 
 const MyBooking = () => {
-  
-  const { savedProfile } = useContext(ProfileContext)
-
 
   return (
     <div className="min-h-screen flex">
     {/* Sidebar */}
-    <MyProfileSideBar profile={ savedProfile } /> {/* Pass profile to sidebar */}
+    <MyProfileSideBar/>
 
     {/* Main Content Area */}
     <div className="flex-1 p-8 bg-gray-50">

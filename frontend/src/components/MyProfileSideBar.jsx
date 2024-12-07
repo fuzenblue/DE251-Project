@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { fame } from '../assets/fame'; // ใช้ fallback สำหรับรูปภาพเดิม
+import { fame } from '../assets/fame';
 
 const MyProfileSideBar = ({ profile }) => {
   return (

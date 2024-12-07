@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
         default: {
             address: "",
             street: "",
+            state: "",
             city: "",
             country: "",
             zipcode: ""
