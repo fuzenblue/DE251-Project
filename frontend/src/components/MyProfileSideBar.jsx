@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { fame } from '../assets/fame';
+import { AppContext } from '../context/AppContext';
 
 const MyProfileSideBar = ({ profile }) => {
+
+  const { userData } = useContext(AppContext)
   return (
     <div className="w-64 bg-white hidden md:block">
       <div className="p-6">
         {/* Profile Section */}
         <div className="flex flex-col items-center mb-8">
           <img
-            src={profile?.profileImage || fame.lisa_pic} // ใช้รูปที่อัปเดตจาก profile
+            src={userData.image}
             alt="Profile"
             className="w-28 h-28 rounded-full mb-4 object-cover"
           />
           <h2 className="text-xl font-semibold">
-            {profile?.firstName || 'Lisa'} {profile?.lastName || 'Blackpink'}
+            {userData.name}
           </h2>
         </div>
 
