@@ -147,28 +147,21 @@ const bookedWorkshop = async (req, res) => {
         const formattedSlotDate = `${day}_${month}_${year}`
 
         // Check if slotDate already has bookings
-        if (slots_booked[formattedSlotDate]) {
-            // Get bookings for selected slotTime
-            const bookingsForSlot = slots_booked[formattedSlotDate].filter(booking => booking.slotTime === slotTime)
-
-            // Prevent duplicate booking by same user
-            const userAlreadyBooked = bookingsForSlot.find(booking => booking.userId === userId)
-            if (userAlreadyBooked) {
-                return res.json({ success: false, message: "You have already booked this slot" })
-            }
-
-            // Check if the total number of bookings exceeds 20
+        if (slots_booked.has(formattedSlotDate)) {
+            // Check if the slotTime is already booked
+            const bookingsForSlot = slots_booked.get(formattedSlotDate).filter(booking => booking.slotTime === slotTime)
             const totalBookings = bookingsForSlot.reduce((sum, booking) => sum + booking.ticketCount, 0)
             if (totalBookings + ticketCount > 10) {
                 return res.json({ success: false, message: "This slot is fully booked" })
             }
-
-            // Add the new booking
-            slots_booked[formattedSlotDate].push({ userId, slotTime, ticketCount })
+        
+            // Add new booking
+            slots_booked.get(formattedSlotDate).push({ userId, slotTime, ticketCount })
         } else {
-            // If there are no bookings for the selected date, add a new booking
-            slots_booked[formattedSlotDate] = [{ userId, slotTime, ticketCount }]
+            // If no bookings for the selected date, add a new slot
+            slots_booked.set(formattedSlotDate, [{ userId, slotTime, ticketCount }])
         }
+        
 
         // Update the workshop data with the updated slots booked
         await workshopsModel.findByIdAndUpdate(workshopId, { slots_booked })
@@ -202,9 +195,5 @@ const bookedWorkshop = async (req, res) => {
         res.json({ success: false, message: error.message })
     }
 }
-
-
-
-
 
 export { registerUser, loginUser, getProfile, updateProfile, bookedWorkshop }

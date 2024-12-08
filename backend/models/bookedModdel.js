@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const bookedSchema = new mongoose.Schema({
     userId: {type: String, require: true},
     workshopId: {type: String, require: true},
-    slotData: {type: String, require: true},
+    slotDate: {type: String, require: true},
     slotTime: {type: String, require: true},
     userData: {type: Object, require: true},
     workshopData: {type: Object, require: true},

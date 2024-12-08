@@ -11,8 +11,16 @@ const workshopsSchema = new mongoose.Schema(
         description: { type: String, required: true },
         price: { type: Number, required: true },
         date: { type: Number, required: true },
-        available:{ type: Boolean, default: true},
-        slots_booked: { type: Object, default: {}},
+        available: { type: Boolean, default: true },
+        slots_booked: {
+            type: Map,
+            of: {
+                userId: { type: String, required: true },
+                slotTime: { type: String, required: true },
+                ticketCount: { type: Number, required: true },
+            },
+            default: {}
+        }
     }, { minimize: false }
 )
 

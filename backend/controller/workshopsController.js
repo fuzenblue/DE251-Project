@@ -88,7 +88,7 @@ const allWorkshop = async (req, res) => {
 const changeAvailability = async(req, res) => {
     try {
         const { workshopsId } = req.body
-        // console.log('Received Workshop ID in Backend:', workshopsId);  // ตรวจสอบว่า workshopsId ส่งมาได้ถูกต้อง
+        // console.log('Received Workshop ID in Backend:', workshopsId)
         const workshopData = await workshopsModel.findById(workshopsId)
         if (!workshopData) {
             return res.json({ success: false, message: "Workshop not found" });
