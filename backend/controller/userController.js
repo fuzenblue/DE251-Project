@@ -156,7 +156,7 @@ const bookedWorkshop = async (req, res) => {
             console.log(ticketCount)
             
             
-            if (totalBookings + ticketCount > 5) {
+            if (totalBookings + ticketCount > 25) {
                 return res.json({ success: false, message: "This slot is fully booked" })
             }
 
@@ -216,73 +216,90 @@ const listBooking = async (req, res) => {
 // API to cancel booking
 const cancelBooking = async (req, res) => {
     try {
-        const { bookedId } = req.body;
-        
-        // ดึงข้อมูลการจอง
-        const booking = await bookedModel.findById(bookedId);
-        if (!booking) {
-            return res.json({ success: false, message: "Booking not found" });
-        }
-        
-        const { workshopId, slotDate, slotTime, ticketCount, userId } = booking;
-        
-        // ดึงข้อมูล workshop
-        const workshop = await workshopsModel.findById(workshopId);
-        if (!workshop) {
-            return res.json({ success: false, message: "Workshop not found" });
-        }
-        
-        // สร้างสำเนาของ slots_booked
-        const currentSlotsBooked = workshop.slots_booked ? 
-            JSON.parse(JSON.stringify(workshop.slots_booked)) : 
-            {};
-        
-        // ตรวจสอบ slots ของวันที่จอง
-        if (currentSlotsBooked[slotDate]) {
-            // กรองเอาเฉพาะ slot สุดท้ายที่ตรงกับ userId และ slotTime
-            const slotIndex = currentSlotsBooked[slotDate]
-                .findLastIndex(slot => 
-                    String(slot.userId) === String(userId) && 
-                    slot.slotTime === slotTime
-                );
-            
-            // หากพบ slot ที่ต้องการยกเลิก
-            if (slotIndex !== -1) {
-                // ลบ slot สุดท้ายที่ตรงเงื่อนไข
-                currentSlotsBooked[slotDate].splice(slotIndex, 1);
-                
-                // ลบ key วันที่ถ้าไม่มี slots เหลือ
-                if (currentSlotsBooked[slotDate].length === 0) {
-                    delete currentSlotsBooked[slotDate];
-                }
-            }
-        }
-        
-        // อัปเดต workshop
-        await workshopsModel.findByIdAndUpdate(
-            workshopId,
+      const { bookedId, processIdToCancel } = req.body;
+  
+      // ดึงข้อมูลการจอง
+      const booking = await bookedModel.findById(bookedId);
+      if (!booking) {
+        return res.json({ success: false, message: "Booking not found" });
+      }
+  
+      const { 
+        workshopId, 
+        slotDate, 
+        slotTime, 
+        ticketCount, 
+        userId,
+        processId 
+      } = booking;
+  
+      // ดึงข้อมูล workshop 
+      const workshop = await workshopsModel.findById(workshopId);
+      if (!workshop) {
+        return res.json({ success: false, message: "Workshop not found" });
+      }
+  
+      // สร้างสำเนาของ slots_booked 
+      const currentSlotsBooked = workshop.slots_booked ? 
+        JSON.parse(JSON.stringify(workshop.slots_booked)) : 
+        {};
+  
+      // เงื่อนไขการกรองและยกเลิก slot 
+      if (currentSlotsBooked[slotDate]) {
+        // กรองเพื่อค้นหา slot ที่ต้องการยกเลิก
+        const slotToCancel = currentSlotsBooked[slotDate].find(slot => 
+          processIdToCancel ? 
+            String(slot.processId) === String(processIdToCancel) : 
+            (String(slot.userId) === String(userId) && slot.slotTime === slotTime)
+        );
+  
+        if (slotToCancel) {
+          // ลบเฉพาะ slot ที่ตรงเงื่อนไข
+          currentSlotsBooked[slotDate] = currentSlotsBooked[slotDate].filter(
+            slot => slot !== slotToCancel
+          );
+  
+          // ลบ key วันที่ถ้าไม่มี slots เหลือ
+          if (currentSlotsBooked[slotDate].length === 0) {
+            delete currentSlotsBooked[slotDate];
+          }
+  
+          // อัปเดต workshop
+          await workshopsModel.findByIdAndUpdate(
+            workshopId, 
             { 
-                slots_booked: currentSlotsBooked,
-                $inc: { remainingSeats: ticketCount }
+              slots_booked: currentSlotsBooked, 
+              $inc: { 
+                remainingSeats: slotToCancel.ticketCount || ticketCount
+              }
             }
-        );
-        
-        // อัปเดตสถานะการจอง
-        await bookedModel.findByIdAndUpdate(
-            bookedId,
-            { cancelled: true }
-        );
-        
-        res.json({ success: true, message: "Booking cancelled successfully" });
+          );
+  
+          // อัปเดตสถานะการจอง
+          await bookedModel.findByIdAndUpdate(
+            bookedId, 
+            { 
+              cancelled: true,
+              cancellationReason: processIdToCancel ? 
+                'Specific process cancellation' : 
+                'Full booking cancellation'
+            }
+          );
+        }
+      }
+  
+      res.json({ 
+        success: true, 
+        message: "Booking cancelled successfully"
+      });
+  
     } catch (error) {
-        console.error("Cancellation Error:", error);
-        res.json({ success: false, message: error.message });
+      console.error("Cancellation Error:", error);
+      res.json({ 
+        success: false, 
+        message: error.message 
+      });
     }
-};
-
-
-
-
-
+  }
 
 export { registerUser, loginUser, getProfile, updateProfile, bookedWorkshop, listBooking, cancelBooking }
