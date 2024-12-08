@@ -20,6 +20,7 @@ const AppContextProvider = (props) => {
             const { data } = await axios.get(backendUrl + '/api/workshop/list-workshops')
             if (data.success) {
                 setWorkshops(data.workshops)
+                console.log("Workshops Data:", data.workshops)
             } else {
                 toast.error(data.message)
             }

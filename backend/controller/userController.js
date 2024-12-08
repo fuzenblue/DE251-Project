@@ -151,17 +151,21 @@ const bookedWorkshop = async (req, res) => {
             // Check if the slotTime is already booked
             const bookingsForSlot = slots_booked.get(formattedSlotDate).filter(booking => booking.slotTime === slotTime)
             const totalBookings = bookingsForSlot.reduce((sum, booking) => sum + booking.ticketCount, 0)
-            if (totalBookings + ticketCount > 10) {
+
+            console.log(totalBookings)
+            console.log(ticketCount)
+            
+            
+            if (totalBookings + ticketCount > 5) {
                 return res.json({ success: false, message: "This slot is fully booked" })
             }
-        
+
             // Add new booking
             slots_booked.get(formattedSlotDate).push({ userId, slotTime, ticketCount })
         } else {
             // If no bookings for the selected date, add a new slot
             slots_booked.set(formattedSlotDate, [{ userId, slotTime, ticketCount }])
         }
-        
 
         // Update the workshop data with the updated slots booked
         await workshopsModel.findByIdAndUpdate(workshopId, { slots_booked })
@@ -196,4 +200,89 @@ const bookedWorkshop = async (req, res) => {
     }
 }
 
-export { registerUser, loginUser, getProfile, updateProfile, bookedWorkshop }
+// API to get user booking for frontend my-booking page
+const listBooking = async (req, res) => {
+    try {
+        const { userId } = req.body
+        const bookings = await bookedModel.find({ userId })
+
+        res.json({ success: true, bookings })
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+// API to cancel booking
+const cancelBooking = async (req, res) => {
+    try {
+        const { bookedId } = req.body;
+        
+        // ดึงข้อมูลการจอง
+        const booking = await bookedModel.findById(bookedId);
+        if (!booking) {
+            return res.json({ success: false, message: "Booking not found" });
+        }
+        
+        const { workshopId, slotDate, slotTime, ticketCount, userId } = booking;
+        
+        // ดึงข้อมูล workshop
+        const workshop = await workshopsModel.findById(workshopId);
+        if (!workshop) {
+            return res.json({ success: false, message: "Workshop not found" });
+        }
+        
+        // สร้างสำเนาของ slots_booked
+        const currentSlotsBooked = workshop.slots_booked ? 
+            JSON.parse(JSON.stringify(workshop.slots_booked)) : 
+            {};
+        
+        // ตรวจสอบ slots ของวันที่จอง
+        if (currentSlotsBooked[slotDate]) {
+            // กรองเอาเฉพาะ slot สุดท้ายที่ตรงกับ userId และ slotTime
+            const slotIndex = currentSlotsBooked[slotDate]
+                .findLastIndex(slot => 
+                    String(slot.userId) === String(userId) && 
+                    slot.slotTime === slotTime
+                );
+            
+            // หากพบ slot ที่ต้องการยกเลิก
+            if (slotIndex !== -1) {
+                // ลบ slot สุดท้ายที่ตรงเงื่อนไข
+                currentSlotsBooked[slotDate].splice(slotIndex, 1);
+                
+                // ลบ key วันที่ถ้าไม่มี slots เหลือ
+                if (currentSlotsBooked[slotDate].length === 0) {
+                    delete currentSlotsBooked[slotDate];
+                }
+            }
+        }
+        
+        // อัปเดต workshop
+        await workshopsModel.findByIdAndUpdate(
+            workshopId,
+            { 
+                slots_booked: currentSlotsBooked,
+                $inc: { remainingSeats: ticketCount }
+            }
+        );
+        
+        // อัปเดตสถานะการจอง
+        await bookedModel.findByIdAndUpdate(
+            bookedId,
+            { cancelled: true }
+        );
+        
+        res.json({ success: true, message: "Booking cancelled successfully" });
+    } catch (error) {
+        console.error("Cancellation Error:", error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+
+
+
+
+
+export { registerUser, loginUser, getProfile, updateProfile, bookedWorkshop, listBooking, cancelBooking }
