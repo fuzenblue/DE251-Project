@@ -159,7 +159,7 @@ const bookedWorkshop = async (req, res) => {
 
             // Check if the total number of bookings exceeds 20
             const totalBookings = bookingsForSlot.reduce((sum, booking) => sum + booking.ticketCount, 0)
-            if (totalBookings + ticketCount > 20) {
+            if (totalBookings + ticketCount > 10) {
                 return res.json({ success: false, message: "This slot is fully booked" })
             }
 

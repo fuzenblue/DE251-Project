@@ -12,7 +12,7 @@ const workshopsSchema = new mongoose.Schema(
         price: { type: Number, required: true },
         date: { type: Number, required: true },
         available:{ type: Boolean, default: true},
-        slots_booked: { type: Object, default: {} },
+        slots_booked: { type: Object, default: {}},
     }, { minimize: false }
 )
 

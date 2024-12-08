@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { AppContext } from "../context/AppContext.jsx";
-import { assets } from "../assets/assets.js";
-import Breadcrumbs from "../components/Breadcrumbs.jsx";
-import RelatedWorkshops from "../components/RelatedWorkshops.jsx";
-import { toast } from "react-toastify";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { AppContext } from "../context/AppContext.jsx"
+import { assets } from "../assets/assets.js"
+import Breadcrumbs from "../components/Breadcrumbs.jsx"
+import RelatedWorkshops from "../components/RelatedWorkshops.jsx"
+import { toast } from "react-toastify"
+import axios from "axios"
 
 // 10.50
 
@@ -364,4 +364,4 @@ const WorkshopInfo = () => {
   );
 };
 
-export default WorkshopInfo;
+export default WorkshopInfo
