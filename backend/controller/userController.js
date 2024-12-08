@@ -121,70 +121,88 @@ const updateProfile = async (req, res) => {
 // API to book Workshop
 const bookedWorkshop = async (req, res) => {
     try {
-        const { userId, workshopId, slotDate, slotTime } = req.body
+        const { userId, workshopId, slotDate, slotTime, ticketCount } = req.body
 
-        // ตรวจสอบว่า slotDate และ slotTime ถูกเลือก
-        if (!slotDate || !slotTime) {
-            return res.json({ success: false, message: "Please Select Date or Time" })
+        if (!slotDate || !slotTime || !ticketCount) {
+            return res.json({ success: false, message: "Please select date, time, and ticket count" })
         }
 
-        // ตรวจสอบว่า workshop ที่เลือกมีอยู่ในระบบ
+        // Validate the number of tickets (maximum 5 tickets per booking)
+        if (ticketCount > 5) {
+            return res.json({ success: false, message: "You can book a maximum of 5 tickets per booking" })
+        }
+
+        // Check if the selected workshop exists
         const workshopData = await workshopsModel.findById(workshopId)
         if (!workshopData || !workshopData.available) {
-            return res.json({ success: false, message: 'Workshop not available' })
+            return res.json({ success: false, message: "Workshop not available" })
         }
 
         let slots_booked = workshopData.slots_booked
 
-        // แปลง slotDate ให้มีรูปแบบตรงกัน (เพิ่มศูนย์หน้า)
+        // Format slotDate to ensure consistent structure (add leading 0)
         let day = slotDate.split('_')[0].padStart(2, '0')
         let month = slotDate.split('_')[1].padStart(2, '0')
         let year = slotDate.split('_')[2]
         const formattedSlotDate = `${day}_${month}_${year}`
 
-        // ตรวจสอบว่า slotDate มีการจองหรือไม่
+        // Check if slotDate already has bookings
         if (slots_booked[formattedSlotDate]) {
-            if (slots_booked[formattedSlotDate].includes(slotTime)) {
-                return res.json({ success: false, message: 'Workshop not available at this time' })
-            } else {
-                slots_booked[formattedSlotDate].push(slotTime)
+            // Get bookings for selected slotTime
+            const bookingsForSlot = slots_booked[formattedSlotDate].filter(booking => booking.slotTime === slotTime)
+
+            // Prevent duplicate booking by same user
+            const userAlreadyBooked = bookingsForSlot.find(booking => booking.userId === userId)
+            if (userAlreadyBooked) {
+                return res.json({ success: false, message: "You have already booked this slot" })
             }
+
+            // Check if the total number of bookings exceeds 20
+            const totalBookings = bookingsForSlot.reduce((sum, booking) => sum + booking.ticketCount, 0)
+            if (totalBookings + ticketCount > 20) {
+                return res.json({ success: false, message: "This slot is fully booked" })
+            }
+
+            // Add the new booking
+            slots_booked[formattedSlotDate].push({ userId, slotTime, ticketCount })
         } else {
-            slots_booked[formattedSlotDate] = [slotTime]
+            // If there are no bookings for the selected date, add a new booking
+            slots_booked[formattedSlotDate] = [{ userId, slotTime, ticketCount }]
         }
 
-        // อัปเดตข้อมูลใน workshop โดยการอัปเดต slots_booked
+        // Update the workshop data with the updated slots booked
         await workshopsModel.findByIdAndUpdate(workshopId, { slots_booked })
 
-        // หาข้อมูลผู้ใช้
+        // Retrieve user information
         const userData = await userModel.findById(userId).select('-password')
         if (!userData) {
-            return res.json({ success: false, message: 'User not found' })
+            return res.json({ success: false, message: "User not found" })
         }
 
-        // สร้างข้อมูลการจองใหม่
+        // Create a new booking
         const bookedData = {
             userId,
             workshopId,
             userData,
             workshopData,
-            amount: workshopData.price,
+            amount: workshopData.price * ticketCount,
+            ticketCount,
             slotTime,
             slotDate: formattedSlotDate,
             date: Date.now(),
         }
 
-        // สร้างเอกสารการจองใหม่
+        // Save new booking to database
         const newBooked = new bookedModel(bookedData)
         await newBooked.save()
 
-        // ส่งผลลัพธ์การจองกลับ
         res.json({ success: true, message: "Booking successful" })
     } catch (error) {
         console.log(error)
         res.json({ success: false, message: error.message })
     }
 }
+
 
 
 

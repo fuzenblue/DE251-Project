@@ -31,6 +31,11 @@ import blogs_jam from './blogs_jam.jpg'
 import blogs_jam1 from './blogs_jam1.jpg'
 import blogs_smootie from './blogs_smootie.jpg'
 import blogs_cocktail from './blogs_cocktail.jpg'
+import logout_icon from './logout_fame.png'
+
+
+
+
 export const fame ={
     bag_icon,
     bk_icon,
@@ -65,7 +70,8 @@ export const fame ={
     blogs_jam,
     blogs_jam1,
     blogs_smootie,
-    blogs_cocktail
+    blogs_cocktail,
+    logout_icon,
 
 
     

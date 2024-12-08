@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
             zipcode: ""
         }
     },
-    cartData:{ type:Object, default:{} },
+    // cartData:{ type:Object, default:{} },
 }, {minimize:false})
 
 const userModel = mongoose.models.user || mongoose.model('user', userSchema)

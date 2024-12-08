@@ -5,7 +5,13 @@ import { AppContext } from '../context/AppContext';
 
 const MyProfileSideBar = () => {
 
-  const { userData } = useContext(AppContext)
+  const { token, setToken, userData } = useContext(AppContext)
+
+  const logout = () => {
+    setToken(false)
+    localStorage.removeItem('token') 
+    navigate('/') 
+  }
 
   return (
     <div className="w-64 bg-white hidden md:block">
@@ -25,21 +31,21 @@ const MyProfileSideBar = () => {
         {/* Menu Buttons */}
         <div>
           <Link to="/my-profile">
-            <button className="btn btn-primary w-full my-1 py-3 px-6 rounded-full text-md flex items-center justify-center space-x-2">
-              <img src={fame.user1} alt="User Icon" className="w-5 h-5 " />
+            <button className="btn btn-primary w-full my-3 py-3 px-8 rounded-full text-md flex items-center justify-start space-x-2">
+              <img src={fame.user1} alt="User Icon" className="ml-3 w-6 h-6" />
               <span>My Profile</span>
             </button>
           </Link>
           <Link to="/my-booking">
-            <button className="btn btn-primary w-full my-1 py-3 px-6 rounded-full text-md">
-              <img src={fame.bk_icon} alt="Booking Icon" className="w-5 h-5 " />
+            <button className="btn btn-primary w-full my-3 py-3 px-8 rounded-full text-md flex items-center justify-start space-x-2">
+              <img src={fame.bk_icon} alt="Booking Icon" className="ml-3 w-6 h-6" />
               <span>My Booking</span>
             </button>
           </Link>
-          <Link to="/my-order">
-            <button className="btn btn-primary w-full my-1 py-3 px-6 rounded-full text-md">
-              <img src={fame.bag_icon} alt="Order Icon" className="w-5 h-5 " />
-              <span>My Order</span>
+          <Link to="/">
+            <button onClick={ logout } className="btn btn-primary w-full my-3 py-3 px-8 rounded-full text-md flex items-center justify-start space-x-2">
+              <img src={fame.logout_icon} alt="Order Icon" className="ml-3 w-6 h-6" />
+              <span>Log Out</span>
             </button>
           </Link>
         </div>

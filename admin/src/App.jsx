@@ -8,9 +8,6 @@ import Sidebar from './components/Sidebar.jsx'
 import AdminLogin from './pages/AdminLogin.jsx'
 
 import Dashboard from './pages/Dashboard.jsx'
-import AddProduct from './pages/ProductManagement/AddProduct.jsx'
-import ListProduct from './pages/ProductManagement/ListProduct.jsx'
-import Order from './pages/ProductManagement/Order.jsx'
 
 import AddWorkshop from './pages/WorkshopManagement/AddWorkshop.jsx'
 import ListWorkshop from './pages//WorkshopManagement/ListWorkshop.jsx'
@@ -36,9 +33,6 @@ function App() {
               <Routes>
                 < Route path='/' element={<></>} />
                 < Route path='/admin-dashboard' element={<Dashboard />} />
-                < Route path='/product-add' element={<AddProduct  />} />
-                < Route path='/product-list' element={<ListProduct />} />
-                < Route path='/product-order' element={<Order />} />
                 < Route path='/workshop-add' element={<AddWorkshop />} />
                 < Route path='/workshop-list' element={<ListWorkshop />} />
                 < Route path='/workshop-booking' element={<Booking />} />

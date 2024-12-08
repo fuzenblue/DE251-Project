@@ -84,30 +84,34 @@ const MyProfile = () => {
 
                 <div className="flex gap-4 items-center">
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                  {
+
+                  <input className='w-full px-4 py-2 border rounded-lg' required name='username' disabled value={userData.name} type="text" onChange={(e) => setUserData((prev) => ({ ...prev, name: e.target.value }))} readOnly={!isEditing}/>
+                  {/* {
                     isEditing
                       ? <input className="w-full px-4 py-2 border rounded-lg" disabled value={userData.name} type="text" onChange={(e) => setUserData((prev) => ({ ...prev, name: e.target.value }))} />
                       : <p className="w-full px-4 py-2 border rounded-lg bg-gray-50">{userData.name}</p>
-                  }
+                  } */}
                 </div>
 
                 {/* Name Section */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                    {
+                    <input className="w-full px-4 py-2 border rounded-lg" placeholder="First Name" value={userData.first_name} type="text" onChange={(e) => setUserData((prev) => ({ ...prev, first_name: e.target.value }))} readOnly={!isEditing}/>
+                    {/* {
                       isEditing
                         ? <input className="w-full px-4 py-2 border rounded-lg" value={userData.first_name} type="text" onChange={(e) => setUserData((prev) => ({ ...prev, first_name: e.target.value }))} />
-                        : <p className="w-full px-4 py-2 border rounded-lg">{userData.first_name}</p>
-                    }
+                        : <p className="w-full px-4 py-2 border rounded-lg" placeholder="First Name">{userData.first_name}</p>
+                    } */}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                    {
+                    <input className="w-full px-4 py-2 border rounded-lg" placeholder="Last Name" value={userData.last_name} type="text" onChange={(e) => setUserData((prev) => ({ ...prev, last_name: e.target.value }))} readOnly={!isEditing}/>
+                    {/* {
                       isEditing
                         ? <input className="w-full px-4 py-2 border rounded-lg" value={userData.last_name} type="text" onChange={(e) => setUserData((prev) => ({ ...prev, last_name: e.target.value }))} />
                         : <p className="w-full px-4 py-2 border rounded-lg">{userData.last_name}</p>
-                    }
+                    } */}
                   </div>
                 </div>
 

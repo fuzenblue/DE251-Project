@@ -29,10 +29,6 @@ const Navbar = () => {
             <li className='hover:text-primary py-2'>SERVICE</li>
             <hr className='border-none outline-none h-1 rounded bg-primary w-3/5 m-auto hidden' />
         </NavLink>
-        <NavLink to='/all-product'>
-            <li className='hover:text-primary py-2'>PRODUCT</li>
-            <hr className='border-none outline-none h-1 rounded bg-primary w-3/5 m-auto hidden' />
-        </NavLink>
         <NavLink to='/about'>
             <li className='hover:text-primary py-2'>ABOUT</li>
             <hr className='border-none outline-none h-1 rounded bg-primary w-3/5 m-auto hidden' />
@@ -58,7 +54,6 @@ const Navbar = () => {
                 <div className='absolute top-0 right-0 pt-14 text-sm lg:text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
                     <div className='min-w-48 bg-stone-50 rounded flex flex-col gap-4 p-4'>
                         <p onClick={() => navigate('my-profile')} className='hover:text-primary cursor-pointer'>My Profile</p> 
-                        <p onClick={() => navigate('my-order')} className='hover:text-primary cursor-pointer'>My Order</p>
                         <p onClick={() => navigate('my-booking')} className='hover:text-primary cursor-pointer'>My Booking</p> <hr />
                         <p onClick={ logout } className='hover:text-primary cursor-pointer'>Logout</p>
                     </div>
@@ -79,7 +74,6 @@ const Navbar = () => {
           <ul className='flex flex-col items-center gap-2 mt-4 px-5 lg:text-lg font-medium'>
             <NavLink onClick={() => setShowMenu(false)} to='/'><p className='px-96 py-2 inline-block'>HOME</p></NavLink>
             <NavLink onClick={() => setShowMenu(false)} to='/all-service'><p className='px-96 py-2 inline-block'>SERVICE</p></NavLink>
-            <NavLink onClick={() => setShowMenu(false)} to='/all-product'><p className='px-96 py-2 inline-block'>PRODUCT</p></NavLink>
             <NavLink onClick={() => setShowMenu(false)} to='/about'><p className='px-96 py-2 inline-block'>ABOUT</p></NavLink>
             <NavLink onClick={() => setShowMenu(false)} to='/blogs'><p className='px-96 py-2 inline-block'>BLOG</p></NavLink>
             <NavLink onClick={() => setShowMenu(false)} to='/contact'><p className='px-96 py-2 inline-block'>CONTACT</p></NavLink>
