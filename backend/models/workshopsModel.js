@@ -14,13 +14,14 @@ const workshopsSchema = new mongoose.Schema(
         available: { type: Boolean, default: true },
         slots_booked: {
             type: Map,
-            of: {
-                userId: { type: String, required: true },
-                slotTime: { type: String, required: true },
-                ticketCount: { type: Number, required: true },
-            },
+            of: [{
+                userId: String,
+                slotTime: String,
+                ticketCount: Number
+            }],
             default: {}
         }
+
     }, { minimize: false }
 )
 
