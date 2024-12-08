@@ -8,18 +8,24 @@ const WorkshopDisplay = () => {
   const { workshops, category_workshop, currencySymbol } = useContext(AppContext)
 
   const [showFilter, setShowFilter] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState('') // เริ่มต้นเป็นค่าว่าง (แสดงทั้งหมด)
+  const [selectedCategory, setSelectedCategory] = useState('')
 
   const filterWorkshops = useMemo(() => {
-    if (!selectedCategory) return workshops
-    return workshops.filter(workshop => workshop.category === selectedCategory)
+    if (!selectedCategory) {
+      // filter workshops at available = true
+      return workshops.filter(workshop => workshop.available)
+    }
+    return workshops.filter(
+      workshop => workshop.available && workshop.category === selectedCategory
+    )
   }, [selectedCategory, workshops])
+  
 
   const applyFilter = useCallback((category) => {
     if (category === selectedCategory) {
-      setSelectedCategory('') // รีเซ็ต
+      setSelectedCategory('')
     } else {
-      setSelectedCategory(category) // ตั้งหมวดหมู่ใหม่
+      setSelectedCategory(category)
     }
   }, [selectedCategory])
 
