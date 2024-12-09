@@ -13,8 +13,6 @@ const MyBooking = () => {
   const [bookings, setBookings] = useState([])
   const months = [" ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-  const [isLoading, setIsLoading] = useState(false)
-
   const slotDateFormat = (slotDate) => {
     const dateArray = slotDate.split('_')
     return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2]
@@ -52,46 +50,26 @@ const MyBooking = () => {
       toast.error(error.message)
     }
   }
-  const payOnline = async (bookedId) => {
-    // Log the token to verify
-    const token = localStorage.getItem('token');
-    console.log('Current Token:', token);
-  
+
+
+  const updatePaymentStatus = async (bookedId, payment) => {
     try {
-      const { data } = await axios.post(
-        `${backendUrl}/api/user/payment-stripe`, 
-        { bookedId }, 
-        { 
-          headers: { 
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json' 
-          } 
-        }
-      );
-  
-      // Log full response for debugging
-      console.log('Full Response:', data);
-  
-      if (data.success && data.session_url) {
-        window.location.href = data.session_url;
+      const { data } = await axios.post(backendUrl + '/api/user/update-payment',{ bookedId, payment },{ headers: { token }})
+
+      if (data.success) {
+        toast.success(data.message)
+        getUserBookings()
+        getWorkshopsData()
       } else {
-        // Detailed error logging
-        console.error('Payment Error Details:', data);
-        toast.error(data.message || "Payment initiation failed");
+        toast.error(data.message)
       }
     } catch (error) {
-      // Comprehensive error logging
-      console.error('Full Error Object:', error);
-      console.error('Error Response:', error.response);
-      
-      const errorMessage = 
-        error.response?.data?.message || 
-        error.message || 
-        "Unexpected payment processing error";
-      
-      toast.error(errorMessage);
+      console.error("Payment Update Error:", error)
+      toast.error(error.message)
     }
-  };
+  }
+
+
   useEffect(() => {
     if (token) {
       getUserBookings()
@@ -122,9 +100,16 @@ const MyBooking = () => {
               </div>
               <div></div>
               <div className='flex flex-col gap-2 justify-end'>
-                {!item.cancelled && <button onClick={() => payOnline(item._id)} className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-green-400 hover:text-white transition-all duration-300'>Pay Online</button>}
-                {!item.cancelled && <button className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300'>Get Ticket</button>}
-                {!item.cancelled && <button onClick={() => cancelBookings(item._id)} className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Cancel Workshop</button>}
+                <label htmlFor="payment">Payment Status:</label>
+                {
+                  !item.cancelled && (
+                    <select onChange={(e) => updatePaymentStatus(item._id, e.target.value === 'true')} className='text-center text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300' defaultValue={item.payment ? 'true' : 'false'} disabled={item.payment}>
+                      <option value="true" className='py-2 bg-white text-stone-800'>Paid</option>
+                      <option value="false" className='py-2 bg-white text-stone-800'>Unpaid</option>
+                    </select>
+                  )}
+
+                {!item.cancelled && <button onClick={() => cancelBookings(item._id)} className='text-sm text-stone-500 sm:min-w-48 mt-2 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Cancel Workshop</button>}
                 {item.cancelled && <button className='sm:min-w-48 py-2 border border-red-500 rounded text-red-700'>Workshop Cancelled</button>}
               </div>
             </div>

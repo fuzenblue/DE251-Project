@@ -5,8 +5,6 @@ import validator from "validator"
 import { v2 as cloudinary } from 'cloudinary'
 import workshopsModel from '../models/workshopsModel.js'
 import bookedModel from '../models/BookedModdel.js'
-import Stripe from "stripe"
-import dotenv from 'dotenv'
 
 // register user
 const registerUser = async (req, res) => {
@@ -294,106 +292,29 @@ const cancelBooking = async (req, res) => {
   }
 }
 
-const stripe = new Stripe(process.env.STRIPE_KEY_SELECT)
 
-// Backend Route
-const paymentStripe = async (req, res) => {
-  const frontend_url = process.env.FRONTEND_URL || "http://localhost:5173";
-
+// API to get status payment
+const updatePaymentStatus = async (req, res) => {
   try {
-    const { bookedId } = req.body;
+    const { bookedId, payment } = req.body;
 
-    // Validate booking ID
-    if (!bookedId) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Booking ID is required." 
-      });
+    if (typeof payment !== 'boolean') {
+      return res.json({ success: false, message: "Invalid payment value" });
     }
 
-    // Find booking
-    const booking = await bookingModel.findOne({ 
-      _id: bookedId, 
-      status: { $ne: 'cancelled' } 
-    });
-
+    const booking = await bookedModel.findById(bookedId);
     if (!booking) {
-      return res.status(404).json({ 
-        success: false, 
-        message: "Booking not found or invalid." 
-      });
+      return res.json({ success: false, message: "Booking not found" });
     }
 
-    // Detailed logging for troubleshooting
-    console.log("Booking found:", {
-      id: booking._id,
-      serviceName: booking.serviceName,
-      totalPrice: booking.totalPrice
-    });
+    await bookedModel.findByIdAndUpdate(bookedId, { payment });
 
-    // Prepare line items with error checking
-    if (!booking.totalPrice) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Invalid booking price." 
-      });
-    }
-
-    const line_items = [{
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: booking.serviceName || 'Booking Service',
-        },
-        unit_amount: Math.round(booking.totalPrice * 100), // Convert to cents
-      },
-      quantity: 1,
-    }];
-
-    // Create Stripe checkout session with more error handling
-    let session;
-    try {
-      session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items,
-        mode: 'payment',
-        success_url: `${frontend_url}/verify?success=true&bookedId=${bookedId}`,
-        cancel_url: `${frontend_url}/verify?success=false&bookedId=${bookedId}`,
-        client_reference_id: bookedId.toString(),
-      });
-    } catch (stripeError) {
-      console.error("Stripe Session Creation Error:", stripeError);
-      return res.status(500).json({ 
-        success: false, 
-        message: "Failed to create payment session",
-        error: stripeError.message 
-      });
-    }
-
-    res.status(200).json({ 
-      success: true, 
-      session_url: session.url 
-    });
-
+    res.json({ success: true, message: `Payment status updated to ${payment ? "Paid" : "Unpaid"}` });
   } catch (error) {
-    // Comprehensive error logging
-    console.error('Full Payment Processing Error:', {
-      message: error.message,
-      stack: error.stack,
-      name: error.name
-    });
-
-    res.status(500).json({ 
-      success: false, 
-      message: "Internal server error during payment processing",
-      error: error.message 
-    });
+    console.error("Payment Update Error:", error);
+    res.json({ success: false, message: error.message });
   }
 }
 
 
-
-
-
-
-export { registerUser, loginUser, getProfile, updateProfile, bookedWorkshop, listBooking, cancelBooking, paymentStripe }
+export { registerUser, loginUser, getProfile, updateProfile, bookedWorkshop, listBooking, cancelBooking, updatePaymentStatus }
