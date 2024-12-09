@@ -12,6 +12,7 @@ import edit_icon from './edit_icon.png'
 import header_img from './cafe-card-img.png'
 import video_ads from './pineapple_ads.mp4'
 import upload_area from './upload_area.png'
+import cancel_icon from './cancel_icon.png'
 
 
 // export const for assets 
@@ -27,12 +28,8 @@ export const admin = {
     header_img,
     video_ads,
     upload_area,
+    cancel_icon,
 }
-
-
-// export const for product
-
-
 
 // export const for workshop
 export const category_workshop = [

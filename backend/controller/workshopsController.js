@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary"
 import workshopsModel from "../models/workshopsModel.js"
+import bookedModel from "../models/bookedModdel.js"
 
 // API to add a workshop
 const addWorkshops = async (req, res) => {
@@ -113,4 +114,100 @@ const workshopList = async(req, res) => {
     }
 }
 
-export { addWorkshops, allWorkshop, changeAvailability, workshopList }
+// API to get all booking list
+const bookedsAdmin = async (req, res) => {
+    try {
+        
+        const bookeds = await bookedModel.find({})
+        res.json({success:true, bookeds})
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+// API for booking cancel
+const bookingCancel = async (req, res) => {
+    try {
+      const { bookedId, processIdToCancel } = req.body
+  
+      // ดึงข้อมูลการจอง
+      const booking = await bookedModel.findById(bookedId)
+      if (!booking) {
+        return res.json({ success: false, message: "Booking not found" })
+      }
+  
+      const {
+        workshopId,
+        slotDate,
+        slotTime,
+        ticketCount,
+        userId,
+        processId,
+      } = booking
+  
+      // ดึงข้อมูล workshop 
+      const workshop = await workshopsModel.findById(workshopId)
+      if (!workshop) {
+        return res.json({ success: false, message: "Workshop not found" })
+      }
+  
+      // สร้างสำเนาของ slots_booked 
+      const currentSlotsBooked = workshop.slots_booked ?
+        JSON.parse(JSON.stringify(workshop.slots_booked)) :
+        {}
+  
+      // เงื่อนไขการกรองและยกเลิก slot 
+      if (currentSlotsBooked[slotDate]) {
+        // กรองเพื่อค้นหา slot ที่ต้องการยกเลิก
+        const slotToCancel = currentSlotsBooked[slotDate].find(slot =>
+          processIdToCancel ?
+            String(slot.processId) === String(processIdToCancel) :
+            (String(slot.userId) === String(userId) && slot.slotTime === slotTime)
+        )
+  
+        if (slotToCancel) {
+          // ลบเฉพาะ slot ที่ตรงเงื่อนไข
+          currentSlotsBooked[slotDate] = currentSlotsBooked[slotDate].filter(
+            slot => slot !== slotToCancel
+          )
+  
+          // ลบ key วันที่ถ้าไม่มี slots เหลือ
+          if (currentSlotsBooked[slotDate].length === 0) {
+            delete currentSlotsBooked[slotDate]
+          }
+  
+          // อัปเดต workshop
+          await workshopsModel.findByIdAndUpdate(
+            workshopId,
+            {
+              slots_booked: currentSlotsBooked,
+              $inc: {
+                remainingSeats: slotToCancel.ticketCount || ticketCount
+              }
+            }
+          )
+  
+          // อัปเดตสถานะการจอง
+          await bookedModel.findByIdAndUpdate(
+            bookedId,
+            {
+              cancelled: true,
+              cancellationReason: processIdToCancel ?
+                'Specific process cancellation' :
+                'Full booking cancellation'
+            }
+          )
+        }
+      }
+  
+      res.json({ success: true, message: "Booking cancelled successfully" })
+  
+    } catch (error) {
+      console.error("Cancellation Error:", error)
+      res.json({ success: false, message: error.message })
+    }
+  }
+
+export { addWorkshops, allWorkshop, changeAvailability, workshopList, bookedsAdmin, bookingCancel }

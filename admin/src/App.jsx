@@ -15,7 +15,6 @@ import Booking from './pages/WorkshopManagement/Booking.jsx'
 
 import AddBlogs from './pages/BlogManagement/AddBlogs.jsx'
 import ListBlogs from './pages/BlogManagement/ListBlogs.jsx'
-import RightSidebar from './components/RightSidebar.jsx'
 
 import { AdminContext } from './context/AdminContext.jsx'
 
@@ -31,7 +30,7 @@ function App() {
             <div className='flex'>
               <Sidebar />
               <Routes>
-                < Route path='/' element={<></>} />
+                < Route path='/' element={<Dashboard />} />
                 < Route path='/admin-dashboard' element={<Dashboard />} />
                 < Route path='/workshop-add' element={<AddWorkshop />} />
                 < Route path='/workshop-list' element={<ListWorkshop />} />
@@ -39,7 +38,6 @@ function App() {
                 < Route path='/blogs-add' element={<AddBlogs />} />
                 < Route path='/blogs-list' element={<ListBlogs />} />
               </Routes>
-              < RightSidebar />
             </div>
       </div>
     </div>
