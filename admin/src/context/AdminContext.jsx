@@ -13,7 +13,6 @@ const AdminContextProvider = (props) => {
         backendUrl,
     }
 
-    // 7.40
 
   return (
     <AdminContext.Provider value={value}>

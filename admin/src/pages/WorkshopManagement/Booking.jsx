@@ -40,7 +40,7 @@ const Booking = () => {
             <p className='max-sm-hidden px-2'>{index+1}</p>
 
             <div className='flex items-center gap-2 px-2'>
-              <img className='w-8 rounded-full' src={item.userData.image} alt="" /> <p>{item.userData.name}</p>
+              <img className='w-8 h-8 object-cover rounded-full' src={item.userData.image} alt="" /> <p>{item.userData.name}</p>
             </div>
 
             <p className='max-sm:hidden px-2'>{calculateAge(item.userData.dob)}</p>
@@ -48,7 +48,7 @@ const Booking = () => {
             <p>{slotDateFormat(item.slotDate)}, {item.slotTime}</p>
 
             <div className='flex items-center gap-2 px-2'>
-              <img className='w-8 rounded-full' src={item.workshopData.workshopImg} alt="" /> <p>{item.workshopData.name}</p>
+              <img className='w-8 h-8 object-cover rounded-full' src={item.workshopData.workshopImg} alt="" /> <p>{item.workshopData.name}</p>
             </div>
 
             <p>x{item?.workshopData?.slots_booked[item?.slotDate]?.reverse().find((slot) => slot.slotTime === item?.slotTime)?.ticketCount}</p>

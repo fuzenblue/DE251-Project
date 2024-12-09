@@ -13,6 +13,7 @@ const WorkshopContextProvider = (props) => {
 
   const [ workshops, setWorkshop ] = useState([])
   const [bookeds, setBookeds] = useState([])
+  const [dashData, setDashData] = useState(false)
 
   const getAllWorkshop = async(aToken) => {
     try {
@@ -54,8 +55,6 @@ const WorkshopContextProvider = (props) => {
 
       if (data.success) {
         setBookeds(data.bookeds)
-        console.log(data.bookeds)
-        
       } else {
         toast.error(data.message)
       }
@@ -83,6 +82,21 @@ const WorkshopContextProvider = (props) => {
     }
   }
 
+  const getDashData = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + '/api/admin/dashboard', {headers: { aToken }})
+      if (data.success) {
+        setDashData(data.dashData)
+        console.log(data.dashData)
+      } else {
+        toast.error(data.message)
+      }
+    } catch {
+      console.error(error.response || error.message)
+      toast.error(error.message)
+    }
+  }
+
   const value = {
     workshops,
     getAllWorkshop,
@@ -90,6 +104,7 @@ const WorkshopContextProvider = (props) => {
     bookeds, setBookeds,
     getAllBookeds,
     cancelBooking,
+    dashData, getDashData,
   }
 
 

@@ -14,6 +14,13 @@ import video_ads from './pineapple_ads.mp4'
 import upload_area from './upload_area.png'
 import cancel_icon from './cancel_icon.png'
 
+import workshop_icon from './workshop.png'
+import ticket_icon from './ticket.png'
+import user_icon from './user.png'
+import star_icon from './star.png'
+import pocket_icon from './pocket.png'
+import money_icon from './money.png'
+
 
 // export const for assets 
 export const admin = {
@@ -29,6 +36,12 @@ export const admin = {
     video_ads,
     upload_area,
     cancel_icon,
+    workshop_icon,
+    ticket_icon,
+    user_icon,
+    star_icon,
+    pocket_icon,
+    money_icon,
 }
 
 // export const for workshop
