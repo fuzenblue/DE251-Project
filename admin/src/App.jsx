@@ -35,8 +35,8 @@ function App() {
                 < Route path='/workshop-add' element={<AddWorkshop />} />
                 < Route path='/workshop-list' element={<ListWorkshop />} />
                 < Route path='/workshop-booking' element={<Booking />} />
-                < Route path='/blogs-add' element={<AddBlogs />} />
-                < Route path='/blogs-list' element={<ListBlogs />} />
+                {/* < Route path='/blogs-add' element={<AddBlogs />} />
+                < Route path='/blogs-list' element={<ListBlogs />} /> */}
               </Routes>
             </div>
       </div>

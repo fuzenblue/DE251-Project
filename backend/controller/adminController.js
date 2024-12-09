@@ -31,40 +31,87 @@ const adminDashboard = async (req, res) => {
         const users = await userModel.find({})
         const booked = await bookedModel.find({})
 
-        const totalRevenue = booked.filter((b) =>
-            (b.cancelled === false && b.payment === true) || (b.cancelled === true && b.payment === true)
-        ).reduce((acc, curr) => acc + curr.amount, 0)
+        // Debug: Log raw data
+        console.log('Workshops:', workshops.length)
+        console.log('Booked:', booked.length)
 
+        const totalRevenue = booked
+            .filter((b) => b.payment === true)
+            .reduce((acc, curr) => acc + curr.amount, 0)
+
+        // Workshop Popularity Calculation
         const workshopPopularity = {}
         booked.forEach((b) => {
-            if (!workshopPopularity[b.workshopId]) {
-                workshopPopularity[b.workshopId] = 0
+            // Debug: Log current booking
+            console.log('Current Booking:', {
+                workshopId: b.workshopId,
+                workshopData: b.workshopData
+            })
+
+            if (b.workshopId) {
+                const workshopId = b.workshopId.toString()
+                
+                // Initialize workshop popularity if not exists
+                if (!workshopPopularity[workshopId]) {
+                    workshopPopularity[workshopId] = 0
+                }
+
+                // Safely calculate tickets
+                if (b.workshopData?.slots_booked) {
+                    Object.keys(b.workshopData.slots_booked).forEach(slotDate => {
+                        const slotsForDate = b.workshopData.slots_booked[slotDate] || []
+                        
+                        slotsForDate.forEach(slot => {
+                            const tickets = slot.ticketCount || 1
+                            
+                            // Debug: Log ticket calculation
+                            console.log(`Workshop ${workshopId} - Slot Date: ${slotDate}, Tickets: ${tickets}`)
+                            
+                            workshopPopularity[workshopId] += tickets
+                        })
+                    })
+                }
             }
-            workshopPopularity[b.workshopId] += 1;
-        }) 
+        })
 
-        const popularWorkshops = Object.entries(workshopPopularity).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([id, count]) => ({workshopId: id, count}))
+        // Debug: Log workshop popularity
+        console.log('Workshop Popularity:', workshopPopularity)
 
+        // Map Popular Workshops
+        const popularWorkshops = Object.entries(workshopPopularity)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5)
+            .map(([id, count]) => {
+                const workshop = workshops.find((w) => w._id.toString() === id)
+                
+                return {
+                    workshopName: workshop?.name || "Unknown",
+                    count,
+                    image: workshop?.workshopImg, 
+                }
+            })
+
+        // Prepare Dashboard Data
         const dashData = {
             totalWorkshops: workshops.length,
             totalBookings: booked.length,
             totalUsers: users.length,
-            latestBookings: booked.reverse().slice(0, 10),
+            latestBookings: booked.reverse().slice(0, 30),
             totalRevenue,
             popularWorkshops,
         }
 
-        console.log("Top 5 Popular Workshops:", popularWorkshops)
-        console.log("Workshop Popularity:", workshopPopularity)
-        console.log("Total Revenue: ", totalRevenue)
-        console.log("Popular Workshops: ", popularWorkshops)
+        // Debug: Log final dashboard data
+        console.log('Dashboard Data:', JSON.stringify(dashData, null, 2))
 
         res.json({ success: true, dashData })
     } catch (error) {
-        console.error(error)
-        res.json({ success: false, message: error.message })
+        console.error('Admin Dashboard Error:', error)
+        res.status(500).json({ 
+            success: false, 
+            message: error.message 
+        })
     }
 }
-
 
 export { loginAdmin, adminDashboard }

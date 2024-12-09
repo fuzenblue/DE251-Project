@@ -119,6 +119,7 @@ const AddWorkshop = () => {
               <option value="Planting">Planting</option>
               <option value="Cooking">Cooking</option>
               <option value="Crafting">Crafting</option>
+              <option value="Tour">Tour</option>
               <option value="For Kids">For Kids</option>
             </select>
           </div>

@@ -29,11 +29,12 @@ const RelatedWorkshops = ({category, workshopId}) => {
                 // {navigate(`/all-service/${workshops._id}`); scrollTo(0,0)} ตั้งให้กดแล้วเลื่อนขึ้นด้านบน
                 <div onClick={() => {navigate(`/all-service/${workshops._id}`); scrollTo(3,0)}} 
                      className='border shadow-sm border-gray-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
-                    <img className='bg-orange-50' src={workshops.workshopImg} alt="" />
+                    <img className='w-full h-[14rem] object-cover' src={workshops.workshopImg} alt="" />
                     <div className='p-4'>
                         <p className='text-gray-900 text-lg font-medium'>{workshops.name}</p>
                         <span className="text-primary font-semibold">{currencySymbol} {workshops.price}</span>
                         <p className='text-gray-600 text-sm'>{workshops.category}</p>
+                        <p className='text-gray-900 text-md font-xs'>{workshops.about}</p>
                     </div>
                 </div>
             ))}

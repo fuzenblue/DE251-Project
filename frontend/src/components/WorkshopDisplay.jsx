@@ -66,7 +66,7 @@ const WorkshopDisplay = () => {
                   </div>
                   <h3 className='text-lg font-semibold mt-8 cursor-pointer hover:text-primary'> {workshop.name}</h3>
                   <h4 className='text-md font-semibold text-gray-500 flex justify-end'>{workshop.category}</h4>
-                  <p className='text-sm mt-3 text-dark-brown'>{workshop.about}</p>
+                  <p className='text-start text-sm m-3 text-dark-brown'>{workshop.about}</p>
                 </div>
               </Link>
             ))

@@ -59,7 +59,7 @@ const Dashboard = () => {
             <img className='w-14' src={admin.user_icon} alt="" />
             <div>
               <p className='text-xl text-gray-600 font-semibold'>{dashData.totalUsers}</p>
-              <p className='text-gray-400'>Patients</p>
+              <p className='text-gray-400'>Member</p>
             </div>
           </div>
         </div>
@@ -99,18 +99,48 @@ const Dashboard = () => {
       </div>
 
       {/* Popular Workshop &&  */}
-      <div className='px-5 mt-5 grid grid-cols-3 gap-4'>
+      <div className='px-5 mt-5 grid grid-cols-3 gap-4 mb-8'>
         {/* Popular Workshop */}
-        <div className='py-3 px-6 col-span-2 bg-white rounded-lg border'>
-          <div>
-            456
+        <div className='col-span-1 bg-white rounded-lg border'>
+          <div className='flex items-center gap-3 px-4 py-4'>
+            <img className='w-8' src={admin.workshop_icon} alt="" />
+            <p className='font-semibold'>Popular Workshops</p>
+          </div>
+
+          <div className='px-4'>
+            {dashData.popularWorkshops.map((item, index) => (
+              <div key={index} className='flex items-center py-2 border-b'>
+                <img src={item.image} alt={item.workshopName} className='w-12 h-12 rounded-full mr-4' />
+                <div>
+                  <p className='font-medium'>{item.workshopName}</p>
+                  <p className='text-gray-600'>{item.count} bookings</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/*  */}
-        <div className='py-3 px-6 col-span-1 bg-white rounded-lg border'>
-          
+        {/* Membership */}
+        <div className='col-span-2 bg-white rounded-lg border max-h-[388px] overflow-y-scroll'>
+          <div className='flex items-center gap-3 px-4 py-4'>
+            <img className='w-8' src={admin.user_icon} alt="" />
+            <p className='font-semibold'>All User</p>
+          </div>
+
+          <div className="px-6 space-y-4">
+            {[...new Map(dashData.latestBookings.map((booking) => [booking.userData.email, booking])).values(),].map((booking, index) => (
+              <div key={index} className="flex items-center space-x-4 border-b pb-2 last:border-b-0">
+                <img src={booking.userData?.image} alt='' className="w-12 h-12 rounded-full object-cover" />
+                <div className='flex items-center gap-8 px-4 justify-center'>
+                  <p className="w-36 font-medium text-gray-800">{booking.userData.name}</p>
+                  <p className="w-36 text-sm text-gray-500">{booking.userData.email}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+
+
       </div>
     </div>
   )

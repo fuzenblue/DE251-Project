@@ -104,6 +104,10 @@ export const category_workshop = [
         category: 'For Kids',
         text: 'Workshop For Kids'
     },
+    {
+        category: 'Tour',
+        text: 'Farm Tour with Gide'
+    },
 ]
 
 export const workshops = [
