@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MyProfileSideBar from '../components/MyProfileSideBar'
-import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -13,6 +12,8 @@ const MyBooking = () => {
 
   const [bookings, setBookings] = useState([])
   const months = [" ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+  const [isLoading, setIsLoading] = useState(false)
 
   const slotDateFormat = (slotDate) => {
     const dateArray = slotDate.split('_')
@@ -51,7 +52,46 @@ const MyBooking = () => {
       toast.error(error.message)
     }
   }
-
+  const payOnline = async (bookedId) => {
+    // Log the token to verify
+    const token = localStorage.getItem('token');
+    console.log('Current Token:', token);
+  
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/user/payment-stripe`, 
+        { bookedId }, 
+        { 
+          headers: { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json' 
+          } 
+        }
+      );
+  
+      // Log full response for debugging
+      console.log('Full Response:', data);
+  
+      if (data.success && data.session_url) {
+        window.location.href = data.session_url;
+      } else {
+        // Detailed error logging
+        console.error('Payment Error Details:', data);
+        toast.error(data.message || "Payment initiation failed");
+      }
+    } catch (error) {
+      // Comprehensive error logging
+      console.error('Full Error Object:', error);
+      console.error('Error Response:', error.response);
+      
+      const errorMessage = 
+        error.response?.data?.message || 
+        error.message || 
+        "Unexpected payment processing error";
+      
+      toast.error(errorMessage);
+    }
+  };
   useEffect(() => {
     if (token) {
       getUserBookings()
@@ -77,12 +117,12 @@ const MyBooking = () => {
                 <p className='text-lg text-neutral-800 font-semibold'>{item.workshopData.name}</p>
                 <p className='text-base'>{item.workshopData.category}</p>
                 <p className='text-base mt-4'><span className='text-sm text-neutral-800 font-medium pr-2'>Date & Time:</span>{slotDateFormat(item.slotDate)} at {item.slotTime}</p>
-                <p className="text-base"><span className="text-sm text-neutral-800 font-medium pr-2">Total Ticket:</span>{ item?.workshopData?.slots_booked[item?.slotDate]?.reverse().find((slot) => slot.slotTime === item?.slotTime)?.ticketCount }</p>
+                <p className="text-base"><span className="text-sm text-neutral-800 font-medium pr-2">Total Ticket:</span>{item?.workshopData?.slots_booked[item?.slotDate]?.reverse().find((slot) => slot.slotTime === item?.slotTime)?.ticketCount}</p>
                 <p className='text-base'><span className='text-sm text-neutral-800 font-medium pr-2'>Total Among:</span>{item.amount}</p>
               </div>
               <div></div>
               <div className='flex flex-col gap-2 justify-end'>
-                {!item.cancelled && <button className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-green-400 hover:text-white transition-all duration-300'>Pay Online</button>}
+                {!item.cancelled && <button onClick={() => payOnline(item._id)} className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-green-400 hover:text-white transition-all duration-300'>Pay Online</button>}
                 {!item.cancelled && <button className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300'>Get Ticket</button>}
                 {!item.cancelled && <button onClick={() => cancelBookings(item._id)} className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Cancel Workshop</button>}
                 {item.cancelled && <button className='sm:min-w-48 py-2 border border-red-500 rounded text-red-700'>Workshop Cancelled</button>}
