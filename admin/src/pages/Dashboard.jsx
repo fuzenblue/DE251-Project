@@ -31,7 +31,7 @@ const Dashboard = () => {
 
 
         <div className='px-2 flex flex-wrap gap-3'>
-          <div className='flex items-center gap-2 bg-white px-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
+          <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
             <img className='w-14' src={admin.money_icon} alt="" />
             <div>
               <p className='text-xl text-gray-600 font-semibold'>{dashData.totalRevenue}</p>
@@ -72,7 +72,7 @@ const Dashboard = () => {
           <p className='font-semibold'>Last Bookings</p>
         </div>
 
-        <div className='pt-4 border border-t-0 h-64 overflow-y-scroll'>
+        <div className='pt-4 border border-t-0 max-h-72 overflow-y-scroll'>
           {
             dashData.latestBookings.map((item, index) => (
 
