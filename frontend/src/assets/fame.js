@@ -12,27 +12,16 @@ import pic5_aboutus from './pic5aboutus.jpg'
 import blogs_head from './Bloghead.jpg'
 import about_head from './abouthead.jpg'
 import blogs_head1 from './bloghead1.jpg'
-import blogs_pic1 from './blogpic1.png'
-import blogs_pic2 from './blogpic2.png'
-import blogs_pic3 from './blogpic3.jpg'
-import blogs_pic1_1 from './blogpic1_1.jpg'
-import blogs_pic1_4 from './blogpic1_4.jpg'
-import blogs_pic1_2 from './blogpic1_2.jpg'
-import blogs_pic2_1 from './blogpic2_1.jpg'
-import blogs_pic2_2 from './blogpic2_2.jpg'
-import blogs_pic2_3 from './blogpic2_3.jpg'
-import blogs_pic3_1 from './blogpic3_1.jpg'
-import blogs_pic3_2 from './blogpic3_2.jpg'
-import blogs_pic3_3 from './blogpic3_3.jpg'
-import blogs_para from './blogspara1.jpg'
-import blogs_soil from './blogpara1_soil.jpg'
-import blogs_pinapplejuice from './blogspineapplejuice.png'
-import blogs_jam from './blogs_jam.jpg'
-import blogs_jam1 from './blogs_jam1.jpg'
-import blogs_smootie from './blogs_smootie.jpg'
-import blogs_cocktail from './blogs_cocktail.jpg'
+import blogs_1 from './Blogs_pic1.svg'
 import logout_icon from './logout_fame.png'
-
+import blogs_2 from './blog_pic2.svg'
+import blogs_3 from './blogs_pic3.png'
+import blogs_4 from './blogs_4.png'
+import blogs_5 from './blogs_pic5.png'
+import blogs_6 from './blogs_6.png'
+import blogs_7 from './blogs_7.png'
+import blogs_8 from './blogs_8.png'
+import blogs_9 from './blogs_9.png'
 
 
 
@@ -52,26 +41,16 @@ export const fame ={
     blogs_head,
     about_head,
     blogs_head1,
-    blogs_pic1,
-    blogs_pic2,
-    blogs_pic3,
-    blogs_pic1_1,
-    blogs_pic1_4,
-    blogs_pic1_2,
-    blogs_pic2_1,
-    blogs_pic2_2,
-    blogs_pic2_3,
-    blogs_pic3_1,
-    blogs_pic3_2,
-    blogs_pic3_3,
-    blogs_para,
-    blogs_soil,
-    blogs_pinapplejuice,
-    blogs_jam,
-    blogs_jam1,
-    blogs_smootie,
-    blogs_cocktail,
     logout_icon,
+    blogs_1,
+    blogs_2,
+    blogs_3,
+    blogs_4,
+    blogs_5,
+    blogs_6,
+    blogs_7,
+    blogs_8,
+    blogs_9,
 
 
     

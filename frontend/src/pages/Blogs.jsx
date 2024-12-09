@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { fame } from "../assets/fame";
 
+
 const Blogs = () => {
   const articles = [
     {
       id: 1,
       title: "The Complete Guide to Growing Sweet Pineapples",
-      description: "Master the art of growing delicious pineapples with our comprehensive guide...",
+      description: "Master the art of growing delicious pineapples with our comprehensive guide! Whether you're a seasoned gardener or a beginner, cultivating pineapples can be a rewarding and enjoyable experience.",
       date: "October 20, 2024",
-      image: fame.blogs_pic2_2,
+      image: fame.blogs_1,
       descriptions: [ // เปลี่ยนจาก 'steps' เป็น 'descriptions'
         {
           title: "Step 1: Choose the Right Pineapple Crown",
@@ -30,9 +31,9 @@ const Blogs = () => {
     {
       id: 2,
       title: "Pineapple Farming: Sustainable Practices for a Sweet Future",
-      description: `Pineapple farming has long been associated with environmental challenges ...`,
+      description: `Pineapple farming has long been associated with environmental challenges, particularly due to its high water requirements, the use of pesticides, and the large-scale monoculture farming practices.`,
       date: "October 18, 2024",
-      image: fame.blogs_pic2_1,
+      image: fame.blogs_2,
       descriptions: [
         {
           title: "Step 1: Organic Fertilizers and Soil Health",
@@ -71,9 +72,9 @@ const Blogs = () => {
     {
       id: 3,
       title: "Pineapple Coconut Mock-tail",
-      description: `This tropical Pineapple Coconut Mock-tail is the perfect refreshing drink...`,
+      description: `This tropical Pineapple Coconut Mock-tail is the perfect refreshing drink.`,
       date: "October 25, 2024",
-      image: fame.blogs_cocktail ,  // You can change this image if you want to match a mock-tail picture
+      image: fame.blogs_3 ,  // You can change this image if you want to match a mock-tail picture
       descriptions: [
         {
           title: "Ingredients",
@@ -105,7 +106,7 @@ const Blogs = () => {
       title: "How to Make Pineapple Jam at Home",
       description: `Making homemade pineapple jam is a fun and rewarding experience. It’s a great way to preserve the sweetness of pineapples, and you can use it in various dishes like toast, desserts, or even as a filling for pastries. In this article, I’ll walk you through the process of making pineapple jam at home from scratch.`,
       date: "October 28, 2024",
-      image: fame.blogs_jam1,
+      image: fame.blogs_4,
       descriptions: [
         {
           title: "Ingredients",
@@ -137,7 +138,7 @@ const Blogs = () => {
       title: "The History of Pineapple in Global Cuisine",
       description: `Pineapple, once considered an exotic luxury fruit, has become a staple in kitchens around the world. But where did it come from, and how did it make its way into so many dishes? Let’s take a journey through time to understand the history of pineapple in global cuisine.`,
       date: "October 30, 2024",
-      image: fame.blogs_pic3_3,
+      image: fame.blogs_5,
       descriptions: [
         {
           title: "The Origins of Pineapple",
@@ -170,7 +171,7 @@ const Blogs = () => {
       title: "Pineapple in Smoothies: 3 Delicious Recipes",
       description: `Pineapple adds a sweet, tropical flair to smoothies. It's the perfect addition to a healthy breakfast or snack. In this article, I’ll share three delicious pineapple smoothie recipes that will help you beat the heat and enjoy a nutritious drink at the same time.`,
       date: "November 2, 2024",
-      image: fame.blogs_smootie,
+      image: fame.blogs_6,
       descriptions: [
         {
           title: "Tropical Pineapple Mango Smoothie",
@@ -203,7 +204,7 @@ const Blogs = () => {
       title: "Pineapple in Traditional Thai Desserts",
       description: `Pineapple is a popular fruit used in many Thai desserts. Its sweet and tangy flavor pairs perfectly with traditional Thai ingredients like coconut, palm sugar, and sticky rice. In this article, we explore how pineapple is used in Thai desserts, along with a few recipes you can try at home.`,
       date: "November 5, 2024",
-      image: fame.blogs_pic3_3 ,
+      image: fame.blogs_7 ,
       descriptions: [
         {
           title: "Pineapple Sticky Rice",
@@ -236,7 +237,7 @@ const Blogs = () => {
       title: "Pineapple in Savory Dishes: A Flavorful Twist",
       description: `Pineapple isn’t just for sweets; it’s also an excellent addition to savory dishes! Its tangy and sweet flavor can balance out rich meats, spice up stir-fries, or even add an exciting twist to salads. In this article, we’ll explore the versatility of pineapple in savory recipes.`,
       date: "November 8, 2024",
-      image: fame.blogs_pic2_3,
+      image: fame.blogs_8,
       descriptions: [
         {
           title: "Pineapple Fried Rice",
@@ -254,11 +255,13 @@ const Blogs = () => {
           title: "Pineapple Salsa",
           description:
             "Pineapple salsa is a great topping for grilled meats or fish. The sweetness of the pineapple balances out the heat from jalapeños, and the cilantro adds freshness.",
+        
         },
         {
           title: "Pineapple in Salad",
           description:
             "Adding pineapple to salads gives them a refreshing twist. Combine with greens, nuts, and a light vinaigrette dressing for a vibrant, tropical salad.",
+          
         },
       ],
     },
@@ -267,27 +270,31 @@ const Blogs = () => {
       title: "Pineapple as a Natural Health Booster",
       description: `Pineapple is not only delicious but also packed with nutrients that can benefit your health. From boosting your immune system to aiding digestion, this tropical fruit is a natural health booster. In this article, we’ll look at the health benefits of pineapple and why you should include it in your diet.`,
       date: "November 12, 2024",
-      image: fame.blogs_pic3_2,
+      image: fame.blogs_9,
       descriptions: [
         {
           title: "Rich in Vitamins and Minerals",
           description:
             "Pineapple is an excellent source of vitamin C, which helps boost the immune system. It also contains manganese, vitamin A, and several B vitamins.",
+        
         },
         {
           title: "Aids Digestion",
           description:
             "Pineapple contains bromelain, an enzyme that helps break down proteins and improve digestion. This makes it a great natural remedy for bloating and indigestion.",
+        
         },
         {
           title: "Anti-Inflammatory Benefits",
           description:
             "The bromelain in pineapple also has anti-inflammatory properties, which can help reduce swelling and pain in the body, making it beneficial for conditions like arthritis.",
+       
         },
         {
           title: "Boosts Skin Health",
           description:
             "The vitamin C in pineapple also promotes healthy, glowing skin by stimulating collagen production, which keeps your skin firm and youthful.",
+          
         },
       ],
     }
@@ -298,7 +305,14 @@ const Blogs = () => {
     
     
   ];
-
+  const galleryImages = [
+    fame.gallery_img1,
+    fame.gallery_img2,
+    fame.gallery_img3,
+    fame.gallery_img4,
+    fame.gallery_img5,
+    fame.gallery_img6,
+  ];
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedArticle, setSelectedArticle] = useState(null);
 
@@ -338,80 +352,45 @@ const Blogs = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <h2 className="text-3xl font-semibold text-center mb-8">Photo Gallery</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {/* รูปภาพตัวอย่าง - คุณสามารถแทนที่ด้วยแหล่งที่มาของรูปภาพจริง */}
-            <div className="relative w-full h-56">
-              <img
-                src={fame.blogs_pic2_2} // แทนที่ด้วย URL หรือ path ของรูปภาพ
-                alt="Pineapple Field"
-                className="w-full h-full object-cover rounded-lg"
-              />
+      {/* Photo Gallery Section */}
+        {!selectedArticle && (
+          <div className="mt-16">
+            <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Photo Gallery</h2>
+            <div className="image-gallery">
+              <img src="path_to_image1" alt="description1" />
+              <img src="path_to_image2" alt="description2" />
+              {/* เพิ่มรูปภาพอื่นๆ */}
             </div>
-            <div className="relative w-full h-56">
-              <img
-                src={fame.blogs_pic2_1} // แทนที่ด้วย URL หรือ path ของรูปภาพ
-                alt="Pineapple Farm"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="relative w-full h-56">
-              <img
-                src={fame.blogs_pic3_3} // แทนที่ด้วย URL หรือ path ของรูปภาพ
-                alt="Fresh Pineapples"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="relative w-full h-56">
-              <img
-                src={fame.blogs_pic3_2} // แทนที่ด้วย URL หรือ path ของรูปภาพ
-                alt="Pineapple Plantation"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            {/* เพิ่มรูปภาพอื่นๆ ที่ต้องการ */}
           </div>
-      </div>
+        )}
       {/* Blog Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {selectedArticle ? (
           // Expanded view of selected article
-          <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="bg-white p-6 rounded-lg shadow-lg mb-12 pb-12">
             <button
               onClick={() => setSelectedArticle(null)}
               className="mb-4 text-orange-500 hover:underline"
             >
               Back to All Blogs
             </button>
-            <div className="relative w-full h-0 pb-[60%]">
+            <div className="relative w-full h-0 pb-[45%]">
               <img
                 src={selectedArticle.image}
                 alt={selectedArticle.title}
-                className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
-            <h3 className="mt-4 text-2xl font-semibold">{selectedArticle.title}</h3>
-            <p className="mt-2 text-gray-600">{selectedArticle.date}</p>
-            <div className="mt-6">
-              <h4 className="text-xl font-semibold mb-4">Descriptions:</h4> {/* เปลี่ยนจาก 'Steps' เป็น 'Descriptions' */}
-              {selectedArticle.descriptions.map((desc, index) => ( // เปลี่ยนจาก 'steps' เป็น 'descriptions'
-                <div key={index} className="mb-6">
-                  <h5 className="text-lg font-semibold">{desc.title}</h5>
-                  <p className="text-gray-700">{desc.description}</p>
-                  {desc.image && (
-                    <div className="relative w-full h-0 pb-[60%]">
-                      <img
-                        src={desc.image}
-                        alt={desc.title}
-                        className="absolute inset-0 w-full h-full object-cover rounded-lg mt-2"
-                      />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            <h2 className="text-2xl font-bold mt-4">{selectedArticle.title}</h2>
+            <p className="text-gray-700 mt-2">{selectedArticle.description}</p>
+            {selectedArticle.descriptions.map((desc, index) => (
+              <div key={index} className="mt-4">
+                <h3 className="text-xl font-semibold">{desc.title}</h3>
+                <p className="text-gray-600">{desc.description}</p>
+              </div>
+            ))}
           </div>
+
         ) : (
         // Blog Cards
           <div className="container mx-auto px-4 py-12">
@@ -423,7 +402,7 @@ const Blogs = () => {
                   className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer overflow-hidden"
                   onClick={() => setSelectedArticle(article)}
                 >
-                  <div className="relative w-full h-56 md:h-64 lg:h-72">
+                  <div className="relative w-45 h-56 md:h-64 lg:h-72">
                     <img
                       src={article.image}
                       alt={article.title}
@@ -439,8 +418,9 @@ const Blogs = () => {
               ))}
             </div>
           </div>
-
+          
         )}
+        
       </div>
     </div>
   );
