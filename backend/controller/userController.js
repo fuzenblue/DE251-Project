@@ -292,7 +292,6 @@ const cancelBooking = async (req, res) => {
   }
 }
 
-
 // API to get status payment
 const updatePaymentStatus = async (req, res) => {
   try {
