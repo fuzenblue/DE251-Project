@@ -20,22 +20,16 @@ A platform that combines agricultural tourism with digital convenience, offering
    npm install
    ```
 
-**ตั้งค่าฐานข้อมูลและ Environment Variables**
+## ตั้งค่าฐานข้อมูลและ Environment Variables 
    
-   - สร้างไฟล์ `.env` ใน root directory (หรือในโฟลเดอร์ที่มี backend) และเพิ่มค่าต่าง ๆ ที่จำเป็น เช่น:
+   - สร้างไฟล์ `.env` ใน root directory และเพิ่มค่าต่าง ๆ ที่จำเป็น เช่น:
      ```env
      MONGO_URI=your_mongodb_connection_string
      JWT_SECRET=your_jwt_secret
      CLOUDINARY_URL=your_cloudinary_connection_string
      ```
 
-**ตั้งค่า Tailwind CSS** (ถ้ายังไม่ได้ตั้งค่า)
-
-   - หากใช้ **Tailwind CSS** ใน frontend, ให้รันคำสั่งนี้:
-     ```bash
-     npx tailwindcss init -p
-     ```
-
+---
 **รันโปรเจกต์**
 
    ### รัน **Frontend**:
