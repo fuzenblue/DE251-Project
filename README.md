@@ -9,13 +9,13 @@ A platform that combines agricultural tourism with digital convenience, offering
 **ติดตั้ง Dependencies สำหรับทั้ง Frontend และ Backend**
 
    ### ติดตั้ง dependencies สำหรับ **Frontend**:
-   ไปที่โฟลเดอร์ `frontend` (หากมี) แล้วรันคำสั่ง:
+   ไปที่โฟลเดอร์ `frontend` แล้วรันคำสั่ง:
    ```bash
    npm install
    ```
 
    ### ติดตั้ง dependencies สำหรับ **Admin Panel**:
-   ไปที่โฟลเดอร์ `admin` (หากมี) แล้วรันคำสั่ง:
+   ไปที่โฟลเดอร์ `admin` แล้วรันคำสั่ง:
    ```bash
    npm install
    ```
