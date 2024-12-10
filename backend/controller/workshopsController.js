@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary"
 import workshopsModel from "../models/workshopsModel.js"
-import bookedModel from "../models/bookedModdel.js"
+import bookedModel from "../models/bookedModel.js"
 
 // API to add a workshop
 const addWorkshops = async (req, res) => {

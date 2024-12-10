@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import workshopsModel from '../models/workshopsModel.js'
 import userModel from '../models/userModel.js'
-import bookedModel from '../models/bookedModdel.js'
+import bookedModel from '../models/bookedModel.js'
 
 // API for Admin Login
 const loginAdmin = async (req, res) => {

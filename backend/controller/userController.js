@@ -4,7 +4,7 @@ import bcrypt from "bcrypt"
 import validator from "validator"
 import { v2 as cloudinary } from 'cloudinary'
 import workshopsModel from '../models/workshopsModel.js'
-import bookedModel from '../models/BookedModdel.js'
+import bookedModel from '../models/bookedModel.js'
 
 // register user
 const registerUser = async (req, res) => {
