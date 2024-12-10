@@ -6,69 +6,73 @@ A platform that combines agricultural tourism with digital convenience, offering
 
 ## การติดตั้งโปรเจกต์  
 
-### Frontend  
-```bash
-# Create a new project with Vite
-npm create vite@latest
+**ติดตั้ง Dependencies สำหรับทั้ง Frontend และ Backend**
 
-# Install required packages
-npm install axios react-router-dom react-toastify
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-npm i -D daisyui@latest
-```
+   ### ติดตั้ง dependencies สำหรับ **Frontend**:
+   ไปที่โฟลเดอร์ `frontend` (หากมี) แล้วรันคำสั่ง:
+   ```bash
+   npm install
+   ```
 
-### Backend  
-```bash
-# Initialize a Node.js project
-npm init
+   ### ติดตั้ง dependencies สำหรับ **Admin Panel**:
+   ไปที่โฟลเดอร์ `admin` (หากมี) แล้วรันคำสั่ง:
+   ```bash
+   npm install
+   ```
 
-# Install required packages
-npm install express mongoose jsonwebtoken bcrypt cors dotenv multer validator nodemon cloudinary
-```
+**ตั้งค่าฐานข้อมูลและ Environment Variables**
+   
+   - สร้างไฟล์ `.env` ใน root directory (หรือในโฟลเดอร์ที่มี backend) และเพิ่มค่าต่าง ๆ ที่จำเป็น เช่น:
+     ```env
+     MONGO_URI=your_mongodb_connection_string
+     JWT_SECRET=your_jwt_secret
+     CLOUDINARY_URL=your_cloudinary_connection_string
+     ```
 
-### Admin Panel  
-```bash
-# Create a new project with Vite
-npm create vite@latest
+**ตั้งค่า Tailwind CSS** (ถ้ายังไม่ได้ตั้งค่า)
 
-# Install required packages
-npm install axios react-router-dom react-toastify
-npm i -D daisyui@latest
-```
+   - หากใช้ **Tailwind CSS** ใน frontend, ให้รันคำสั่งนี้:
+     ```bash
+     npx tailwindcss init -p
+     ```
+
+**รันโปรเจกต์**
+
+   ### รัน **Frontend**:
+   ไปที่โฟลเดอร์ frontend แล้วรันคำสั่ง:
+   ```bash
+   npm run dev
+   ```
+
+   ### รัน **Backend**:
+   ไปที่โฟลเดอร์ backend แล้วรันคำสั่ง:
+   ```bash
+   npm run server
+   ```
+
+   ### รัน **Admin Panel**:
+   ไปที่โฟลเดอร์ admin แล้วรันคำสั่ง:
+   ```bash
+   npm run dev
+   ```
+
+**หยุดการทำงานของโปรเจกต์**  
+   หากต้องการหยุดโปรเจกต์, ให้กด `Ctrl + C` ใน terminal ที่กำลังรันโปรเจกต์
+
+**ตรวจสอบการทำงาน**
+   เปิดเบราว์เซอร์แล้วตรวจสอบการทำงานของโปรเจกต์โดยไปที่:
+   - **Frontend**: `http://localhost:5173`
+   - **Backend**: `http://localhost:4000`  
+   - **Admin Panel**: `http://localhost:5174`
 
 ---
-
-## ตั้งค่าการเชื่อมต่อฐานข้อมูล  
-Make sure to set up your database connection and environment variables in a `.env` file. Example:  
-```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_URL=your_cloudinary_connection_string
-```
-
----
-
-## รันโปรเจกต์  
-
-### Commands  
-- **Frontend**:  
-  ```bash
-  npm run dev
-  ```  
-
-- **Backend**:  
-  ```bash
-  npm run server
-  ```  
-
-- **Admin Panel**:  
-  ```bash
-  npm run dev
-  ```  
 
 ## รหัสผ่านเข้าแอดมิน  
 - **Admin Email**: `admin@pineapple.slice.com`  
-- **Admin Password**: `pineapple_slice_admin`  
+- **Admin Password**: `pineapple_slice_admin`
+
+---
+
+**หมายเหตุ**: ก่อนเริ่มต้น, ควรติดตั้ง **Node.js** และ **Git** ก่อน
 
 Enjoy building the Pineapple Farm Platform! 🍍
