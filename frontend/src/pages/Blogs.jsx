@@ -306,9 +306,9 @@ const Blogs = () => {
     
   ];
   const galleryImages = [
-    fame.gallery_img1,
-    fame.gallery_img2,
-    fame.gallery_img3,
+    fame.photo1,
+    fame.photo2,
+    fame.photo3,
     fame.gallery_img4,
     fame.gallery_img5,
     fame.gallery_img6,
@@ -356,13 +356,59 @@ const Blogs = () => {
         {!selectedArticle && (
           <div className="mt-16">
             <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Photo Gallery</h2>
-            <div className="image-gallery">
-              <img src="path_to_image1" alt="description1" />
-              <img src="path_to_image2" alt="description2" />
-              {/* เพิ่มรูปภาพอื่นๆ */}
+            <div className="image-gallery flex overflow-x-scroll space-x-4 p-4">
+              {/* รูปที่ 1 */}
+              <div className="flex-shrink-0 w-50 h-40">
+                <img 
+                  src={fame.photo1} 
+                  alt="A description of photo1" 
+                  className="w-full h-full object-cover rounded-lg shadow-md" 
+                />
+              </div>
+              {/* รูปที่ 2 */}
+              <div className="flex-shrink-0 w-50 h-40">
+                <img 
+                  src={fame.photo2} 
+                  alt="A description of photo2" 
+                  className="w-full h-full object-cover rounded-lg shadow-md" 
+                />
+              </div>
+              {/* รูปที่ 3 */}
+              <div className="flex-shrink-0 w-50 h-40">
+                <img 
+                  src={fame.photo3} 
+                  alt="A description of photo3" 
+                  className="w-full h-full object-cover rounded-lg shadow-md" 
+                />
+              </div>
+              {/* รูปที่ 4 */}
+              <div className="flex-shrink-0 w-50 h-40">
+                <img 
+                  src={fame.photo4} 
+                  alt="A description of photo4" 
+                  className="w-full h-full object-cover rounded-lg shadow-md" 
+                />
+              </div>
+              <div className="flex-shrink-0 w-50 h-40">
+                <img 
+                  src={fame.photo5} 
+                  alt="A description of photo4" 
+                  className="w-full h-full object-cover rounded-lg shadow-md" 
+                />
+              </div>
+            </div>
+            {/* ปุ่ม See More */}
+            <div className="text-center mt-8">
+              <button
+                onClick={() => alert('Redirecting to full gallery!')} // แทนที่ด้วยฟังก์ชันของคุณ
+                className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition"
+              >
+                See More
+              </button>
             </div>
           </div>
         )}
+
       {/* Blog Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {selectedArticle ? (

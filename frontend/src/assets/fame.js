@@ -22,7 +22,11 @@ import blogs_6 from './blogs_6.png'
 import blogs_7 from './blogs_7.png'
 import blogs_8 from './blogs_8.png'
 import blogs_9 from './blogs_9.png'
-
+import photo1 from './photo1.png'
+import photo2 from './photo2.png'
+import photo3 from './photo3.png'
+import photo4 from './photo4.png'
+import photo5 from './photo5.png'
 
 
 export const fame ={
@@ -51,6 +55,12 @@ export const fame ={
     blogs_7,
     blogs_8,
     blogs_9,
+    photo1,
+    photo2,
+    photo3,
+    photo4,
+    photo5,
+
 
 
     
