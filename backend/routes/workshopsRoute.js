@@ -8,12 +8,12 @@ const workshopsRouter = express.Router()
 
 workshopsRouter.post('/add',
     upload.fields([
-        { name: 'workshopImg', maxCount: 1 }, 
-        { name: 'images', maxCount: 10 }, 
-        { name: 'video', maxCount: 1 }, 
-    ]),  addWorkshops)
+        { name: 'workshopImg', maxCount: 1 },
+        { name: 'images', maxCount: 10 },
+        { name: 'video', maxCount: 1 },
+    ]), addWorkshops)
 
-workshopsRouter.post('/all-workshops', allWorkshop) 
+workshopsRouter.post('/all-workshops', allWorkshop)
 workshopsRouter.post('/change-availability', changeAvailability)
 workshopsRouter.get('/list-workshops', workshopList)
 workshopsRouter.get('/bookings', bookedsAdmin)
