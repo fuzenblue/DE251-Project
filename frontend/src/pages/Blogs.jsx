@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { fame } from "../assets/fame";
+import LazyLoad from "react-lazyload";
 
+<LazyLoad height={200}>
+  <img src="path/to/image.jpg" alt="description" />
+</LazyLoad>;
 
 const Blogs = () => {
   const articles = [
