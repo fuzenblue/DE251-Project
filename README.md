@@ -23,8 +23,8 @@ A platform that combines agricultural tourism with digital convenience, offering
 ## ตั้งค่าฐานข้อมูลและ Environment Variables 
    
    - สร้างไฟล์ `.env` ใน root directory และเพิ่มค่า:
+
      **backend**
-     
      ```env
      MONGO_URI=your_mongodb_connection_string
      JWT_SECRET=your_jwt_secret
