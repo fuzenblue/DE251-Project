@@ -9,7 +9,6 @@ import user1 from './muser.svg'
 import info_icon from './infofame.svg'
 import farm_abouus from './farmaboutus.svg'
 import pic5_aboutus from './pic5aboutus.jpg'
-import blogs_head from './Bloghead.jpg'
 import about_head from './abouthead.jpg'
 import blogs_head1 from './bloghead1.jpg'
 import blogs_1 from './Blogs_pic1.svg'
@@ -43,7 +42,6 @@ export const fame ={
     info_icon,
     farm_abouus,
     pic5_aboutus,
-    blogs_head,
     about_head,
     blogs_head1,
     logout_icon,
@@ -61,7 +59,7 @@ export const fame ={
     photo3,
     photo4,
     photo5,
-    cont_head,
+    cont_head
 
 
 
