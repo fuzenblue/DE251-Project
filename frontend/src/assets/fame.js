@@ -27,6 +27,7 @@ import photo2 from './photo2.png'
 import photo3 from './photo3.png'
 import photo4 from './photo4.png'
 import photo5 from './photo5.png'
+import cont_head from './cont_head.svg'
 
 
 export const fame ={
@@ -60,6 +61,7 @@ export const fame ={
     photo3,
     photo4,
     photo5,
+    cont_head,
 
 
 

@@ -410,10 +410,10 @@ const Blogs = () => {
         )}
 
       {/* Blog Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         {selectedArticle ? (
           // Expanded view of selected article
-          <div className="bg-white p-6 rounded-lg shadow-lg mb-12 pb-12">
+          <div className="bg-white p-6 rounded-lg shadow-lg mb-20 pb-20">
             <button
               onClick={() => setSelectedArticle(null)}
               className="mb-4 text-orange-500 hover:underline"
