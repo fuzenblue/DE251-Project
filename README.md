@@ -94,8 +94,8 @@ A platform that combines agricultural tourism with digital convenience, offering
 
 ## website deploy
    - **Frontend**: `https://pineapple-slice-frontend.onrender.com`
-   - **Backend**: `http://localhost:4000](https://pineapple-slice-backend.onrender.com`  
-   - **Admin Panel**: `http://localhost:5174](https://pineapple-slice-admin.onrender.com`
+   - **Backend**: `https://pineapple-slice-backend.onrender.com`  
+   - **Admin Panel**: `https://pineapple-slice-admin.onrender.com`
 
 ---
 
