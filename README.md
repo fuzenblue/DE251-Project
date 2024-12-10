@@ -22,11 +22,36 @@ A platform that combines agricultural tourism with digital convenience, offering
 
 ## ตั้งค่าฐานข้อมูลและ Environment Variables 
    
-   - สร้างไฟล์ `.env` ใน root directory และเพิ่มค่าต่าง ๆ ที่จำเป็น เช่น:
+   - สร้างไฟล์ `.env` ใน root directory และเพิ่มค่า:
+     **backend**
+     
      ```env
      MONGO_URI=your_mongodb_connection_string
      JWT_SECRET=your_jwt_secret
      CLOUDINARY_URL=your_cloudinary_connection_string
+     VITE_BACKEND_URL = your_backend_port
+     
+     MONGODB_URI = your_mongodb_connection_string
+     FRONTEND_URL = your_frontend_port
+      
+     CLOUDINARY_NAME = your_cloudinary_name_connection_string
+     CLOUDINARY_API_KEY = your_cloudinary_connection_string
+     CLOUDINARY_SECRET_KEY = your_cloudinary_secret_key_connection_string
+      
+     ADMIN_EMAIL = 'admin@pineapple.slice.com'
+     ADMIN_PASSWORD = 'pineapple_slice_admin'
+      
+     JWT_SECRET = your_jwt_secret
+     ```
+
+     **frontend**
+     ```env
+     VITE_BACKEND_URL = your_backend_port
+     ```
+
+     **admin**
+     ```env
+     VITE_BACKEND_URL = your_backend_port
      ```
 
 ---
@@ -67,10 +92,12 @@ A platform that combines agricultural tourism with digital convenience, offering
 
 ---
 
-website deploy
-   - **Frontend**: `[http://localhost:5173](https://pineapple-slice-frontend.onrender.com/)`
-   - **Backend**: `[http://localhost:4000](https://pineapple-slice-backend.onrender.com)`  
-   - **Admin Panel**: `[http://localhost:5174](https://pineapple-slice-admin.onrender.com)`
+## website deploy
+   - **Frontend**: `https://pineapple-slice-frontend.onrender.com`
+   - **Backend**: `http://localhost:4000](https://pineapple-slice-backend.onrender.com`  
+   - **Admin Panel**: `http://localhost:5174](https://pineapple-slice-admin.onrender.com`
+
+---
 
 **หมายเหตุ**: ก่อนเริ่มต้น, ควรติดตั้ง **Node.js** และ **Git** ก่อน
 
