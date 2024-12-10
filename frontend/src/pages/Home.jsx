@@ -31,7 +31,7 @@ const Home = () => {
       <WhyChoose />
       <Service />
       <Workshop />
-      <Blogs />
+      {/* <Blogs /> */}
       <VideoHighlight />
     </div>
   )

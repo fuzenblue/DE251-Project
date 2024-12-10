@@ -16,8 +16,8 @@ const ListWorkshop = () => {
   }, [aToken, getAllWorkshop])
 
   return (
-    <div className="block pt-8 px-8 w-full lg:w-[60%] bg-gray-50 overflow-y-scroll">
-      <h1 className="text-lg font-medium">All Workshop List</h1>
+    <div className="block pt-8 px-8 w-full bg-gray-50 overflow-y-scroll">
+      <h1 className="mb-3 text-lg font-medium">All Workshop List</h1>
 
       <div className='w-full flex flex-wrap gap-2 pt-5 gpa-y-6'>
         {workshops.map((item, index) => (

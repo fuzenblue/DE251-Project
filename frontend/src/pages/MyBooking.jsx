@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MyProfileSideBar from '../components/MyProfileSideBar'
-import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -52,6 +51,25 @@ const MyBooking = () => {
     }
   }
 
+
+  const updatePaymentStatus = async (bookedId, payment) => {
+    try {
+      const { data } = await axios.post(backendUrl + '/api/user/update-payment',{ bookedId, payment },{ headers: { token }})
+
+      if (data.success) {
+        toast.success(data.message)
+        getUserBookings()
+        getWorkshopsData()
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      console.error("Payment Update Error:", error)
+      toast.error(error.message)
+    }
+  }
+
+
   useEffect(() => {
     if (token) {
       getUserBookings()
@@ -77,14 +95,21 @@ const MyBooking = () => {
                 <p className='text-lg text-neutral-800 font-semibold'>{item.workshopData.name}</p>
                 <p className='text-base'>{item.workshopData.category}</p>
                 <p className='text-base mt-4'><span className='text-sm text-neutral-800 font-medium pr-2'>Date & Time:</span>{slotDateFormat(item.slotDate)} at {item.slotTime}</p>
-                <p className="text-base"><span className="text-sm text-neutral-800 font-medium pr-2">Total Ticket:</span>{ item?.workshopData?.slots_booked[item?.slotDate]?.reverse().find((slot) => slot.slotTime === item?.slotTime)?.ticketCount }</p>
+                <p className="text-base"><span className="text-sm text-neutral-800 font-medium pr-2">Total Ticket:</span>{item?.workshopData?.slots_booked[item?.slotDate]?.reverse().find((slot) => slot.slotTime === item?.slotTime)?.ticketCount}</p>
                 <p className='text-base'><span className='text-sm text-neutral-800 font-medium pr-2'>Total Among:</span>{item.amount}</p>
               </div>
               <div></div>
               <div className='flex flex-col gap-2 justify-end'>
-                {!item.cancelled && <button className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-green-400 hover:text-white transition-all duration-300'>Pay Online</button>}
-                {!item.cancelled && <button className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300'>Get Ticket</button>}
-                {!item.cancelled && <button onClick={() => cancelBookings(item._id)} className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Cancel Workshop</button>}
+                <label htmlFor="payment">Payment Status:</label>
+                {
+                  !item.cancelled && (
+                    <select onChange={(e) => updatePaymentStatus(item._id, e.target.value === 'true')} className='text-center text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300' defaultValue={item.payment ? 'true' : 'false'} disabled={item.payment}>
+                      <option value="true" className='py-2 bg-white text-stone-800'>Paid</option>
+                      <option value="false" className='py-2 bg-white text-stone-800'>Unpaid</option>
+                    </select>
+                  )}
+
+                {!item.cancelled && <button onClick={() => cancelBookings(item._id)} className='text-sm text-stone-500 sm:min-w-48 mt-2 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Cancel Workshop</button>}
                 {item.cancelled && <button className='sm:min-w-48 py-2 border border-red-500 rounded text-red-700'>Workshop Cancelled</button>}
               </div>
             </div>

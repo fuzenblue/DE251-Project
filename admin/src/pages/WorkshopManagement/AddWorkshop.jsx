@@ -54,7 +54,8 @@ const AddWorkshop = () => {
   }
 
   return (
-    <div className="flex pt-8 w-full lg:w-[60%] bg-gray-50">
+    <div className="pt-8 px-8 w-full bg-gray-50">
+      <h1 className='mb-3 text-lg font-medium'>Add Workshop</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-[120vh] px-8" >
         {/* Cover Image Upload */}
         <div className="add-img-upload flex-col">
@@ -118,6 +119,7 @@ const AddWorkshop = () => {
               <option value="Planting">Planting</option>
               <option value="Cooking">Cooking</option>
               <option value="Crafting">Crafting</option>
+              <option value="Tour">Tour</option>
               <option value="For Kids">For Kids</option>
             </select>
           </div>

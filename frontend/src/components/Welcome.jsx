@@ -24,7 +24,7 @@ const Welcome = () => {
         {/* card */}
         <div className="flex flex-row overflow-x-auto gap-4 px-6 lg:my-6 lg:px-[10%] lg:gap-14">
             <div className="min-h-[160px] flex flex-col rounded-md gap-2 text-center items-center py-4 min-w-[300px] lg:w-1/2"
-                style={{ backgroundImage: `url(${assets.header_img})`, backgroundSize: 'cover' }}>
+                style={{ backgroundImage: `url(${assets.welcome_img})`, backgroundSize: 'cover' }}>
             </div>
             <div className="flex flex-col rounded-md gap-2 text-center items-center py-4 px-6 text-white bg-green-yellow min-w-[250px] lg:w-auto">
                 <div className='flex flex-row items-center'>

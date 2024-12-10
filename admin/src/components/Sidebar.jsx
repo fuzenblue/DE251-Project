@@ -4,16 +4,18 @@ import { admin } from '../assets/assets'
 
 const Sidebar = () => {
   return (
-    <div className="w-[20%] min-h-screen border border-gray-400 border-t-0 text-md hidden lg:flex">
+    <div className="w-[25%] min-h-screen border border-gray-400 border-t-0 text-md hidden lg:flex">
       <div className="pt-12 pl-5 flex flex-col gap-3">
-        <NavLink
-          to="/admin-dashboard" className={({ isActive }) => `flex pl-4 items-center gap-3 p-4 rounded-l-md pb-4 cursor-pointer 
+        <div>
+          <NavLink
+            to="/admin-dashboard" className={({ isActive }) => `flex pl-4 items-center gap-3 p-4 rounded-l-md pb-4 cursor-pointer 
             ${isActive ? 'bg-orange-100 border-r-4 border-r-primary' : 'border-r-0'}`}>
-          <img src={admin.dashboard_icon} alt="" />
-          <p className="hidden lg:block pl-3">Dashboard</p>
-        </NavLink>
+            <img src={admin.dashboard_icon} alt="" />
+            <p className="hidden lg:block pl-3">Dashboard</p>
+          </NavLink>
+        </div>
 
-        <div className=''>
+        <div>
           <div className="collapse-title items-center justify-between hidden lg:flex peer-checked:bg-orange-100">
             <img src={admin.booking_icon} className="" />
             <p className='pl-6'>Workshop Management</p>

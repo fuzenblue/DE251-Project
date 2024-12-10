@@ -8,13 +8,11 @@ const AdminContextProvider = (props) => {
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-
     const value = {
         aToken, setAToken,
         backendUrl,
     }
 
-    // 7.40
 
   return (
     <AdminContext.Provider value={value}>

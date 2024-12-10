@@ -3,7 +3,7 @@ import { assets } from '../assets/assets'
 
 const VideoHighlight = () => {
   return (
-    <div className="relative">
+    <div className="mt-6 relative">
       <div className="h-[280px] w-full">
         <video className="h-full w-full object-cover" autoPlay muted loop>
           <source src={assets.video_ads} type="video/mp4" />

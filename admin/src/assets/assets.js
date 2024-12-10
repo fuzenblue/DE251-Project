@@ -12,6 +12,14 @@ import edit_icon from './edit_icon.png'
 import header_img from './cafe-card-img.png'
 import video_ads from './pineapple_ads.mp4'
 import upload_area from './upload_area.png'
+import cancel_icon from './cancel_icon.png'
+
+import workshop_icon from './workshop.png'
+import ticket_icon from './ticket.png'
+import user_icon from './user.png'
+import star_icon from './star.png'
+import pocket_icon from './pocket.png'
+import money_icon from './money.png'
 
 
 // export const for assets 
@@ -27,12 +35,14 @@ export const admin = {
     header_img,
     video_ads,
     upload_area,
+    cancel_icon,
+    workshop_icon,
+    ticket_icon,
+    user_icon,
+    star_icon,
+    pocket_icon,
+    money_icon,
 }
-
-
-// export const for product
-
-
 
 // export const for workshop
 export const category_workshop = [
