@@ -66,7 +66,7 @@ const Contact = () => {
             <div className="flex items-center space-x-4">
               <span role="img" aria-label="email" className="text-blue-500 text-3xl">📧</span>
               <div>
-                <p className="text-gray-600 font-medium">อีเมล</p>
+                <p className="text-gray-600 font-medium">Email</p>
                 <p className="text-gray-800">Pineappleslice@gmail.com</p>
               </div>
             </div>
@@ -74,7 +74,7 @@ const Contact = () => {
             <div className="flex items-center space-x-4">
               <span role="img" aria-label="phone" className="text-green-500 text-3xl">📞</span>
               <div>
-                <p className="text-gray-600 font-medium">โทรศัพท์</p>
+                <p className="text-gray-600 font-medium">Tel.</p>
                 <p className="text-gray-800">+66 123 456 7890</p>
               </div>
             </div>
@@ -82,7 +82,7 @@ const Contact = () => {
             <div className="flex items-center space-x-4">
               <span role="img" aria-label="location" className="text-red-500 text-3xl">📍</span>
               <div>
-                <p className="text-gray-600 font-medium">ที่อยู่</p>
+                <p className="text-gray-600 font-medium">Location</p>
                 <p className="text-gray-800">Prachuap Khiri Khan, Thailand</p>
               </div>
             </div>
