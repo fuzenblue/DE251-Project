@@ -11,12 +11,12 @@ const AppContextProvider = (props) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const [workshops, setWorkshops] = useState([])
-    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') :  false)
+    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
     const [userData, setUserData] = useState(false)
-    
+
     const getWorkshopsData = async () => {
         try {
-            
+
             const { data } = await axios.get(backendUrl + '/api/workshop/list-workshops')
             if (data.success) {
                 setWorkshops(data.workshops)
@@ -32,8 +32,8 @@ const AppContextProvider = (props) => {
 
     const loadUserProfileData = async () => {
         try {
-            
-            const { data } = await axios.get(backendUrl + '/api/user/get-profile', {headers: {token}})
+
+            const { data } = await axios.get(backendUrl + '/api/user/get-profile', { headers: { token } })
             if (data.success) {
                 setUserData(data.userData)
             } else {
