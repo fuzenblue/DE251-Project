@@ -28,10 +28,6 @@ A platform that combines agricultural tourism with digital convenience, offering
      ```env
      MONGO_URI=your_mongodb_connection_string
      JWT_SECRET=your_jwt_secret
-     CLOUDINARY_URL=your_cloudinary_connection_string
-     VITE_BACKEND_URL = your_backend_port
-     
-     MONGODB_URI = your_mongodb_connection_string
      FRONTEND_URL = your_frontend_port
       
      CLOUDINARY_NAME = your_cloudinary_name_connection_string
@@ -40,8 +36,7 @@ A platform that combines agricultural tourism with digital convenience, offering
       
      ADMIN_EMAIL = 'admin@pineapple.slice.com'
      ADMIN_PASSWORD = 'pineapple_slice_admin'
-      
-     JWT_SECRET = your_jwt_secret
+
      ```
 
      **frontend**
