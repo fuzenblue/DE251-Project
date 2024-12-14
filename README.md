@@ -88,12 +88,15 @@ A platform that combines agricultural tourism with digital convenience, offering
 ---
 
 ## website deploy
-   - **Frontend**: `https://pineapple-slice-frontend.onrender.com`
-   - **Backend**: `https://pineapple-slice-backend.onrender.com`  
-   - **Admin Panel**: `https://pineapple-slice-admin.onrender.com`
+   - **Frontend**: https://pineapple-slice-frontend.onrender.com
+   - **Backend**: https://pineapple-slice-backend.onrender.com
+   - **Admin Panel**: https://pineapple-slice-admin.onrender.com
 
 ---
 
 **หมายเหตุ**: ก่อนเริ่มต้น, ควรติดตั้ง **Node.js** และ **Git** ก่อน
 
 Enjoy building the Pineapple Farm Platform! 🍍
+
+---
+Slide: https://www.canva.com/design/DAGY0fHM7N0/sLhFH6iJ15X28xC67hycbg/edit
