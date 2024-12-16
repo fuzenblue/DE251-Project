@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Product = () => {
-  const categories = ["Food Products", "Beauty Products", "Commercial Products", "Dietary Supplements"];
+  const categories = ["Food Products", "Beauty Products",  "Dietary Supplements"];
 
   const allProducts = [
     // Food Products
@@ -16,16 +16,10 @@ const Product = () => {
     { id: 7, category: "Beauty Products", name: "Pineapple Mask", description: "Refreshing pineapple mask.", price: "$9.99", image: "https://via.placeholder.com/300", stock: "Limited Stock" },
     { id: 8, category: "Beauty Products", name: "Pineapple Essence", description: "Hydrating essence.", price: "$15.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
 
-    // Commercial Products
-    { id: 9, category: "Commercial Products", name: "Pineapple Fiber", description: "Textile-grade fiber.", price: "$19.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
-    { id: 10, category: "Commercial Products", name: "Pineapple Paper", description: "Eco-friendly paper.", price: "$4.99", image: "https://via.placeholder.com/300", stock: "Limited Stock" },
-    { id: 11, category: "Commercial Products", name: "Pineapple Bioplastic", description: "Biodegradable plastic.", price: "$9.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
-    { id: 12, category: "Commercial Products", name: "Pineapple Vinegar", description: "Natural vinegar.", price: "$5.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
-
     // Dietary Supplements
-    { id: 13, category: "Dietary Supplements", name: "Bromelain Capsules", description: "Digestive enzyme supplement.", price: "$14.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
-    { id: 14, category: "Dietary Supplements", name: "Pineapple Protein Powder", description: "Protein-rich supplement.", price: "$29.99", image: "https://via.placeholder.com/300", stock: "Limited Stock" },
-    { id: 15, category: "Dietary Supplements", name: "Pineapple Nutritional Liquid", description: "Boosts immunity.", price: "$19.99", image: "https://via.placeholder.com/300", stock: "In Stock" }
+    { id: 9, category: "Dietary Supplements", name: "Bromelain Capsules", description: "Digestive enzyme supplement.", price: "$14.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
+    { id: 10, category: "Dietary Supplements", name: "Pineapple Protein Powder", description: "Protein-rich supplement.", price: "$29.99", image: "https://via.placeholder.com/300", stock: "Limited Stock" },
+    { id: 11, category: "Dietary Supplements", name: "Pineapple Nutritional Liquid", description: "Boosts immunity.", price: "$19.99", image: "https://via.placeholder.com/300", stock: "In Stock" }
   ];
 
   const bestSellers = [
