@@ -50,21 +50,23 @@ const Navbar = () => {
         {/* Login / Sign up Button */}
         {
           token && userData
-            ? <div className='flex items-center gap-1 cursor-pointer group relative'>
+            ? <>
+              <img onClick={() => navigate('cart')} src={assets.cart_icon} alt="" className='w-8 h-8 mr-4 cursor-pointer' />
+              <div className='flex items-center gap-1 cursor-pointer group relative'>
 
-              <img onClick={() => navigate('cart')} src={assets.cart_icon} alt="" className='w-8 h-8 mr-4'/>
-              <img className='flex w-10 h-10 rounded-full object-cover' src={userData.image} alt="" />
-              <img className='flex w-5' src={assets.dropdown_icon} alt="" />
+                <img className='flex w-10 h-10 rounded-full object-cover' src={userData.image} alt="" />
+                <img className='flex w-5' src={assets.dropdown_icon} alt="" />
 
-              <div className='absolute top-0 right-0 pt-14 text-sm lg:text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
-                <div className='min-w-48 bg-stone-50 rounded flex flex-col gap-4 p-4'>
-                  <p onClick={() => {navigate('my-profile'); scrollTo(0, 0)}} className='hover:text-primary cursor-pointer'>My Profile</p>
-                  <p onClick={() => {navigate('my-order'); scrollTo(0, 0)}} className='hover:text-primary cursor-pointer'>My Order</p>
-                  <p onClick={() => {navigate('my-booking'); scrollTo(0, 0)}} className='hover:text-primary cursor-pointer'>My Booking</p> <hr />
-                  <p onClick={logout} className='hover:text-primary cursor-pointer'>Logout</p>
+                <div className='absolute top-0 right-0 pt-14 text-sm lg:text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
+                  <div className='min-w-48 bg-stone-50 rounded flex flex-col gap-4 p-4'>
+                    <p onClick={() => { navigate('my-profile'); scrollTo(0, 0) }} className='hover:text-primary cursor-pointer'>My Profile</p>
+                    <p onClick={() => { navigate('my-order'); scrollTo(0, 0) }} className='hover:text-primary cursor-pointer'>My Order</p>
+                    <p onClick={() => { navigate('my-booking'); scrollTo(0, 0) }} className='hover:text-primary cursor-pointer'>My Booking</p> <hr />
+                    <p onClick={logout} className='hover:text-primary cursor-pointer'>Logout</p>
+                  </div>
                 </div>
               </div>
-            </div> // if login
+            </>
             : <button onClick={() => navigate('/login')} className='btn btn-primary text-white hidden lg:block px-8 py-3 rounded-full font-light '>Create Account</button>
         }
 
