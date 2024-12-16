@@ -36,6 +36,12 @@ const MyProfileSideBar = () => {
               <span>My Profile</span>
             </button>
           </Link>
+          <Link to="/my-order">
+            <button className="btn btn-primary w-full my-3 py-3 px-8 rounded-full text-md flex items-center justify-start space-x-2">
+              <img src={fame.bag_icon} alt="Order Icon" className="ml-3 w-6 h-6" />
+              <span>My Order</span>
+            </button>
+          </Link>
           <Link to="/my-booking">
             <button className="btn btn-primary w-full my-3 py-3 px-8 rounded-full text-md flex items-center justify-start space-x-2">
               <img src={fame.bk_icon} alt="Booking Icon" className="ml-3 w-6 h-6" />

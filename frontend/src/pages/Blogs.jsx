@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { fame } from "../assets/fame";
 
-
 const Blogs = () => {
   const articles = [
     {
@@ -9,7 +8,7 @@ const Blogs = () => {
       title: "The Complete Guide to Growing Sweet Pineapples",
       description: "Master the art of growing delicious pineapples with our comprehensive guide! Whether you're a seasoned gardener or a beginner, cultivating pineapples can be a rewarding and enjoyable experience.",
       date: "October 20, 2024",
-      image: fame.blogs_1,
+      image: fame.blogs_1 ,
       descriptions: [ // เปลี่ยนจาก 'steps' เป็น 'descriptions'
         {
           title: "Step 1: Choose the Right Pineapple Crown",
@@ -329,6 +328,7 @@ const Blogs = () => {
             src={fame.blogs_head1}
             alt="Pineapples"
             className="w-full h-full object-cover"
+            loading="lazy" // เพิ่มคุณสมบัติ Lazy Loading
           />
           <div className="absolute inset-0 bg-black opacity-40"></div>
         </div>
@@ -353,61 +353,66 @@ const Blogs = () => {
         />
       </div>
       {/* Photo Gallery Section */}
-        {!selectedArticle && (
-          <div className="mt-16">
-            <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Photo Gallery</h2>
-            <div className="image-gallery flex overflow-x-scroll space-x-4 p-4">
-              {/* รูปที่ 1 */}
-              <div className="flex-shrink-0 w-50 h-40">
-                <img 
-                  src={fame.photo1} 
-                  alt="A description of photo1" 
-                  className="w-full h-full object-cover rounded-lg shadow-md" 
-                />
-              </div>
-              {/* รูปที่ 2 */}
-              <div className="flex-shrink-0 w-50 h-40">
-                <img 
-                  src={fame.photo2} 
-                  alt="A description of photo2" 
-                  className="w-full h-full object-cover rounded-lg shadow-md" 
-                />
-              </div>
-              {/* รูปที่ 3 */}
-              <div className="flex-shrink-0 w-50 h-40">
-                <img 
-                  src={fame.photo3} 
-                  alt="A description of photo3" 
-                  className="w-full h-full object-cover rounded-lg shadow-md" 
-                />
-              </div>
-              {/* รูปที่ 4 */}
-              <div className="flex-shrink-0 w-50 h-40">
-                <img 
-                  src={fame.photo4} 
-                  alt="A description of photo4" 
-                  className="w-full h-full object-cover rounded-lg shadow-md" 
-                />
-              </div>
-              <div className="flex-shrink-0 w-50 h-40">
-                <img 
-                  src={fame.photo5} 
-                  alt="A description of photo4" 
-                  className="w-full h-full object-cover rounded-lg shadow-md" 
-                />
-              </div>
+      {!selectedArticle && (
+        <div className="mt-16">
+          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Photo Gallery</h2>
+          <div className="image-gallery flex overflow-x-scroll space-x-4 p-4">
+            {/* รูปที่ 1 */}
+            <div className="flex-shrink-0 w-50 h-40">
+              <img 
+                src={fame.photo1} 
+                alt="A description of photo1" 
+                className="w-full h-full object-cover rounded-lg shadow-md" 
+                loading="lazy" // เพิ่มคุณสมบัติ Lazy Loading
+              />
             </div>
-            {/* ปุ่ม See More */}
-            <div className="text-center mt-8">
-              <button
-                onClick={() => alert('Redirecting to full gallery!')} // แทนที่ด้วยฟังก์ชันของคุณ
-                className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition"
-              >
-                See More
-              </button>
+            {/* รูปที่ 2 */}
+            <div className="flex-shrink-0 w-50 h-40">
+              <img 
+                src={fame.photo2} 
+                alt="A description of photo2" 
+                className="w-full h-full object-cover rounded-lg shadow-md" 
+                loading="lazy" // เพิ่มคุณสมบัติ Lazy Loading
+              />
+            </div>
+            {/* รูปที่ 3 */}
+            <div className="flex-shrink-0 w-50 h-40">
+              <img 
+                src={fame.photo3} 
+                alt="A description of photo3" 
+                className="w-full h-full object-cover rounded-lg shadow-md" 
+                loading="lazy" // เพิ่มคุณสมบัติ Lazy Loading
+              />
+            </div>
+            {/* รูปที่ 4 */}
+            <div className="flex-shrink-0 w-50 h-40">
+              <img 
+                src={fame.photo4} 
+                alt="A description of photo4" 
+                className="w-full h-full object-cover rounded-lg shadow-md" 
+                loading="lazy" // เพิ่มคุณสมบัติ Lazy Loading
+              />
+            </div>
+            <div className="flex-shrink-0 w-50 h-40">
+              <img 
+                src={fame.photo5} 
+                alt="A description of photo5" 
+                className="w-full h-full object-cover rounded-lg shadow-md" 
+                loading="lazy" // เพิ่มคุณสมบัติ Lazy Loading
+              />
             </div>
           </div>
-        )}
+          {/* ปุ่ม See More */}
+          <div className="text-center mt-8">
+            <button
+              onClick={() => alert('Redirecting to full gallery!')} // แทนที่ด้วยฟังก์ชันของคุณ
+              className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition"
+            >
+              See More
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Blog Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
@@ -425,6 +430,7 @@ const Blogs = () => {
                 src={selectedArticle.image}
                 alt={selectedArticle.title}
                 className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy" // เพิ่มคุณสมบัติ Lazy Loading
               />
             </div>
             <h2 className="text-2xl font-bold mt-4">{selectedArticle.title}</h2>
@@ -453,6 +459,7 @@ const Blogs = () => {
                       src={article.image}
                       alt={article.title}
                       className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy" // เพิ่มคุณสมบัติ Lazy Loading
                     />
                   </div>
                   <div className="p-6">
