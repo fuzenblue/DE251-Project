@@ -33,7 +33,6 @@ export const fame ={
     bag_icon,
     bk_icon,
     user1,
-    bag_icon,
     lisa_pic,
     pic1_aboutus,
     pic2_aboutus,

@@ -165,7 +165,7 @@ const AboutUs = () => {
           <div className="relative z-10 max-w-6xl mx-auto">
             <div className="mb-12 text-center">
               <h2 className="text-6xl font-bold mb-6 inline-block">
-                <span className="text-amber-800">Why </span>
+                <span className="text-orange-800">Why </span>
                 <span className="text-white">Choose </span>
                 <span className="text-orange-400">Us</span>
               </h2>
