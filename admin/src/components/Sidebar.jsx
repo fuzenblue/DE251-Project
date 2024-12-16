@@ -4,7 +4,7 @@ import { admin } from '../assets/assets'
 
 const Sidebar = () => {
   return (
-    <div className="w-[25%] min-h-screen border border-gray-400 border-t-0 text-md hidden lg:flex">
+    <div className="w-[20%] min-h-screen border border-gray-400 border-t-0 text-md hidden lg:flex">
       <div className="pt-12 pl-5 flex flex-col gap-3">
         <div>
           <NavLink
@@ -20,7 +20,7 @@ const Sidebar = () => {
             <img src={admin.booking_icon} className="" />
             <p className='pl-6'>Workshop Management</p>
           </div>
-          <div className='pl-16'>
+          <div className='pl-12'>
             <NavLink
               to="/workshop-add"
               className={({ isActive }) =>
@@ -38,6 +38,12 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 `flex items-center p-2 pl-10 rounded-l-md cursor-pointer gap-3 my-2 ${isActive ? 'bg-orange-100 border-r-4 border-r-primary border border-gray-400' : 'border border-gray-400 border-r-0'}`}>
               <p className="hidden md:block">Booking</p>
+            </NavLink>
+            <NavLink
+              to="/workshop-completed"
+              className={({ isActive }) =>
+                `flex items-center p-2 pl-10 rounded-l-md cursor-pointer gap-3 my-2 ${isActive ? 'bg-orange-100 border-r-4 border-r-primary border border-gray-400' : 'border border-gray-400 border-r-0'}`}>
+              <p className="hidden md:block">Completed</p>
             </NavLink>
           </div>
         </div>

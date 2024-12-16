@@ -5,7 +5,7 @@ import Welcome from '../components/Welcome'
 import WhyChoose from '../components/WhyChoose'
 import Service from '../components/DiscoverService'
 import Workshop from '../components/PopularWorkshop'
-import Blogs from '../components/OurBlog'
+// import Blogs from '../components/OurBlog'
 import VideoHighlight from '../components/VideoHighlight'
 import { useLocation } from 'react-router-dom'
 

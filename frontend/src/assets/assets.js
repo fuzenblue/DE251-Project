@@ -39,6 +39,7 @@ import chef_icon from './chef.svg'
 import video_ads from './pineapple_ads.mp4'
 import play_icon from './play.svg'
 import welcome_img from './Piña_.jpg'
+import cart_icon from './online-shopping.png'
 
 // export const for assets 
 export const assets = {
@@ -61,6 +62,7 @@ export const assets = {
     video_ads,
     play_icon,
     welcome_img,
+    cart_icon,
 }
 
 // export const for workshop

@@ -51,10 +51,9 @@ const MyBooking = () => {
     }
   }
 
-
   const updatePaymentStatus = async (bookedId, payment) => {
     try {
-      const { data } = await axios.post(backendUrl + '/api/user/update-payment',{ bookedId, payment },{ headers: { token }})
+      const { data } = await axios.post(backendUrl + '/api/user/update-payment', { bookedId, payment }, { headers: { token } })
 
       if (data.success) {
         toast.success(data.message)
@@ -100,14 +99,46 @@ const MyBooking = () => {
               </div>
               <div></div>
               <div className='flex flex-col gap-2 justify-end'>
-                <label htmlFor="payment">Payment Status:</label>
+                <label className='flex px-2' htmlFor="payment">Payment Status:
+                  {item?.payment ? (
+                    <p value="true" className='text-green-400 ml-2'>Paid</p>
+                  ) : (
+                    <p value="false" className='text-red-400 ml-2'>Unpaid</p>
+                  )}
+                </label>
+
                 {
                   !item.cancelled && (
-                    <select onChange={(e) => updatePaymentStatus(item._id, e.target.value === 'true')} className='text-center text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300' defaultValue={item.payment ? 'true' : 'false'} disabled={item.payment}>
-                      <option value="true" className='py-2 bg-white text-stone-800'>Paid</option>
-                      <option value="false" className='py-2 bg-white text-stone-800'>Unpaid</option>
-                    </select>
-                  )}
+                    <>
+                      {/* Render select box if payment is not made */}
+                      {!item.payment && (
+                        <select
+                          onChange={(e) => updatePaymentStatus(item._id, e.target.value === 'true')}
+                          className='text-center text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300'
+                          defaultValue={item.payment ? 'true' : 'false'}
+                          disabled={item.payment}
+                        >
+                          <option value="true" className='py-2 bg-white text-stone-800'>Paid</option>
+                          <option value="false" className='py-2 bg-white text-stone-800'>Unpaid</option>
+                        </select>
+                      )}
+
+                      {/* Render "Get ticket here" button when payment is made */}
+                      {item.payment && item.payment === true && (
+                        <button
+                          className="mt-2 text-orange-600 border rounded py-2"
+                          onClick={() => {
+                            // Add your action for getting the ticket here
+                            alert('Ticket Retrieved!');
+                          }}
+                        >
+                          Get ticket here
+                        </button>
+                      )}
+                    </>
+                  )
+                }
+
 
                 {!item.cancelled && <button onClick={() => cancelBookings(item._id)} className='text-sm text-stone-500 sm:min-w-48 mt-2 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Cancel Workshop</button>}
                 {item.cancelled && <button className='sm:min-w-48 py-2 border border-red-500 rounded text-red-700'>Workshop Cancelled</button>}

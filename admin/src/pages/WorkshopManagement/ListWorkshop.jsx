@@ -19,7 +19,7 @@ const ListWorkshop = () => {
     <div className="block pt-8 px-8 w-full bg-gray-50 overflow-y-scroll">
       <h1 className="mb-3 text-lg font-medium">All Workshop List</h1>
 
-      <div className='w-full flex flex-wrap gap-2 pt-5 gpa-y-6'>
+      <div className='w-full flex flex-wrap gap-2 pt-5 gap-y-6'>
         {workshops.map((item, index) => (
           <div key={index} className='border border-orange-200 rounded-xl max-w-56 overflow-hidden cursor-pointer group bg-white hover:translate-y-[-10px] transition-all duration-200'>
             <img src={item.workshopImg} alt="" className='w-56 h-56 object-cover '/>

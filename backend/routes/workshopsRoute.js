@@ -1,6 +1,6 @@
 import express from 'express'
 import upload from '../middlewares/multer.js'
-import authAdmin from '../middlewares/authAdmin.js'
+// import authAdmin from '../middlewares/authAdmin.js'
 import { addWorkshops, allWorkshop, bookedsAdmin, bookingCancel, changeAvailability, workshopList } from '../controller/workshopsController.js'
 
 

@@ -25,6 +25,10 @@ const Navbar = () => {
           <li className='hover:text-primary py-2'>HOME</li>
           <hr className='border-none outline-none h-1 rounded bg-primary w-3/5 m-auto hidden' />
         </NavLink>
+        <NavLink to='/all-product' onClick={() => scrollTo(0, 0)}>
+          <li className='hover:text-primary py-2'>PRODUCT</li>
+          <hr className='border-none outline-none h-1 rounded bg-primary w-3/5 m-auto hidden' />
+        </NavLink>
         <NavLink to='/all-service' onClick={() => scrollTo(0, 0)}>
           <li className='hover:text-primary py-2'>SERVICE</li>
           <hr className='border-none outline-none h-1 rounded bg-primary w-3/5 m-auto hidden' />
@@ -48,12 +52,14 @@ const Navbar = () => {
           token && userData
             ? <div className='flex items-center gap-1 cursor-pointer group relative'>
 
+              <img onClick={() => navigate('cart')} src={assets.cart_icon} alt="" className='w-8 h-8 mr-4'/>
               <img className='flex w-10 h-10 rounded-full object-cover' src={userData.image} alt="" />
               <img className='flex w-5' src={assets.dropdown_icon} alt="" />
 
               <div className='absolute top-0 right-0 pt-14 text-sm lg:text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
                 <div className='min-w-48 bg-stone-50 rounded flex flex-col gap-4 p-4'>
                   <p onClick={() => {navigate('my-profile'); scrollTo(0, 0)}} className='hover:text-primary cursor-pointer'>My Profile</p>
+                  <p onClick={() => {navigate('my-order'); scrollTo(0, 0)}} className='hover:text-primary cursor-pointer'>My Order</p>
                   <p onClick={() => {navigate('my-booking'); scrollTo(0, 0)}} className='hover:text-primary cursor-pointer'>My Booking</p> <hr />
                   <p onClick={logout} className='hover:text-primary cursor-pointer'>Logout</p>
                 </div>
@@ -73,6 +79,7 @@ const Navbar = () => {
 
           <ul className='flex flex-col items-center gap-2 mt-4 px-5 lg:text-lg font-medium'>
             <NavLink onClick={() => { scrollTo(0, 0); setShowMenu(false) }} to='/'><p className='px-96 py-2 inline-block'>HOME</p></NavLink>
+            <NavLink onClick={() => { scrollTo(0, 0); setShowMenu(false) }} to='/all-product'><p className='px-96 py-2 inline-block'>PRODUCT</p></NavLink>
             <NavLink onClick={() => { scrollTo(0, 0); setShowMenu(false) }} to='/all-service'><p className='px-96 py-2 inline-block'>SERVICE</p></NavLink>
             <NavLink onClick={() => { scrollTo(0, 0); setShowMenu(false) }} to='/about' ><p className='px-96 py-2 inline-block'>ABOUT</p></NavLink>
             <NavLink onClick={() => { scrollTo(0, 0); setShowMenu(false) }} to='/blogs'><p className='px-96 py-2 inline-block'>BLOG</p></NavLink>
