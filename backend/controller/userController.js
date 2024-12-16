@@ -1,10 +1,10 @@
 import userModel from '../models/userModel.js'
 import jwt from "jsonwebtoken"
-import bcrypt from "bcrypt"
+import bcrypt from 'bcryptjs'
 import validator from "validator"
 import { v2 as cloudinary } from 'cloudinary'
 import workshopsModel from '../models/workshopsModel.js'
-import bookedModel from '../models/BookedModdel.js'
+import bookedModel from '../models/bookedModel.js'
 
 // register user
 const registerUser = async (req, res) => {
@@ -291,7 +291,6 @@ const cancelBooking = async (req, res) => {
     res.json({ success: false, message: error.message })
   }
 }
-
 
 // API to get status payment
 const updatePaymentStatus = async (req, res) => {

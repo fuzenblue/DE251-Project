@@ -24,7 +24,7 @@ const ImageServiceCard = () => {
         {/* Pineapple Products and Café */}
         <div className='col-span-2 grid grid-cols-2 gap-0'>
           <div className='relative flex justify-center'>
-            <Link to='/all-product'>
+            <Link to='/all-service#product-deli'>
               <img className='object-contain w-full' src={card.product_card} alt='Image 04' />
             </Link>
             <div className='absolute flex items-center justify-center bottom-5 right-5'>

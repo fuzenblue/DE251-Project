@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import workshopsModel from '../models/workshopsModel.js'
 import userModel from '../models/userModel.js'
-import bookedModel from '../models/bookedModdel.js'
+import bookedModel from '../models/bookedModel.js'
 
 // API for Admin Login
 const loginAdmin = async (req, res) => {
@@ -50,7 +50,7 @@ const adminDashboard = async (req, res) => {
 
             if (b.workshopId) {
                 const workshopId = b.workshopId.toString()
-                
+
                 // Initialize workshop popularity if not exists
                 if (!workshopPopularity[workshopId]) {
                     workshopPopularity[workshopId] = 0
@@ -60,13 +60,13 @@ const adminDashboard = async (req, res) => {
                 if (b.workshopData?.slots_booked) {
                     Object.keys(b.workshopData.slots_booked).forEach(slotDate => {
                         const slotsForDate = b.workshopData.slots_booked[slotDate] || []
-                        
+
                         slotsForDate.forEach(slot => {
                             const tickets = slot.ticketCount || 1
-                            
+
                             // Debug: Log ticket calculation
                             console.log(`Workshop ${workshopId} - Slot Date: ${slotDate}, Tickets: ${tickets}`)
-                            
+
                             workshopPopularity[workshopId] += tickets
                         })
                     })
@@ -83,11 +83,11 @@ const adminDashboard = async (req, res) => {
             .slice(0, 5)
             .map(([id, count]) => {
                 const workshop = workshops.find((w) => w._id.toString() === id)
-                
+
                 return {
                     workshopName: workshop?.name || "Unknown",
                     count,
-                    image: workshop?.workshopImg, 
+                    image: workshop?.workshopImg,
                 }
             })
 
@@ -107,9 +107,9 @@ const adminDashboard = async (req, res) => {
         res.json({ success: true, dashData })
     } catch (error) {
         console.error('Admin Dashboard Error:', error)
-        res.status(500).json({ 
-            success: false, 
-            message: error.message 
+        res.status(500).json({
+            success: false,
+            message: error.message
         })
     }
 }
