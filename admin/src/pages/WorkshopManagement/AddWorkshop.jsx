@@ -86,7 +86,7 @@ const AddWorkshop = () => {
             rows="6"
             value={workshopAbout}
             onChange={(e) => setWorkshopAbout(e.target.value)}
-            placeholder="Write Workshop Description"
+            placeholder="Write Workshop About"
             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"
           ></textarea>
         </div>
