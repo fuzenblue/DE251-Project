@@ -75,6 +75,7 @@ const WorkshopDisplay = () => {
           )}
         </div>
       </div>
+      
     </div>
   )
 }

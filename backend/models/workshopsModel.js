@@ -21,7 +21,6 @@ const workshopsSchema = new mongoose.Schema(
             }],
             default: {}
         }
-
     }, { minimize: false }
 )
 

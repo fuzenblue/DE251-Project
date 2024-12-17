@@ -30,17 +30,22 @@ const App = () => {
       </div> 
       <Routes>
         < Route path='/' element={<Home />} />
+
         < Route path='/all-product' element={<MyProduct />} />
-        < Route path='/cart' element={<Cart />} />
         < Route path='/all-service' element={<Service  />} />
+
+        < Route path='/cart' element={<Cart />} />
         < Route path='/about' element={<About />} />
         < Route path='/blogs' element={<Blog />} />
         < Route path='/contact' element={<Contact />} />
+        
         < Route path='/my-profile' element={<MyProfile />} />
         < Route path='/my-booking' element={<MyBooking />} />
         < Route path='/my-order' element={<MyOrder />} />
+
         < Route path='/all-product/:productId' element={<WorkshopInfo />} />
         < Route path='/all-service/:workshopId' element={<WorkshopInfo />} />
+
         < Route path='/login' element={<Login />} />
       </Routes>
       <div className='mx-5 sm:mx-[10%]'>

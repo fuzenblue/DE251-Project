@@ -9,10 +9,13 @@ const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
     const backendUrl = import.meta.env.VITE_BACKEND_URL
+    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
 
     const [workshops, setWorkshops] = useState([])
-    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
+
     const [userData, setUserData] = useState(false)
+
+    const [products, setProducts] = useState([])
 
     const getWorkshopsData = async () => {
         try {
@@ -21,6 +24,22 @@ const AppContextProvider = (props) => {
             if (data.success) {
                 setWorkshops(data.workshops)
                 console.log("Workshops Data:", data.workshops)
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
+    const getProductsData = async () => {
+        try {
+
+            const { data } = await axios.get(backendUrl + '/api/product/list-products')
+            if (data.success) {
+                setProducts(data.products)
+                console.log("Products Data:", data.products)
             } else {
                 toast.error(data.message)
             }
@@ -48,6 +67,7 @@ const AppContextProvider = (props) => {
 
     useEffect(() => {
         getWorkshopsData()
+        getProductsData()
     }, [])
 
     useEffect(() => {
@@ -60,6 +80,7 @@ const AppContextProvider = (props) => {
 
     const value = {
         workshops, getWorkshopsData,
+        products, getProductsData,
         currencySymbol,
         category_workshop,
         token, setToken,
