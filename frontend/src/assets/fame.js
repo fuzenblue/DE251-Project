@@ -27,6 +27,8 @@ import photo3 from './photo3.png'
 import photo4 from './photo4.png'
 import photo5 from './photo5.png'
 import cont_head from './cont_head.svg'
+import product_6 from './product_6.png'
+import product_2 from './product_2.png'
 
 
 export const fame ={
@@ -58,7 +60,9 @@ export const fame ={
     photo3,
     photo4,
     photo5,
-    cont_head
+    cont_head,
+    product_6,
+    product_2
 
 
 
