@@ -61,7 +61,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto grid md:grid-cols-1 gap-8">
         {/* Contact Information Section */}
         <div className="bg-white shadow-xl rounded-lg p-8 space-y-6">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6">ติดต่อเรา</h2>
+          <h2 className="text-3xl font-semibold text-gray-800 mb-6">Contact Us</h2>
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
               <span role="img" aria-label="email" className="text-blue-500 text-3xl">📧</span>
