@@ -6,9 +6,9 @@ import "react-toastify/dist/ReactToastify.css"
 import { AdminContext } from "../../context/AdminContext.jsx"
 
 const AddWorkshop = () => {
-  const [workshopImg, setWorkshopImg] = useState("");
-  const [workshopName, setWorkshopName] = useState("");
-  const [workshopAbout, setWorkshopAbout] = useState("");
+  const [workshopImg, setWorkshopImg] = useState("")
+  const [workshopName, setWorkshopName] = useState("")
+  const [workshopAbout, setWorkshopAbout] = useState("")
   const [workshopDescription, setWorkshopDescription] = useState("")
   const [workshopCategory, setWorkshopCategory] = useState("")
   const [workshopPrice, setWorkshopPrice] = useState("")
@@ -54,7 +54,7 @@ const AddWorkshop = () => {
   }
 
   return (
-    <div className="pt-8 px-8 w-full bg-gray-50">
+    <div className="pt-8 px-8 w-full bg-gray-50 mb-8">
       <h1 className='mb-3 text-lg font-medium'>Add Workshop</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-[120vh] px-8" >
         {/* Cover Image Upload */}

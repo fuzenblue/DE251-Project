@@ -22,7 +22,7 @@ const Dashboard = () => {
   }, [aToken])
 
   return dashData && (
-    <div className='px-8 w-full bg-gray-50 pt-8'>
+    <div className='px-8 w-full bg-gray-50 pt-8 '>
       <div className='m-5'>
         <div className="bg-gradient-to-r from-orange-500 to-indigo-500 text-white p-6 rounded-lg shadow mb-5">
           <h1 className="text-3xl font-bold">Dashboard</h1>

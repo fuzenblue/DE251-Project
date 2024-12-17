@@ -274,7 +274,7 @@ const WorkshopInfo = () => {
                   dayOfWeek.map((day, index) => {
                     const currentDate = new Date();
                     const targetDate = new Date();
-                    targetDate.setDate(currentDate.getDate() + index);
+                    targetDate.setDate(currentDate.getDate() +index);
 
                     return (
                       <div

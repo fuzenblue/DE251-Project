@@ -15,6 +15,35 @@ const Sidebar = () => {
           </NavLink>
         </div>
 
+        {/* Product */}
+        <div>
+          <div className="collapse-title items-center justify-between hidden lg:flex peer-checked:bg-orange-100">
+            <img src={admin.booking_icon} className="" />
+            <p className='pl-6'>Product Management</p>
+          </div>
+          <div className='pl-12'>
+            <NavLink
+              to="/product-add"
+              className={({ isActive }) =>
+                `flex items-center p-2 pl-10 rounded-l-md cursor-pointer gap-3 my-2 ${isActive ? 'bg-orange-100 border-r-4 border-r-primary border border-gray-400' : 'border border-gray-400 border-r-0'}`}>
+              <p className="hidden md:block">Add Product</p>
+            </NavLink>
+            <NavLink
+              to="/product-list"
+              className={({ isActive }) =>
+                `flex items-center p-2 pl-10 rounded-l-md cursor-pointer gap-3 my-2 ${isActive ? 'bg-orange-100 border-r-4 border-r-primary border border-gray-400' : 'border border-gray-400 border-r-0'}`}>
+              <p className="hidden md:block">List of Product</p>
+            </NavLink>
+            <NavLink
+              to="/product-orders"
+              className={({ isActive }) =>
+                `flex items-center p-2 pl-10 rounded-l-md cursor-pointer gap-3 my-2 ${isActive ? 'bg-orange-100 border-r-4 border-r-primary border border-gray-400' : 'border border-gray-400 border-r-0'}`}>
+              <p className="hidden md:block">Orders</p>
+            </NavLink>
+          </div>
+        </div>
+
+        {/* Workshop */}
         <div>
           <div className="collapse-title items-center justify-between hidden lg:flex peer-checked:bg-orange-100">
             <img src={admin.booking_icon} className="" />
@@ -38,12 +67,6 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 `flex items-center p-2 pl-10 rounded-l-md cursor-pointer gap-3 my-2 ${isActive ? 'bg-orange-100 border-r-4 border-r-primary border border-gray-400' : 'border border-gray-400 border-r-0'}`}>
               <p className="hidden md:block">Booking</p>
-            </NavLink>
-            <NavLink
-              to="/workshop-completed"
-              className={({ isActive }) =>
-                `flex items-center p-2 pl-10 rounded-l-md cursor-pointer gap-3 my-2 ${isActive ? 'bg-orange-100 border-r-4 border-r-primary border border-gray-400' : 'border border-gray-400 border-r-0'}`}>
-              <p className="hidden md:block">Completed</p>
             </NavLink>
           </div>
         </div>

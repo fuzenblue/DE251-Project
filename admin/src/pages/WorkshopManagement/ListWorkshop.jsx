@@ -16,7 +16,7 @@ const ListWorkshop = () => {
   }, [aToken, getAllWorkshop])
 
   return (
-    <div className="block pt-8 px-8 w-full bg-gray-50 overflow-y-scroll">
+    <div className="block pt-8 px-8 w-full bg-gray-50 overflow-y-scroll mb-8">
       <h1 className="mb-3 text-lg font-medium">All Workshop List</h1>
 
       <div className='w-full flex flex-wrap gap-2 pt-5 gap-y-6'>

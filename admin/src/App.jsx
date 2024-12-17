@@ -13,11 +13,12 @@ import AddWorkshop from './pages/WorkshopManagement/AddWorkshop.jsx'
 import ListWorkshop from './pages//WorkshopManagement/ListWorkshop.jsx'
 import Booking from './pages/WorkshopManagement/Booking.jsx'
 
-// import AddBlogs from './pages/BlogManagement/AddBlogs.jsx'
-// import ListBlogs from './pages/BlogManagement/ListBlogs.jsx'
 
 import { AdminContext } from './context/AdminContext.jsx'
-import CompletedWorkshop from './pages/WorkshopManagement/CompletedWorkshop.jsx'
+import AddProduct from './pages/ProductManagement/AddProduct.jsx'
+import ListProduct from './pages/ProductManagement/ListProduct.jsx'
+import Orders from './pages/ProductManagement/Orders.jsx'
+
 
 function App() {
 
@@ -36,9 +37,11 @@ function App() {
                 < Route path='/workshop-add' element={<AddWorkshop />} />
                 < Route path='/workshop-list' element={<ListWorkshop />} />
                 < Route path='/workshop-booking' element={<Booking />} />
-                < Route path='/workshop-completed' element={<CompletedWorkshop />} />
-                {/* < Route path='/blogs-add' element={<AddBlogs />} />
-                < Route path='/blogs-list' element={<ListBlogs />} /> */}
+
+                < Route path='/product-add' element={<AddProduct />} />
+                < Route path='/product-list' element={<ListProduct />} />
+                < Route path='/product-orders' element={<Orders />} />
+
               </Routes>
             </div>
       </div>

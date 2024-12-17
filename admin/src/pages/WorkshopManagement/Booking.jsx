@@ -19,7 +19,7 @@ const Booking = () => {
   }, [aToken])
 
   return (
-    <div className="pt-8 px-8 w-full bg-gray-50">
+    <div className="pt-8 px-8 w-full bg-gray-50 mb-8">
       <h1 className='mb-3 text-lg font-medium'>All Booking</h1>
 
       <div className='bg-white border rounded text-sm max-h-[80vh] min-h-[60vh] overflow-y-scroll'>
