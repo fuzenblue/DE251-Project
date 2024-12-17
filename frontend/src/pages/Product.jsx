@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { fame } from '../assets/fame';
 
 const Product = () => {
   const categories = ["Food Products", "Beauty Products",  "Dietary Supplements"];
 
   const allProducts = [
     // Food Products
-    { id: 1, category: "Food Products", name: "Pineapple Juice", description: "Fresh pineapple juice.", price: "$5.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
-    { id: 2, category: "Food Products", name: "Canned Pineapple", description: "Pineapple slices in syrup.", price: "$4.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
+    { id: 1, category: "Food Products", name: "Pineapple Juice", description: "Fresh pineapple juice.", price: "$5.99", image: fame.product_6, stock: "In Stock" },
+    { id: 2, category: "Food Products", name: "Canned Pineapple", description: "Pineapple slices in syrup.", price: "$4.99", image: fame.product_2, stock: "In Stock" },
     { id: 3, category: "Food Products", name: "Pineapple Jam", description: "Sweet pineapple jam.", price: "$3.49", image: "https://via.placeholder.com/300", stock: "Limited Stock" },
     { id: 4, category: "Food Products", name: "Pineapple Cake", description: "Delicious pineapple cake.", price: "$6.99", image: "https://via.placeholder.com/300", stock: "In Stock" },
 
