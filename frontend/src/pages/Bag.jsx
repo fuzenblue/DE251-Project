@@ -144,10 +144,6 @@ const Bag = () => {
                   <span className="text-neutral-700">Products Total:</span>
                   <span className="font-semibold">${getTotal(products)}</span>
                 </div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-neutral-700">Workshops Total:</span>
-                  <span className="font-semibold">${getTotal(workshops)}</span>
-                </div>
                 <div className="flex justify-between border-t pt-2 mt-2">
                   <span className="text-xl font-bold">Grand Total:</span>
                   <span className="text-xl font-bold">${getTotal(products) + getTotal(workshops)}</span>
