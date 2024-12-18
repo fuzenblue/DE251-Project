@@ -11,7 +11,7 @@ import MyProfile from './pages/MyProfile.jsx'
 import MyBooking from './pages/MyBooking.jsx'
 import WorkshopInfo from './pages/WorkshopInfo.jsx'
 import Login from './pages/Login.jsx'
-import ProducInfo from './pages/ProductInfo.jsx'
+import ProductInfo from './pages/ProductInfo.jsx'
 
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -45,7 +45,7 @@ const App = () => {
         < Route path='/my-booking' element={<MyBooking />} />
         < Route path='/my-order' element={<MyOrder />} />
 
-        < Route path='/all-product/:productId' element={<ProducInfo />} />
+        < Route path='/all-product/:productId' element={<ProductInfo />} />
         < Route path='/all-service/:workshopId' element={<WorkshopInfo />} />
 
         < Route path='/place-order' element={<PlaceOrder />} />
