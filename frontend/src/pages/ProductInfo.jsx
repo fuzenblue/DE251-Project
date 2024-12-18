@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
-import Breadcrumbs from '../components/Breadcrumbs.jsx'
 
 const ProductInfo = () => {
   const { id } = useParams()
