@@ -51,7 +51,7 @@ const Navbar = () => {
         {
           token && userData
             ? <>
-              <img onClick={() => navigate('my-bag')} src={assets.cart_icon} alt="" className='w-8 h-8 mr-4 cursor-pointer' />
+              <img onClick={() => navigate('my-bag')} src={assets.cart_icon} alt="" className='w-9 h-9 mr-3 cursor-pointer' />
               <div className='flex items-center gap-1 cursor-pointer group relative'>
 
                 <img className='flex w-10 h-10 rounded-full object-cover' src={userData.image} alt="" />
