@@ -93,39 +93,6 @@ const Bag = () => {
             ))}
           </div>
 
-          {/* Workshops Section */}
-          <div>
-            <h2 className="text-xl font-semibold text-neutral-700 mb-4 border-b pb-2">
-              Workshops
-            </h2>
-            {workshops.map((workshop) => (
-              <div 
-                key={workshop.id} 
-                className="grid grid-cols-12 items-center gap-4 py-4 border-b last:border-b-0 hover:bg-neutral-50 transition-colors"
-              >
-                <div className="col-span-2">
-                  <img 
-                    src={workshop.image} 
-                    alt={workshop.name} 
-                    className="w-full aspect-square object-cover rounded-lg" 
-                  />
-                </div>
-                <div className="col-span-7">
-                  <p className="font-medium text-neutral-900">{workshop.name}</p>
-                  <p className="text-neutral-600">${workshop.price}</p>
-                </div>
-                <div className="col-span-3 text-right">
-                  <button 
-                    onClick={() => handleRemoveWorkshop(workshop.id)}
-                    className="text-red-500 hover:text-red-700 font-medium"
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
           {/* Summary Section */}
           <div className="bg-neutral-50 rounded-lg p-6">
             <div className="flex justify-between items-center">
