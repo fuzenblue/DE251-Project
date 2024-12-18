@@ -8,7 +8,7 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
-    const delivery_fee = 10
+    const delivery_fee = 12
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
@@ -19,7 +19,7 @@ const AppContextProvider = (props) => {
     const [products, setProducts] = useState([])
     const [cartItem, setCartItems] = useState([])
 
-    
+
 
     const getWorkshopsData = async () => {
         try {
