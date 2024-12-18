@@ -4,8 +4,6 @@ import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-// 11.00
-
 const MyBooking = () => {
 
   const { backendUrl, token, getWorkshopsData } = useContext(AppContext)

@@ -45,7 +45,8 @@ const AppContextProvider = (props) => {
 
         return totalCount
     }
-    const updateQuantity = (itemId, quantity) => {
+
+    const updateQuantity = async (itemId, quantity) => {
         const cartData = { ...cartItem }
 
         if (quantity > 0) {
@@ -55,7 +56,14 @@ const AppContextProvider = (props) => {
         }
 
         setCartItems(cartData)
+
+        try {
+            await axios.post(`${backendUrl}/api/cart/update`, { itemId, quantity }, { headers: { token } })
+        } catch (error) {
+            console.error("Error updating cart:", error)
+        }
     }
+
 
 
     const getCartAmount = () => {
@@ -123,6 +131,26 @@ const AppContextProvider = (props) => {
         getWorkshopsData()
         getProductsData()
     }, [])
+
+    useEffect(() => {
+        const loadCartData = async () => {
+            if (token) {
+                try {
+                    const { data } = await axios.post(`${backendUrl}/api/cart/get`, {}, { headers: { token } });
+                    if (data.success) {
+                        setCartItems(data.cartData);
+                    } else {
+                        console.error("Failed to load cart data:", data.message);
+                    }
+                } catch (error) {
+                    console.error("Error loading cart data:", error);
+                }
+            }
+        };
+    
+        loadCartData();
+    }, [token]);
+    
 
     useEffect(() => {
         console.log(cartItem)

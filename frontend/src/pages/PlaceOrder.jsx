@@ -1,32 +1,43 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react"
+import CartSummary from "../components/CartSummary"
+import { AppContext } from "../context/AppContext"
+import { useNavigate } from "react-router-dom"
 
 const PlaceOrder = () => {
+  const { products, currencySymbol, cartItem, userData } = useContext(AppContext)
+  const [cartData, setCartData] = useState([])
+
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
+    firstName: userData.first_name,
+    lastName: userData.last_name,
+    email: userData.email,
     street: "",
     city: "",
     state: "",
     zipcode: "",
     country: "",
-    phone: "",
-  });
+    phone: userData.phone,
+  })
 
-  const [paymentMethod, setPaymentMethod] = useState("cod");
+  const navigate = useNavigate()
 
-  const subtotal = 0.0;
-  const shippingFee = 10.0;
-  const total = subtotal + shippingFee;
+  const [paymentMethod, setPaymentMethod] = useState("cod")
+
+  useEffect(() => {
+    const tempData = products
+      .filter((product) => cartItem[product._id])
+      .map((product) => ({
+        ...product,
+        quantity: cartItem[product._id],
+      }))
+
+    setCartData(tempData)
+  }, [cartItem, products])
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handlePlaceOrder = () => {
-    alert("Order placed successfully!");
-  };
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 bg-white min-h-screen">
@@ -36,7 +47,7 @@ const PlaceOrder = () => {
           <h2 className="text-2xl font-semibold text-neutral-800 border-b pb-2">
             Delivery Information
           </h2>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <input
               type="text"
@@ -44,6 +55,7 @@ const PlaceOrder = () => {
               value={form.firstName}
               onChange={handleChange}
               placeholder="First Name"
+              required
               className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <input
@@ -52,28 +64,30 @@ const PlaceOrder = () => {
               value={form.lastName}
               onChange={handleChange}
               placeholder="Last Name"
+              required
               className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          
+
           <input
             type="email"
             name="email"
-            value={form.email}
-            onChange={handleChange}
+            value={userData.email}
+            disabled
             placeholder="Email Address"
             className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          
+
           <input
             type="text"
             name="street"
             value={form.street}
             onChange={handleChange}
             placeholder="Street Address"
+            required
             className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          
+
           <div className="grid grid-cols-2 gap-4">
             <input
               type="text"
@@ -81,6 +95,7 @@ const PlaceOrder = () => {
               value={form.city}
               onChange={handleChange}
               placeholder="City"
+              required
               className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <input
@@ -89,10 +104,11 @@ const PlaceOrder = () => {
               value={form.state}
               onChange={handleChange}
               placeholder="State"
+              required
               className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <input
               type="text"
@@ -100,6 +116,7 @@ const PlaceOrder = () => {
               value={form.zipcode}
               onChange={handleChange}
               placeholder="Zipcode"
+              required
               className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <input
@@ -108,16 +125,18 @@ const PlaceOrder = () => {
               value={form.country}
               onChange={handleChange}
               placeholder="Country"
+              required
               className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          
+
           <input
             type="text"
             name="phone"
             value={form.phone}
             onChange={handleChange}
             placeholder="Phone Number"
+            required
             className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
@@ -130,17 +149,36 @@ const PlaceOrder = () => {
 
           {/* Order Items */}
           <div className="space-y-4">
-            <div className="flex justify-between items-center pb-2 border-b">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-neutral-200 rounded-lg"></div>
-                <div>
-                  <p className="font-medium text-neutral-800">Product Name</p>
-                  <p className="text-neutral-600">Quantity: 1</p>
+            {cartData.length > 0 ? (
+              cartData.map((product) => (
+                <div
+                  key={product._id}
+                  className="flex justify-between items-center pb-2 border-b"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-16 h-16 bg-neutral-200 rounded-lg">
+                      <img
+                        src={product.productImg}
+                        alt={product.name}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-medium text-neutral-800">{product.name}</p>
+                      <p className="text-neutral-600">Quantity: {product.quantity}</p>
+                    </div>
+                  </div>
+                  <span className="font-semibold">
+                    {currencySymbol}
+                    {(product.price * product.quantity).toFixed(2)}
+                  </span>
                 </div>
-              </div>
-              <span className="font-semibold">$25.00</span>
-            </div>
+              ))
+            ) : (
+              <p className="text-neutral-600">Your order is empty.</p>
+            )}
           </div>
+
 
           {/* Payment Method */}
           <div className="space-y-4">
@@ -175,31 +213,20 @@ const PlaceOrder = () => {
 
           {/* Order Total */}
           <div className="bg-neutral-100 rounded-lg p-4 space-y-2">
-            <div className="flex justify-between">
-              <span className="text-neutral-700">Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-neutral-700">Shipping</span>
-              <span>${shippingFee.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between font-bold border-t pt-2 mt-2">
-              <span>Total</span>
-              <span>${total.toFixed(2)}</span>
-            </div>
+            <CartSummary />
           </div>
 
           {/* Place Order Button */}
           <button
-            onClick={handlePlaceOrder}
-            className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            onClick={() => navigate('/my-order')}
+            className="w-full py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
           >
             Place Order
           </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PlaceOrder;
+export default PlaceOrder

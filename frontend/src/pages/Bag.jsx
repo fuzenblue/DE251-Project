@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AppContext } from '../context/AppContext'
+import { AppContext } from '../context/AppContext.jsx'
+import CartSummary from '../components/CartSummary.jsx'
 
 const Bag = () => {
-  const { products, currencySymbol, cartItem, updateQuantity, delivery_fee, userData, getCartAmount } = useContext(AppContext)
+  const { products, currencySymbol, cartItem, updateQuantity, userData } = useContext(AppContext)
   const [cartData, setCartData] = useState([])
 
 
@@ -13,10 +14,11 @@ const Bag = () => {
       .map((product) => ({
         ...product,
         quantity: cartItem[product._id],
-      }))
+      }));
 
-    setCartData(tempData)
-  }, [cartItem, products])
+    setCartData(tempData);
+  }, [cartItem, products]);
+
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 bg-white min-h-screen">
@@ -90,27 +92,8 @@ const Bag = () => {
               Order Summary
             </h2>
             <div>
-              <div className="flex justify-between mb-2">
-                <span className="text-neutral-700">Subtotal:</span>
-                <span className="font-semibold">
-                  {currencySymbol}
-                  {getCartAmount().toFixed(2)}
-                </span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span className="text-neutral-700">Shipping:</span>
-                <span className="font-semibold">
-                  {currencySymbol}
-                  {parseFloat(delivery_fee).toFixed(2)}
-                </span>
-              </div>
-              <div className="flex justify-between border-t pt-4 mt-4">
-                <span className="text-xl font-bold">Total:</span>
-                <span className="text-xl font-bold">
-                  {currencySymbol}
-                  {(getCartAmount() + parseFloat(delivery_fee)).toFixed(2)}
-                </span>
-              </div>
+              
+              <CartSummary />
 
               <Link to="/place-order" className="block mt-6">
                 <button className="w-full bg-neutral-900 text-white px-6 py-3 rounded-lg hover:bg-neutral-800 transition-colors">
