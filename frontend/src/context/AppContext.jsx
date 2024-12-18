@@ -8,7 +8,7 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
-    const delivery_fee = 12
+    const delivery_fee = '12.00'
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
@@ -17,68 +17,49 @@ const AppContextProvider = (props) => {
     const [userData, setUserData] = useState(false)
 
     const [products, setProducts] = useState([])
-    const [cartItem, setCartItems] = useState([])
+    const [cartItem, setCartItems] = useState({})
 
     const addToCart = async (itemId) => {
+        const cartData = { ...cartItem }
 
-        let cartData = structuredClone(cartItem)
-
-        if (cartData[itemId]) {
-            if (cartData[itemId]) {
-                cartData[itemId] += 1
-            } else {
-                cartData[itemId] = 1
-            }
-        } else {
-            cartData[itemId] = {}
-            cartData[itemId] = 1
-        }
+        cartData[itemId] = (cartData[itemId] || 0) + 1
 
         setCartItems(cartData)
 
         if (token) {
             try {
-
                 await axios.post(backendUrl + '/api/cart/add', { itemId }, { headers: { token } })
-
             } catch (error) {
-                console.log(error)
+                console.error(error)
                 toast.error(error.message)
             }
         }
     }
 
     const getCartCount = () => {
-        let totalCount = 0
-        for (const items in cartItem) {
-            for (const item in cartItem[items]) {
-                try {
-                    if (cartItem[items][item] > 0) {
-                        totalCount += cartItem[items][item]
-                    }
-                } catch (error) {
-                    console.log(error)
-                    toast.error(error.message)
-                }
-            }
+        let totalCount = 0;
+
+        for (const itemId in cartItem) {
+            totalCount += cartItem[itemId]
         }
 
         return totalCount
     }
 
-    const updateQuantity = async (itemId, quantity) => {
+    const updateQuantity = (itemId, quantity) => {
+        const cartData = { ...cartItem }
 
-        let cartData = structuredClone(cartItem)
+        if (quantity > 0) {
+            cartData[itemId] = quantity
+        } else {
+            delete cartData[itemId]
+        }
 
-        cartData[itemId] = quantity
         setCartItems(cartData)
     }
 
-    // const getCartAmount = () => {
 
-    //     let totalAmount = 0
-    // }
-
+    // workshop context
     const getWorkshopsData = async () => {
         try {
 
@@ -133,6 +114,11 @@ const AppContextProvider = (props) => {
     }, [])
 
     useEffect(() => {
+        console.log(cartItem);
+
+    }, [cartItem])
+
+    useEffect(() => {
         if (token) {
             loadUserProfileData()
         } else {
@@ -143,12 +129,16 @@ const AppContextProvider = (props) => {
     const value = {
         workshops, getWorkshopsData,
         products, getProductsData,
+        cartItem, setCartItems,
+
         currencySymbol, delivery_fee,
+
         category_workshop,
         token, setToken,
         backendUrl,
         userData, setUserData,
         loadUserProfileData,
+
         addToCart,
         getCartCount,
         updateQuantity,

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { assets } from '../assets/assets'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 
 const Navbar = () => {
@@ -8,7 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const [showMenu, setShowMenu] = useState(false)
-  const { token, setToken, userData } = useContext(AppContext)
+  const { token, setToken, userData, getCartCount } = useContext(AppContext)
 
   const logout = () => {
     setToken(false)
@@ -51,7 +51,10 @@ const Navbar = () => {
         {
           token && userData
             ? <>
-              <img onClick={() => navigate('my-bag')} src={assets.cart_icon} alt="" className='w-9 h-9 mr-3 cursor-pointer' />
+              <Link to='my-bag' className="relative">
+                <img src={assets.cart_icon} alt="" className='w-9 h-9 mr-3 cursor-pointer' />
+                <p className='absolute right-[3px] bottom-[16px] w-5 text-center leading-5 bg-primary text-dark-brown aspect-square rounded-full text-[12px]'>{getCartCount()}</p>
+              </Link>
               <div className='flex items-center gap-1 cursor-pointer group relative'>
 
                 <img className='flex w-10 h-10 rounded-full object-cover' src={userData.image} alt="" />
