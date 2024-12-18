@@ -64,37 +64,40 @@ const ProductInfo = () => {
           </div>
 
           {/* Product Details */}
-          <div className="flex flex-col justify-between space-y-1">
+          <div className="flex flex-col justify-between space-y-4">
             <div>
               <h1 className="text-3xl lg:text-4xl font-semibold text-primary">{product.name}</h1>
-              <p className="text-lg lg:text-xl text-gray-700 mt-4 p-1">{product.about}</p> 
             </div>
 
-            {/* Price and Quantity Section */}
-            <div className="flex justify-between items-center mt-4">
-              {/* Price - Chased to the Left */}
+            {/* Product Description - Positioned directly under product name */}
+            <div>
+              <p className="text-lg lg:text-xl text-gray-700 mt-0">{product.about}</p> {/* ไม่มีการเว้นช่องว่าง */}
+            </div>
+
+            {/* Price Section - Positioned to the Left */}
+            <div className="flex justify-start items-center mt-4">
               <span className="text-3xl font-semibold text-accent">
                 {currencySymbol}{product.price}
               </span>
+            </div>
 
-              {/* Quantity Selector - Chased to the Right */}
-              <div className="flex items-center space-x-3">
-                <button
-                  className="w-12 h-12 text-2xl font-bold text-gray-800 rounded-full border-2 border-gray-300 hover:bg-gray-100"
-                  onClick={() => handleQuantityChange(-1)}
-                  aria-label="Decrease quantity"
-                >
-                  -
-                </button>
-                <span className="text-2xl font-semibold text-gray-900">{quantity}</span>
-                <button
-                  className="w-12 h-12 text-2xl font-bold text-gray-800 rounded-full border-2 border-gray-300 hover:bg-gray-100"
-                  onClick={() => handleQuantityChange(1)}
-                  aria-label="Increase quantity"
-                >
-                  +
-                </button>
-              </div>
+            {/* Quantity Selector */}
+            <div className="flex justify-center items-center space-x-6 border-t pt-4">
+              <button
+                className="w-12 h-12 text-2xl font-bold text-gray-800 rounded-full border-2 border-gray-300 hover:bg-gray-100 focus:outline-none"
+                onClick={() => handleQuantityChange(-1)}
+                aria-label="Decrease quantity"
+              >
+                -
+              </button>
+              <span className="text-2xl font-semibold text-gray-900">{quantity}</span>
+              <button
+                className="w-12 h-12 text-2xl font-bold text-gray-800 rounded-full border-2 border-gray-300 hover:bg-gray-100 focus:outline-none"
+                onClick={() => handleQuantityChange(1)}
+                aria-label="Increase quantity"
+              >
+                +
+              </button>
             </div>
 
             {/* Add to Cart Button */}
@@ -109,7 +112,7 @@ const ProductInfo = () => {
         </div>
 
         {/* Product Description (repeated) */}
-        <div className="mt- lg:mt-12 max-w-4xl mx-auto text-gray-600">
+        <div className="mt-8 lg:mt-12 max-w-4xl mx-auto text-gray-600">
           <h3 className="text-2xl lg:text-3xl font-semibold text-gray-900">Description</h3>
           <p className="mt-2 text-lg lg:text-xl leading-relaxed">{product.description}</p>
         </div>
