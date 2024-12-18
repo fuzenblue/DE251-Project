@@ -74,10 +74,10 @@ const AppContextProvider = (props) => {
         setCartItems(cartData)
     }
 
-    const getCartAmount = () => {
+    // const getCartAmount = () => {
 
-        let totalAmount = 0
-    }
+    //     let totalAmount = 0
+    // }
 
     const getWorkshopsData = async () => {
         try {
@@ -150,6 +150,9 @@ const AppContextProvider = (props) => {
         userData, setUserData,
         loadUserProfileData,
         addToCart,
+        getCartCount,
+        updateQuantity,
+        // 10.23
     }
 
     return (
