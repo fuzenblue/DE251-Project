@@ -5,8 +5,6 @@ const Bag = () => {
   const [products, setProducts] = useState([
     { id: 1, name: 'Pineapple Biscuit Treats', price: 9, quantity: 1, image: 'https://via.placeholder.com/150?text=Ceramic+Mug' },
     { id: 2, name: 'Fauxxosa Pineapple Lemonade', price: 5, quantity: 1, image: 'https://via.placeholder.com/150?text=Leather+Notebook' },
-    { id: 3, name: 'Pineapple Biscuit Treats', price: 9, quantity: 1, image: 'https://via.placeholder.com/150?text=Ceramic+Mug' },
-    { id: 4, name: 'Fauxxosa Pineapple Lemonade', price: 5, quantity: 1, image: 'https://via.placeholder.com/150?text=Leather+Notebook' },
   ]);
 
   const getTotal = () => {
@@ -31,12 +29,14 @@ const Bag = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 bg-white min-h-screen">
+      <div className="flex flex-col items-center mb-8">
+        <h1 className="text-3xl font-bold tracking-tight text-neutral-800">
+          Your Shopping Cart
+        </h1>
+      </div>
       <div className="grid md:grid-cols-3 gap-8">
         {/* Left Column - Cart Items */}
-        <div className="md:col-span-2 space-y-6">
-          <h1 className="text-3xl font-bold text-center tracking-tight text-neutral-800 mb-6">
-            Your Shopping Cart
-          </h1>
+        <div className="md:col-span-2">
           <div>
             <h2 className="text-xl font-semibold text-neutral-700 mb-4 border-b pb-2">
               Products
@@ -86,32 +86,34 @@ const Bag = () => {
         </div>
 
         {/* Right Column - Order Summary */}
-        <div className="space-y-6">
-          <div className="bg-neutral-50 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-neutral-700 mb-4 border-b pb-2">
-              Order Summary
-            </h2>
-            <div>
-              <div className="flex justify-between mb-2">
-                <span className="text-neutral-700">Subtotal:</span>
-                <span className="font-semibold">${getTotal()}</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span className="text-neutral-700">Shipping:</span>
-                <span className="font-semibold">$5.00</span>
-              </div>
-              <div className="flex justify-between border-t pt-4 mt-4">
-                <span className="text-xl font-bold">Total:</span>
-                <span className="text-xl font-bold">
-                  ${(parseFloat(getTotal()) + 5.0).toFixed(2)}
-                </span>
-              </div>
+        <div className="space-y-6 md:pt-[2rem]">
+          <div>
+            <div className="bg-neutral-50 rounded-lg p-6">
+              <h2 className="text-xl font-semibold text-neutral-700 mb-4 border-b pb-2">
+                Order Summary
+              </h2>
+              <div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-neutral-700">Subtotal:</span>
+                  <span className="font-semibold">${getTotal()}</span>
+                </div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-neutral-700">Shipping:</span>
+                  <span className="font-semibold">$5.00</span>
+                </div>
+                <div className="flex justify-between border-t pt-4 mt-4">
+                  <span className="text-xl font-bold">Total:</span>
+                  <span className="text-xl font-bold">
+                    ${(parseFloat(getTotal()) + 5.0).toFixed(2)}
+                  </span>
+                </div>
 
-              <Link to="/place-order" className="block mt-6">
-                <button className="w-full bg-neutral-900 text-white px-6 py-3 rounded-lg hover:bg-neutral-800 transition-colors">
-                  Proceed to Checkout
-                </button>
-              </Link>
+                <Link to="/place-order" className="block mt-6">
+                  <button className="w-full bg-neutral-900 text-white px-6 py-3 rounded-lg hover:bg-neutral-800 transition-colors">
+                    Proceed to Checkout
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
