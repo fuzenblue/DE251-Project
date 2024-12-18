@@ -1,31 +1,20 @@
 import userModel from "../models/userModel.js"
 
-// add product and workshop to user cart
+// API add product and workshop to user cart
 const addToCart = async (req, res) => {
     try {
-
         const { userId, itemId } = req.body
 
         const userData = await userModel.findById(userId)
-        let cartData = await userData.cartData
+        const cartData = { ...userData.cartData }
 
-        if (cartData[itemId]) {
-            if (cartData[itemId]) {
-                cartData[itemId] += 1
-            } else {
-                cartData[itemId] = 1
-            }
-        } else {
-            cartData[itemId] = {}
-            cartData[itemId] = 1
-        }
+        cartData[itemId] = (cartData[itemId] || 0) + 1
 
         await userModel.findByIdAndUpdate(userId, { cartData })
 
         res.json({ success: true, message: "Added To Cart" })
-
     } catch (error) {
-        console.log(error)
+        console.error(error);
         res.json({ success: false, message: error.message })
     }
 }

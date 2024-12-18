@@ -45,21 +45,24 @@ const AppContextProvider = (props) => {
 
         return totalCount
     }
-
     const updateQuantity = (itemId, quantity) => {
-        const cartData = { ...cartItem }
+        const cartData = { ...cartItem }; // Clone cartItem
 
         if (quantity > 0) {
-            cartData[itemId] = quantity
+            cartData[itemId] = quantity; // อัปเดตจำนวนสินค้า
         } else {
-            delete cartData[itemId]
+            delete cartData[itemId]; // ลบสินค้าออกหากจำนวนเป็น 0
         }
 
-        setCartItems(cartData)
-    }
+        setCartItems(cartData); // อัปเดต State หรือ Context
+    };
 
 
-    // workshop context
+    // const getCartAmount = () => {
+
+    //     let totalAmount = 0
+    // }
+
     const getWorkshopsData = async () => {
         try {
 
@@ -142,7 +145,6 @@ const AppContextProvider = (props) => {
         addToCart,
         getCartCount,
         updateQuantity,
-        // 10.23
     }
 
     return (
