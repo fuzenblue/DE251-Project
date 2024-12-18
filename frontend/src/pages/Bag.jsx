@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Cart = () => {
+const Bag= () => {
   return (
     <div>
-      My Cart
+      My Bag
 
       <div>
         Product
@@ -24,4 +24,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default Bag
