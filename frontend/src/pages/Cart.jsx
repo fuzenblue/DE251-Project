@@ -3,7 +3,23 @@ import React from 'react'
 const Cart = () => {
   return (
     <div>
-      cart page
+      My Cart
+
+      <div>
+        Product
+      </div>
+
+      <div>
+        Workshop
+      </div>
+
+      <div>
+        Summary
+
+
+        <button>Check Out</button>
+      </div>
+
     </div>
   )
 }

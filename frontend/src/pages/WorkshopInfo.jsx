@@ -108,16 +108,14 @@ const WorkshopInfo = () => {
 
       // console.log("Booking request:", { workshopId, slotDate, slotTime, ticketCount })
 
-      const { data } = await axios.post(
-        backendUrl + "/api/user/book-workshop",
-        { workshopId, slotDate, slotTime, ticketCount },
-        { headers: { token } }
-      )
+      const { data } = await axios.post(backendUrl + "/api/user/book-workshop", { workshopId, slotDate, slotTime, ticketCount }, { headers: { token } })
 
       if (data.success) {
         toast.success(data.message)
+
         getWorkshopsData()
         navigate("/my-booking")
+
       } else {
         toast.error(data.message)
       }
@@ -272,9 +270,9 @@ const WorkshopInfo = () => {
               <div className="flex gap-4 items-center w-full overflow-x-auto m-5">
                 {
                   dayOfWeek.map((day, index) => {
-                    const currentDate = new Date();
-                    const targetDate = new Date();
-                    targetDate.setDate(currentDate.getDate() +index);
+                    const currentDate = new Date()
+                    const targetDate = new Date()
+                    targetDate.setDate(currentDate.getDate() + index)
 
                     return (
                       <div
@@ -289,7 +287,7 @@ const WorkshopInfo = () => {
                         <p>{day}</p>
                         <p>{targetDate.getDate()}</p>
                       </div>
-                    );
+                    )
                   })
                 }
               </div>
@@ -304,8 +302,8 @@ const WorkshopInfo = () => {
                       <p
                         onClick={() => setSlotTime(item.time)}
                         className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime
-                            ? "bg-primary text-white"
-                            : "text-gray-400 border border-gray-300"
+                          ? "bg-primary text-white"
+                          : "text-gray-400 border border-gray-300"
                           }`}
                         key={index}
                       >
@@ -337,14 +335,11 @@ const WorkshopInfo = () => {
                 </select>
               </div>
 
-              <button
-                onClick={() => bookWorkshop(ticketCount)}
-                disabled={workshopSlots[slotIndex]?.length === 0}
+              <button onClick={() => bookWorkshop(ticketCount)} disabled={workshopSlots[slotIndex]?.length === 0}
                 className={`btn text-sm font-light px-14 py-3 rounded-full shadow-md ${workshopSlots[slotIndex]?.length > 0
-                    ? "btn-primary text-white"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  }`}
-              >
+                  ? "btn-primary text-white"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}>
                 Book this Workshop
               </button>
 
@@ -361,7 +356,7 @@ const WorkshopInfo = () => {
         </div>
       </div>
     )
-  );
-};
+  )
+}
 
 export default WorkshopInfo

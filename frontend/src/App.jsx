@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css"
 import Cart from './pages/Cart.jsx'
 import MyOrder from './pages/MyOrder.jsx'
 import MyProduct from './pages/Product.jsx'
+import PlaceOrder from './pages/PlaceOrder.jsx'
 
 const App = () => {
 
@@ -45,6 +46,8 @@ const App = () => {
 
         < Route path='/all-product/:productId' element={<WorkshopInfo />} />
         < Route path='/all-service/:workshopId' element={<WorkshopInfo />} />
+
+        < Route path='/place-order' element={<PlaceOrder />} />
 
         < Route path='/login' element={<Login />} />
       </Routes>
