@@ -12,9 +12,7 @@ const AppContextProvider = (props) => {
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
 
     const [workshops, setWorkshops] = useState([])
-
     const [userData, setUserData] = useState(false)
-
     const [products, setProducts] = useState([])
 
     const getWorkshopsData = async () => {
