@@ -19,7 +19,10 @@ const AppContextProvider = (props) => {
     const [products, setProducts] = useState([])
     const [cartItem, setCartItems] = useState([])
 
+    const addToCart = async (itemId) => {
 
+        let cartData = structuredClone(cartItem)
+    }
 
     const getWorkshopsData = async () => {
         try {
