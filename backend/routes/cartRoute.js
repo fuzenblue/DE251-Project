@@ -5,7 +5,7 @@ import authUser from '../middlewares/authUser.js'
 const cartRouter = express.Router()
 
 cartRouter.post('/get', authUser, getUserCart)
-cartRouter.get('/add-to-cart', authUser, addToCart)
-cartRouter.get('/update-cart', authUser, updateCart)
+cartRouter.get('/add', authUser, addToCart)
+cartRouter.get('/update', authUser, updateCart)
 
 export default cartRouter

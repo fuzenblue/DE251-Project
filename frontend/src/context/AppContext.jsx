@@ -22,7 +22,62 @@ const AppContextProvider = (props) => {
     const addToCart = async (itemId) => {
 
         let cartData = structuredClone(cartItem)
+
+        if (cartData[itemId]) {
+            if (cartData[itemId]) {
+                cartData[itemId] += 1
+            } else {
+                cartData[itemId] = 1
+            }
+        } else {
+            cartData[itemId] = {}
+            cartData[itemId] = 1
+        }
+
+        setCartItems(cartData)
+
+        if (token) {
+            try {
+
+                await axios.post(backendUrl + '/api/cart/add', { itemId }, { headers: { token } })
+
+            } catch (error) {
+                console.log(error)
+                toast.error(error.message)
+            }
+        }
     }
+
+    const getCartCount = () => {
+        let totalCount = 0
+        for (const items in cartItem) {
+            for (const item in cartItem[items]) {
+                try {
+                    if (cartItem[items][item] > 0) {
+                        totalCount += cartItem[items][item]
+                    }
+                } catch (error) {
+                    console.log(error)
+                    toast.error(error.message)
+                }
+            }
+        }
+
+        return totalCount
+    }
+
+    const updateQuantity = async (itemId, quantity) => {
+
+        let cartData = structuredClone(cartItem)
+
+        cartData[itemId] = quantity
+        setCartItems(cartData)
+    }
+
+    // const getCartAmount = () => {
+
+    //     let totalAmount = 0
+    // }
 
     const getWorkshopsData = async () => {
         try {
@@ -94,6 +149,10 @@ const AppContextProvider = (props) => {
         backendUrl,
         userData, setUserData,
         loadUserProfileData,
+        addToCart,
+        getCartCount,
+        updateQuantity,
+        // 10.23
     }
 
     return (
