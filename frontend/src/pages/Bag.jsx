@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Bag = () => {
   const [products, setProducts] = useState([
-    { id: 1, name: 'Elegant Ceramic Mug', price: 25, quantity: 1, image: 'https://via.placeholder.com/150?text=Ceramic+Mug' },
-    { id: 2, name: 'Leather Notebook', price: 18, quantity: 1, image: 'https://via.placeholder.com/150?text=Leather+Notebook' },
+    { id: 1, name: 'Pineapple Bitcuit Treats', price: 9, quantity: 1, image: 'https://via.placeholder.com/150?text=Ceramic+Mug' },
+    { id: 2, name: 'Faxuxosa Pineapple Lemonade', price: 5, quantity: 1, image: 'https://via.placeholder.com/150?text=Leather+Notebook' },
   ]);
 
   const [workshops, setWorkshops] = useState([
-    { id: 1, name: 'Design Workshop', price: 75, quantity: 1, image: 'https://via.placeholder.com/150?text=Design+Workshop' },
+    { id: 1, name: 'Pineapple Planting', price: 12, quantity: 1, image: 'https://via.placeholder.com/150?text=Design+Workshop' },
   ]);
 
   const getTotal = (items) => {
@@ -36,15 +36,15 @@ const Bag = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 bg-neutral-50 min-h-screen">
-      <div className="bg-white rounded-2xl shadow-xl ring-1 ring-neutral-100 overflow-hidden">
-        <div className="bg-neutral-900 text-white p-6">
-          <h1 className="text-3xl font-bold text-center tracking-tight">
+    <div className="max-w-4xl mx-auto px-4 py-8 bg-white min-h-screen">
+      <div className="space-y-6">
+        <div className="">
+          <h1 className="text-3xl font-bold text-center tracking-tight text-neutral-800">
             Your Shopping Cart
           </h1>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="space-y-6">
           {/* Products Section */}
           <div>
             <h2 className="text-xl font-semibold text-neutral-700 mb-4 border-b pb-2">
@@ -127,7 +127,7 @@ const Bag = () => {
           </div>
 
           {/* Summary Section */}
-          <div className="bg-neutral-100 rounded-lg p-6">
+          <div className="bg-neutral-50 rounded-lg p-6">
             <div className="flex justify-between items-center">
               <div>
                 <div className="flex justify-between mb-2">
@@ -143,7 +143,7 @@ const Bag = () => {
                   <span className="text-xl font-bold">${getTotal(products) + getTotal(workshops)}</span>
                 </div>
               </div>
-              <Link to ="/PlaceOrder">
+              <Link to="/place-order">
                 <button className="bg-neutral-900 text-white px-6 py-3 rounded-lg hover:bg-neutral-800 transition-colors">
                   Proceed to Checkout
                 </button>
