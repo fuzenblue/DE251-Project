@@ -1,12 +1,10 @@
-
-
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AppContext } from '../context/AppContext';
+import React, { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
 
 const Bag = () => {
-  const { products, currencySymbol, cartItem, updateQuantity, delivery_fee, userData } = useContext(AppContext);
-  const [cartData, setCartData] = useState([]);
+  const { products, currencySymbol, cartItem, updateQuantity, delivery_fee, userData, getCartAmount } = useContext(AppContext)
+  const [cartData, setCartData] = useState([])
 
 
   useEffect(() => {
@@ -15,7 +13,7 @@ const Bag = () => {
       .map((product) => ({
         ...product,
         quantity: cartItem[product._id],
-      }));
+      }))
 
     setCartData(tempData)
   }, [cartItem, products])
@@ -69,7 +67,7 @@ const Bag = () => {
 
                   <div className="col-span-6 md:col-span-2 mx-4 text-right">
                     <button
-                      onClick={() => updateQuantity(product._id, 0)} // ใช้ _id ให้ตรงกับ cartItem
+                      onClick={() => updateQuantity(product._id, 0)}
                       className="text-red-500 hover:text-red-700 font-medium"
                     >
                       Remove
@@ -94,21 +92,24 @@ const Bag = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <span className="text-neutral-700">Subtotal:</span>
-                {/* <span className="font-semibold">
+                <span className="font-semibold">
                   {currencySymbol}
-                  {getTotal().toFixed(2)}
-                </span> */}
+                  {getCartAmount().toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between mb-2">
                 <span className="text-neutral-700">Shipping:</span>
-                <span className="font-semibold">{currencySymbol}{delivery_fee}</span>
+                <span className="font-semibold">
+                  {currencySymbol}
+                  {parseFloat(delivery_fee).toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between border-t pt-4 mt-4">
                 <span className="text-xl font-bold">Total:</span>
-                {/* <span className="text-xl font-bold">
+                <span className="text-xl font-bold">
                   {currencySymbol}
-                  {(getTotal() + 12.00).toFixed(2)}
-                </span> */}
+                  {(getCartAmount() + parseFloat(delivery_fee)).toFixed(2)}
+                </span>
               </div>
 
               <Link to="/place-order" className="block mt-6">
@@ -117,6 +118,7 @@ const Bag = () => {
                 </button>
               </Link>
             </div>
+
           </div>
         </div>
       </div>

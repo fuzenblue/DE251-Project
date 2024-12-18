@@ -37,7 +37,7 @@ const AppContextProvider = (props) => {
     }
 
     const getCartCount = () => {
-        let totalCount = 0;
+        let totalCount = 0
 
         for (const itemId in cartItem) {
             totalCount += cartItem[itemId]
@@ -46,22 +46,30 @@ const AppContextProvider = (props) => {
         return totalCount
     }
     const updateQuantity = (itemId, quantity) => {
-        const cartData = { ...cartItem }; // Clone cartItem
+        const cartData = { ...cartItem }
 
         if (quantity > 0) {
-            cartData[itemId] = quantity; // อัปเดตจำนวนสินค้า
+            cartData[itemId] = quantity
         } else {
-            delete cartData[itemId]; // ลบสินค้าออกหากจำนวนเป็น 0
+            delete cartData[itemId]
         }
 
-        setCartItems(cartData); // อัปเดต State หรือ Context
-    };
+        setCartItems(cartData)
+    }
 
 
-    // const getCartAmount = () => {
+    const getCartAmount = () => {
+        let totalAmount = 0
 
-    //     let totalAmount = 0
-    // }
+        for (const itemId in cartItem) {
+            const product = products.find((product) => product._id === itemId)
+            if (product) {
+                totalAmount += product.price * cartItem[itemId]
+            }
+        }
+
+        return totalAmount
+    }
 
     const getWorkshopsData = async () => {
         try {
@@ -117,7 +125,7 @@ const AppContextProvider = (props) => {
     }, [])
 
     useEffect(() => {
-        console.log(cartItem);
+        console.log(cartItem)
 
     }, [cartItem])
 
@@ -145,6 +153,7 @@ const AppContextProvider = (props) => {
         addToCart,
         getCartCount,
         updateQuantity,
+        getCartAmount,
     }
 
     return (
