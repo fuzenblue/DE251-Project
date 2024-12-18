@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { products } from '../assets/assets'
+import { AppContext } from '../context/AppContext'
+import Breadcrumbs from '../components/Breadcrumbs.jsx'
 
 const ProductInfo = () => {
-  const { id } = useParams() // รับ id จาก URL
+  const { id } = useParams()
+  const { products } = useContext(AppContext)
 
-  // หาข้อมูลสินค้าจาก products
-  const product = products.find((item) => item.id === id)
+  // ค้นหาสินค้าจาก ID
+  const product = products?.find((item) => item.id === id)
 
+  // ถ้าหาสินค้าไม่เจอ
   if (!product) {
     return <div className="text-center mt-20 text-lg">Product not found!</div>
   }
@@ -19,7 +22,7 @@ const ProductInfo = () => {
           {/* รูปภาพหลัก */}
           <div className="lg:w-1/2 p-6 bg-yellow-50 flex justify-center items-center">
             <img
-              src={product.image}
+              src={product.productImg}
               alt={product.name}
               className="w-full h-96 object-contain rounded-lg"
             />
@@ -48,7 +51,7 @@ const ProductInfo = () => {
         <div className="mt-8">
           <h3 className="text-xl font-semibold text-gray-800 mb-4">More Images</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {product.imgDesc.map((img, index) => (
+            {product.images?.map((img, index) => (
               <img
                 key={index}
                 src={img}
