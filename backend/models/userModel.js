@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
             zipcode: ""
         }
     },
+    bagData: { type: Object, default: {} },
 }, { minimize: false })
 
 const userModel = mongoose.models.user || mongoose.model('user', userSchema)
