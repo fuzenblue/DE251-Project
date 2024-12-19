@@ -65,7 +65,6 @@ const placeOrderCard = async (req, res) => {
     }
 }
 
-
 // All Order data for Admin panel
 const allOrders = async (req, res) => {
     try {
@@ -77,7 +76,6 @@ const allOrders = async (req, res) => {
         res.json({ success: false, message: "Failed to fetch orders." })
     }
 }
-
 
 // User Order data for Frontend
 const userOrders = async (req, res) => {
