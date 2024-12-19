@@ -99,4 +99,3 @@ A platform that combines agricultural tourism with digital convenience, offering
 Enjoy building the Pineapple Farm Platform! 🍍
 
 ---
-Slide: https://www.canva.com/design/DAGY0fHM7N0/sLhFH6iJ15X28xC67hycbg/edit
