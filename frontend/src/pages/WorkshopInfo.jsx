@@ -7,7 +7,6 @@ import RelatedWorkshops from "../components/RelatedWorkshops.jsx"
 import { toast } from "react-toastify"
 import axios from "axios"
 
-// 10.50
 
 const WorkshopInfo = () => {
   const { workshops, currencySymbol, backendUrl, token, getWorkshopsData } = useContext(AppContext)
@@ -238,7 +237,7 @@ const WorkshopInfo = () => {
           <div className="flex mt-4 flex-col md:flex-row gap-5">
             {/* description */}
             <div className="flex-1 rounded-lg">
-              <div className="max-h-48 md:h-auto overflow-y-scroll xl:overflow-clip">
+              <div className="max-h-48 md:max-h-auto overflow-y-scroll">
                 <p className="flex items-center gap-1 text-lg font-medium text-gray-600 mt-3">
                   Description about this workshop{" "}
                   <img src={assets.info_icon} alt="" />
@@ -269,20 +268,22 @@ const WorkshopInfo = () => {
               {/* Slot Date */}
               <div className="flex gap-4 items-center w-full overflow-x-auto m-5">
                 {
-                  dayOfWeek.map((day, index) => {
-                    const currentDate = new Date()
+                  [...Array(7)].map((_, index) => {
+                    const today = new Date()
                     const targetDate = new Date()
-                    targetDate.setDate(currentDate.getDate() + index)
+                    targetDate.setDate(today.getDate() + index)
+
+                    const day = dayOfWeek[targetDate.getDay()]
 
                     return (
                       <div
+                        key={index}
                         onClick={() => setSlotIndex(index)}
                         className={`text-center py-6 min-w-16 rounded-full cursor-pointer 
-                          ${slotIndex === index
+                        ${slotIndex === index
                             ? "bg-primary text-white"
                             : "text-gray-400 border border-gray-300"
                           }`}
-                        key={index}
                       >
                         <p>{day}</p>
                         <p>{targetDate.getDate()}</p>
@@ -291,6 +292,7 @@ const WorkshopInfo = () => {
                   })
                 }
               </div>
+
 
               {/* Slot Time */}
               <div className="m-5">
