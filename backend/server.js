@@ -8,6 +8,7 @@ import workshopsRouter from './routes/workshopsRoute.js'
 import userRouter from './routes/userRoute.js'
 import productsRouter from './routes/productRoute.js'
 import cartRouter from './routes/cartRoute.js'
+import orderRouter from './routes/orderRoute.js'
 
 // server.js
 
@@ -24,10 +25,13 @@ app.use(cors())
 
 // API endpoint
 app.use('/api/admin', adminRouter)
-app.use('/api/workshop', workshopsRouter)
 app.use('/api/user', userRouter)
+
+app.use('/api/workshop', workshopsRouter)
 app.use('/api/product', productsRouter)
+
 app.use('/api/cart', cartRouter)
+app.use('/api/order', orderRouter)
 
 
 app.get('/', (req, res) => {

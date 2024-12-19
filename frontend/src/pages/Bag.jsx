@@ -34,7 +34,7 @@ const Bag = () => {
             {cartData.length > 0 ? (
               cartData.map((product) => (
                 <div
-                  key={product.id}
+                  key={product._id}
                   className="grid grid-cols-12 items-center gap-4 py-4 border-b last:border-b-0 hover:bg-neutral-50 transition-colors"
                 >
                   <div className="col-span-3 md:col-span-2">

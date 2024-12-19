@@ -1,25 +1,27 @@
 import React, { useContext, useEffect, useState } from "react"
 import CartSummary from "../components/CartSummary"
 import { AppContext } from "../context/AppContext"
-import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify"
+
 
 const PlaceOrder = () => {
-  const { products, currencySymbol, cartItem, userData } = useContext(AppContext)
+  const { products, currencySymbol, cartItem, setCartItems, userData, backendUrl, token, getCartAmount, delivery_fee } = useContext(AppContext)
   const [cartData, setCartData] = useState([])
+  const navigate = useNavigate()
 
   const [form, setForm] = useState({
-    firstName: userData.first_name,
-    lastName: userData.last_name,
+    firstName: "",
+    lastName: "",
     email: userData.email,
     street: "",
     city: "",
     state: "",
     zipcode: "",
     country: "",
-    phone: userData.phone,
+    phone: "",
   })
-
-  const navigate = useNavigate()
 
   const [paymentMethod, setPaymentMethod] = useState("cod")
 
@@ -39,9 +41,84 @@ const PlaceOrder = () => {
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
+  const onSubmitHandler = async (event) => {
+    event.preventDefault()
+    try {
+      let orderItems = []
+
+      for (const itemId in cartItem) {
+        if (cartItem[itemId] > 0) {
+          const itemInfo = structuredClone(products.find(product => product._id === itemId))
+          if (itemInfo) {
+            itemInfo.quantity = cartItem[itemId]
+            orderItems.push(itemInfo)
+          }
+        }
+      }
+
+      let orderData = {
+        address: form,
+        items: orderItems,
+        amount: getCartAmount() + delivery_fee
+      }
+
+      switch (paymentMethod) {
+        // API for COD
+        case "cod":
+          try {
+            const response = await axios.post(
+              `${backendUrl}/api/order/place`,
+              orderData,
+              { headers: { token } }
+            );
+            if (response.data.success) {
+              setCartItems({});
+              navigate("/my-order");
+            } else {
+              toast.error(response.data.message);
+            }
+          } catch (error) {
+            console.error("Error placing COD order:", error);
+            toast.error("Failed to place order. Please try again.");
+          }
+          break;
+
+        // API for Card Payment
+        case "card":
+          try {
+            const response = await axios.post(
+              `${backendUrl}/api/order/place-card`,
+              orderData,
+              { headers: { token } }
+            );
+            if (response.data.success) {
+              setCartItems({});
+              navigate("/my-order");
+            } else {
+              toast.error(response.data.message);
+            }
+          } catch (error) {
+            console.error("Error placing Card order:", error);
+            toast.error("Failed to place order. Please try again.");
+          }
+          break;
+
+        default:
+          toast.error("Invalid payment method.");
+          break;
+      }
+
+
+
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message)
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 bg-white min-h-screen">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <form onSubmit={onSubmitHandler} className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Column: Delivery Information */}
         <div className="space-y-6">
           <h2 className="text-2xl font-semibold text-neutral-800 border-b pb-2">
@@ -52,7 +129,7 @@ const PlaceOrder = () => {
             <input
               type="text"
               name="firstName"
-              value={form.firstName}
+              value={form.firstName || ""}
               onChange={handleChange}
               placeholder="First Name"
               required
@@ -61,7 +138,7 @@ const PlaceOrder = () => {
             <input
               type="text"
               name="lastName"
-              value={form.lastName}
+              value={form.lastName || ""}
               onChange={handleChange}
               placeholder="Last Name"
               required
@@ -72,7 +149,7 @@ const PlaceOrder = () => {
           <input
             type="email"
             name="email"
-            value={userData.email}
+            defaultValue={userData.email}
             disabled
             placeholder="Email Address"
             className="w-full px-4 py-3 bg-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -81,7 +158,7 @@ const PlaceOrder = () => {
           <input
             type="text"
             name="street"
-            value={form.street}
+            value={form.street || ""}
             onChange={handleChange}
             placeholder="Street Address"
             required
@@ -92,7 +169,7 @@ const PlaceOrder = () => {
             <input
               type="text"
               name="city"
-              value={form.city}
+              value={form.city || ""}
               onChange={handleChange}
               placeholder="City"
               required
@@ -101,7 +178,7 @@ const PlaceOrder = () => {
             <input
               type="text"
               name="state"
-              value={form.state}
+              value={form.state || ""}
               onChange={handleChange}
               placeholder="State"
               required
@@ -113,7 +190,7 @@ const PlaceOrder = () => {
             <input
               type="text"
               name="zipcode"
-              value={form.zipcode}
+              value={form.zipcode || ""}
               onChange={handleChange}
               placeholder="Zipcode"
               required
@@ -122,7 +199,7 @@ const PlaceOrder = () => {
             <input
               type="text"
               name="country"
-              value={form.country}
+              value={form.country || ""}
               onChange={handleChange}
               placeholder="Country"
               required
@@ -133,7 +210,7 @@ const PlaceOrder = () => {
           <input
             type="text"
             name="phone"
-            value={form.phone}
+            value={form.phone || ""}
             onChange={handleChange}
             placeholder="Phone Number"
             required
@@ -218,13 +295,13 @@ const PlaceOrder = () => {
 
           {/* Place Order Button */}
           <button
-            onClick={() => navigate('/my-order')}
+            type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
           >
             Place Order
           </button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

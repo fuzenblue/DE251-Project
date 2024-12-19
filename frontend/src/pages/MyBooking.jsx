@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 const MyBooking = () => {
 
-  const { backendUrl, token, getWorkshopsData } = useContext(AppContext)
+  const { backendUrl, token, getWorkshopsData, userData } = useContext(AppContext)
 
   const [bookings, setBookings] = useState([])
   const months = [" ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -80,7 +80,7 @@ const MyBooking = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 p-8 bg-gray-50">
-        <h2 className="text-left text-2xl font-bold text-gray-800 mb-6">My Booking</h2>
+        <h2 className="text-left text-2xl font-bold text-gray-800 mb-6"><span className='text-primary'>{userData.name}</span> Booking</h2>
 
         <div className="flex flex-col gap-4 m-4">
           {bookings.map((item, index) => (
@@ -146,7 +146,6 @@ const MyBooking = () => {
         </div>
       </div>
     </div>
-
   )
 }
 
