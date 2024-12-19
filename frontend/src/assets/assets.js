@@ -47,6 +47,7 @@ import video_ads from './pineapple_ads.mp4'
 import play_icon from './play.svg'
 import welcome_img from './Piña_.jpg'
 import cart_icon from './online-shopping.png'
+import product_header from './product_header.jpg'
 
 // export const for assets 
 export const assets = {
@@ -70,6 +71,7 @@ export const assets = {
     play_icon,
     welcome_img,
     cart_icon,
+    product_header,
 }
 
 // export const for workshop

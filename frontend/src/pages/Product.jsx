@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import Banner from '../components/Banner'
 
+import ProductHeader from '../components/ProductHeader'
+
 const Product = () => {
 
   const { products, currencySymbol } = useContext(AppContext)
@@ -14,7 +16,8 @@ const Product = () => {
 
   return (
     <div className="min-h-screen">
-      
+
+      <ProductHeader />
 
       <div id='all-product' className='items-center mt-5 text-center'>
         <h2 className='text-accent font-bold text-xl md:text-3xl'>ALL Product</h2>
@@ -48,6 +51,7 @@ const Product = () => {
       </div>
 
       <Banner />
+
     </div>
   )
 }
