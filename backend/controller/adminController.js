@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken'
 import workshopsModel from '../models/workshopsModel.js'
 import userModel from '../models/userModel.js'
 import bookedModel from '../models/bookedModel.js'
+import orderModel from '../models/orderModel.js'
+import productModel from '../models/productsModel.js'
 
 // API for Admin Login
 const loginAdmin = async (req, res) => {
@@ -30,14 +32,14 @@ const adminDashboard = async (req, res) => {
         const workshops = await workshopsModel.find({})
         const users = await userModel.find({})
         const booked = await bookedModel.find({})
+        const products = await productModel.find({})
+        const orders = await orderModel.find({})
 
-        // Debug: Log raw data
-        console.log('Workshops:', workshops.length)
-        console.log('Booked:', booked.length)
+        const totalRevenue = [
+            ...booked.filter((b) => b.payment === true),
+            ...orders.filter((o) => o.payment === true),
+        ].reduce((acc, curr) => acc + curr.amount, 0)
 
-        const totalRevenue = booked
-            .filter((b) => b.payment === true)
-            .reduce((acc, curr) => acc + curr.amount, 0)
 
         // Workshop Popularity Calculation
         const workshopPopularity = {}
@@ -74,6 +76,45 @@ const adminDashboard = async (req, res) => {
             }
         })
 
+        const productPopularity = {};
+
+        // ตรวจสอบว่า orders เป็นอาร์เรย์
+        if (!Array.isArray(orders)) {
+            console.error("Orders is not an array or undefined:", orders);
+            return res.status(500).json({ success: false, message: "Invalid orders data" });
+        }
+
+        // วนลูป orders เพื่อสร้าง productPopularity
+        orders.forEach((order) => {
+            // ตรวจสอบว่า items เป็นอาร์เรย์
+            if (!Array.isArray(order.items)) {
+                console.warn(`Invalid items for order ${order._id}:`, order.items);
+                return; // ข้าม order ที่ไม่มี items
+            }
+
+            order.items.forEach((item) => {
+                if (!productPopularity[item._id]) {
+                    productPopularity[item._id] = 0;
+                }
+                productPopularity[item._id] += item.quantity;
+            });
+        });
+
+        // สร้าง popularProducts
+        const popularProducts = Object.entries(productPopularity)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5)
+            .map(([id, count]) => {
+                const product = products.find((p) => p._id.toString() === id);
+                return {
+                    productName: product?.name || "Unknown",
+                    count,
+                    image: product?.productImg,
+                };
+            });
+
+
+
         // Debug: Log workshop popularity
         console.log('Workshop Popularity:', workshopPopularity)
 
@@ -94,12 +135,18 @@ const adminDashboard = async (req, res) => {
         // Prepare Dashboard Data
         const dashData = {
             totalWorkshops: workshops.length,
-            totalBookings: booked.length,
+            totalProduct: products.length,
+            totalOrders: booked.length + orders.length,
             totalUsers: users.length,
-            latestBookings: booked.reverse().slice(0, 30),
+            latestBookings: [...booked, ...orders]
+                .sort((a, b) => b.date - a.date)
+                .slice(0, 30),
             totalRevenue,
             popularWorkshops,
+            popularProducts,
+            users,
         }
+
 
         // Debug: Log final dashboard data
         console.log('Dashboard Data:', JSON.stringify(dashData, null, 2))

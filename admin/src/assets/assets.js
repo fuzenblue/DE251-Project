@@ -20,7 +20,7 @@ import user_icon from './user.png'
 import star_icon from './star.png'
 import pocket_icon from './pocket.png'
 import money_icon from './money.png'
-
+import product_icon from './new-product.png'
 
 // export const for assets 
 export const admin = {
@@ -42,6 +42,7 @@ export const admin = {
     star_icon,
     pocket_icon,
     money_icon,
+    product_icon,
 }
 
 // export const for workshop

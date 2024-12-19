@@ -11,19 +11,37 @@ const WorkshopContextProvider = (props) => {
 
   const { backendUrl, aToken } = useContext(AdminContext)
 
-  const [ workshops, setWorkshop ] = useState([])
+  const [workshops, setWorkshop] = useState([])
   const [bookeds, setBookeds] = useState([])
   const [dashData, setDashData] = useState(false)
 
-  const getAllWorkshop = async(aToken) => {
+  const getAllWorkshop = async (aToken) => {
     try {
-      
-      const { data } = await axios.post(backendUrl + '/api/workshop/all-workshops', {}, {headers: { aToken }})
+
+      const { data } = await axios.post(backendUrl + '/api/workshop/all-workshops', {}, { headers: { aToken } })
       if (data.success) {
         setWorkshop(data.workshops)
-        
+
       } else {
         toast.error(data.message || "Failed to fetch workshops")
+      }
+    } catch (error) {
+      console.error(error.response?.data || error.message)
+      toast.error(error.response?.data?.message || "Failed to fetch dashboard data.")
+    }
+
+  }
+
+  const changeAvailability = async (workshopsId) => {
+
+    try {
+      const { data } = await axios.post(backendUrl + '/api/workshop/change-availability', { workshopsId }, { headers: { aToken } })
+
+      if (data.success) {
+        toast.success(data.message)
+        getAllWorkshop()
+      } else {
+        toast.error(data.message)
       }
     } catch (error) {
       console.error(error.response || error.message)
@@ -31,27 +49,10 @@ const WorkshopContextProvider = (props) => {
     }
   }
 
-  const changeAvailability = async (workshopsId) => {
-
-    try {
-        const { data } = await axios.post(backendUrl + '/api/workshop/change-availability', { workshopsId }, {headers: { aToken }})
-
-        if (data.success) {
-            toast.success(data.message)
-            getAllWorkshop()
-        } else {
-            toast.error(data.message)
-        }
-    } catch (error) {
-        console.error(error.response || error.message)
-        toast.error(error.message)
-    }
-  }
-
   const getAllBookeds = async () => {
 
     try {
-      const { data } = await axios.get(backendUrl + '/api/workshop/bookings', {headers: { aToken }})
+      const { data } = await axios.get(backendUrl + '/api/workshop/bookings', { headers: { aToken } })
 
       if (data.success) {
         setBookeds(data.bookeds)
@@ -64,11 +65,11 @@ const WorkshopContextProvider = (props) => {
     }
   }
 
-  
+
   const cancelBooking = async (bookedId) => {
     try {
-      
-      const { data } = await axios.post(backendUrl + '/api/workshop/cancel-booking', {bookedId}, {headers: { aToken }})
+
+      const { data } = await axios.post(backendUrl + '/api/workshop/cancel-booking', { bookedId }, { headers: { aToken } })
       if (data.success) {
         toast.success(data.message)
         getAllBookeds()
@@ -84,7 +85,7 @@ const WorkshopContextProvider = (props) => {
 
   const getDashData = async () => {
     try {
-      const { data } = await axios.get(backendUrl + '/api/admin/dashboard', {headers: { aToken }})
+      const { data } = await axios.get(backendUrl + '/api/admin/dashboard', { headers: { aToken } })
       if (data.success) {
         setDashData(data.dashData)
         console.log(data.dashData)
