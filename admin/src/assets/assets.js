@@ -6,7 +6,7 @@ import add_blogs_icon from './add-blog-icon.svg'
 import booking_icon from './booking-icon.svg'
 import dashboard_icon from './dashboard-icon.svg'
 import dropdown_icon from './dropdown-icon.svg'
-import profile from './profile_admin.jpeg'
+import profile from './profile_admin.jpg'
 import edit_icon from './edit_icon.png'
 
 import header_img from './cafe-card-img.png'
